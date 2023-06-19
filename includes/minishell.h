@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:41:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:25:34 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <limits.h>
 # include <errno.h>
 # include <termios.h>
+
+# define NO_FORKS 1
+# define FORKS 2
 
 # define MODE_APPEND 1
 # define MODE_READ 2

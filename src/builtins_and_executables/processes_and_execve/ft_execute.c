@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:00:31 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:29:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell"
+#include "../../../includes/minishell.h"
 
 void	ft_close_fd(int *fd[2], t_shell *data)
 {
@@ -46,7 +46,7 @@ void	ft_dup_fd(int i, int **fd, t_shell *data)
 		dup2(data->cmd[i].in_file, STDIN_FILENO);
 		close(data->cmd[i].in_file);
 	}
-	else if (i != 0)
+	else if (i)
 	{
 		if (heredoc_excep(data->cmd->redir, i))
 			return ;

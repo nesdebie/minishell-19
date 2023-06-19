@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:01:10 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:29:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	set_exit_status(int exit_status)
 {
@@ -59,9 +59,9 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 		ft_putstr_fd("command not found\n", 2);
 		return (NULL);
 	}
-	if (access(cmd, X_OK) != 0 && access(cmd, F_OK) == 0 && ft_strchr(cmd, '/'))
+	if (access(cmd, X_OK) && !access(cmd, F_OK) && ft_strchr(cmd, '/'))
 		return (permission_error(cmd, dt));
-	if (access(cmd, F_OK) != 0 && ft_strchr(cmd, '/'))
+	if (access(cmd, F_OK) && ft_strchr(cmd, '/'))
 	{
 		ft_no_file_dir(-1, cmd);
 		dt->exit_code = 127;
@@ -77,7 +77,7 @@ char	*join_path(char *cmd, char **path, t_shell *dt)
 	char	*command;
 
 	i = 0;
-	if (access(cmd, X_OK) == 0)
+	if (!access(cmd, X_OK))
 		return (cmd);
 	if (!pre_join_path(cmd, dt))
 		return (NULL);

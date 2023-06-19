@@ -6,34 +6,34 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:54:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:26:33 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	is_builtin(t_shell *data, int num_cmd)
 {
 	if (data->cmd[num_cmd].cmd == NULL)
 		return (0);
-	if (ft_strncmp(data->cmd[num_cmd].cmd, "cd", 2) == 0)
-		return (1);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "pwd", 3) == 0)
-		return (2);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "PWD", 3) == 0)
-		return (2);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "echo", 4) == 0)
-		return (2);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "env", 3) == 0)
-		return (2);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "ENV", 3) == 0)
-		return (2);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "exit", 4) == 0)
-		return (1);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "unset", 5) == 0)
-		return (1);
-	else if (ft_strncmp(data->cmd[num_cmd].cmd, "export", 6) == 0)
-		return (1);
+	if (!ft_strncmp(data->cmd[num_cmd].cmd, "cd", 2))
+		return (NO_FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "pwd", 3))
+		return (FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "PWD", 3))
+		return (FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "echo", 4))
+		return (FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "env", 3))
+		return (FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "ENV", 3))
+		return (FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "exit", 4))
+		return (NO_FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "unset", 5))
+		return (NO_FORKS);
+	else if (!ft_strncmp(data->cmd[num_cmd].cmd, "export", 6))
+		return (NO_FORKS);
 	return (0);
 }
 
@@ -65,8 +65,8 @@ static char	*ft_join_env(t_env *env)
 	char	*str_env;
 	char	*tmp;
 
-	tmp = ft_strjoin(env->name, "=");
-	str_env = ft_strjoin(tmp, env->value);
+	tmp = ft_strjoin(env->name, "="); //TO SECURE
+	str_env = ft_strjoin(tmp, env->value); //TO SECURE
 	free(tmp);
 	return (str_env);
 }

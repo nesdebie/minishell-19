@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:02:11 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	ft_read_lst(void *lst)
 {

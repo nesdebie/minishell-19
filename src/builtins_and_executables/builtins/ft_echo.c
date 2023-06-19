@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:01:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:29:22 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static int	ft_is_flag_echo(char *s)
 {
@@ -77,7 +77,7 @@ void	ft_echo(t_shell *d, int num_cmd)
 		i += ft_add_flag(d->cmd[num_cmd].args) + 1;
 	while (d->cmd[num_cmd].args[i])
 	{
-		if (ft_strlen(d->cmd[num_cmd].args[i]) != 0)
+		if (ft_strlen(d->cmd[num_cmd].args[i]))
 		{
 			if (!ft_strncmp(d->cmd[num_cmd].args[i], "$?", 2))
 				ft_putnbr_fd(d->exit_code, 1);

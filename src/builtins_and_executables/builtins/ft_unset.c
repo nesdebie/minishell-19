@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:04:18 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:24 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static int	ft_namecmp(t_list *lst, char *str)
 {

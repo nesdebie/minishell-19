@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:09:16 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:29:07 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,23 @@ static int	is_builtin_ll(char *token)
 {
 	if (token == NULL)
 		return (0);
-	if (ft_strncmp(token, "cd", 2) == 0)
+	if (!ft_strncmp(token, "cd", 2))
 		return (1);
-	else if (ft_strncmp(token, "pwd", 3) == 0)
-		return (2);
-	else if (ft_strncmp(token, "PWD", 3) == 0)
-		return (2);
-	else if (ft_strncmp(token, "echo", 4) == 0)
-		return (2);
-	else if (ft_strncmp(token, "env", 3) == 0)
-		return (2);
-	else if (ft_strncmp(token, "ENV", 3) == 0)
-		return (2);
-	else if (ft_strncmp(token, "exit", 4) == 0)
+	else if (!ft_strncmp(token, "pwd", 3))
 		return (1);
-	else if (ft_strncmp(token, "unset", 5) == 0)
+	else if (!ft_strncmp(token, "PWD", 3))
 		return (1);
-	else if (ft_strncmp(token, "export", 6) == 0)
+	else if (!ft_strncmp(token, "echo", 4))
+		return (1);
+	else if (!ft_strncmp(token, "env", 3))
+		return (1);
+	else if (!ft_strncmp(token, "ENV", 3))
+		return (1);
+	else if (!ft_strncmp(token, "exit", 4))
+		return (1);
+	else if (!ft_strncmp(token, "unset", 5))
+		return (1);
+	else if (!ft_strncmp(token, "export", 6))
 		return (1);
 	return (0);
 }
@@ -85,7 +85,7 @@ static char	*find_cmd(t_list *lst)
 	while (lst != NULL)
 	{
 		token = lst->content;
-		if (is_builtin_ll(token) != 0)
+		if (is_builtin_ll(token))
 			return (token);
 		lst = lst->next;
 	}

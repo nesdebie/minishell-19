@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:21 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:03:35 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:26 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	ft_pwd(t_shell *data)
 {

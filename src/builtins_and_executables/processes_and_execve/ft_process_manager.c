@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:59:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static void	process(t_shell *data, char **envp, int i, int **fd)
 {
@@ -79,7 +79,7 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 {
 	int		**fd;
 
-	if (is_builtin(data, 0) == 1 && data->count_cmd == 1)
+	if (is_builtin(data, 0) == NO_FORKS && data->count_cmd == 1)
 	{
 		execute_builtin(data, 0);
 		return (0);
@@ -93,7 +93,7 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 		id[i] = fork();
 		if (id[i] == -1)
 			exit(EXIT_FAILURE);
-		if (id[i] == 0)
+		if (!id[i])
 			process(data, envp, i, fd);
 	}
 	ft_close_fd(fd, data);

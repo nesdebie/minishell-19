@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:03:09 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:30 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static void	ft_print_env(t_list **is_envp_list)
 {

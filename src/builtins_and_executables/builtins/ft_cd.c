@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:55:30 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:27:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static int	ft_update_dir(t_shell *d)
 {

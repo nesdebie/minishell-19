@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:12:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:22:18 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	read_heredoc(const char *end, int *fd)
 	while (1)
 	{
 		line = readline("> ");
-		if (strncmp(line, end, ft_strlen(line)) == 0 && *line)
+		if (!strncmp(line, end, ft_strlen(line)) && *line)
 			break ;
 		rl_redisplay();
 		ft_putstr_fd(line, fd[1]);
@@ -49,7 +49,7 @@ static int	heredoc(t_cmnd *cmd, const char *end_file)
 	tcgetattr(STDIN_FILENO, attr_in);
 	id = fork();
 	signal(SIGINT, SIG_IGN);
-	if (id == 0)
+	if (!id)
 		read_heredoc(end_file, fd);
 	close(fd[1]);
 	waitpid(id, NULL, 0);
