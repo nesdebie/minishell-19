@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:27:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:42:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	ft_isnumber(char *str)
 
 static void	ft_return_error_isnum(t_shell *data, int num_cmd, int i)
 {
-	printf("exit\nnot-bash: exit: %s : ", data->cmd[num_cmd].args[i]);
+	printf("exit\nprompt: exit: %s : ", data->cmd[num_cmd].args[i]);
 	printf("numeric argument required\n");
 	data->exit_code = 255;
 	exit (255);
@@ -90,12 +90,12 @@ void	ft_exit(t_shell *data, int num_cmd)
 	}
 	if ((i - 1) > 1)
 	{
-		printf("exit\nnot-bash: exit: too many arguments\n");
+		printf("exit\nprompt: exit: too many arguments\n");
 		ft_print_error(data, NULL, 1);
 		return ;
 	}
 	if ((i - 1) == 1)
 		ft_set_retcode(data, num_cmd);
-	ft_putstr_fd("exit\n", 1);
+	ft_putendl_fd("exit", 1);
 	ft_exit_minishell(data);
 }

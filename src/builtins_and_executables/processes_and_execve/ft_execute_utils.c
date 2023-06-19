@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:29:45 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:40:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_free_arr(char **arr)
 static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 {
 	dt->exit_code = 127;
-	ft_putstr_fd("not-bash: ", 2);
+	ft_putstr_fd("prompt: ", 2);
 	ft_putstr_fd(command, 2);
-	ft_putstr_fd(": command not found\n", 2);
+	ft_putendl_fd(": command not found", 2);
 	free(command);
 	free(tmp);
 	free(cmd);
@@ -55,8 +55,8 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 	if (!cmd)
 	{
 		dt->exit_code = 127;
-		ft_putstr_fd("not-bash: ", 2);
-		ft_putstr_fd("command not found\n", 2);
+		ft_putstr_fd("prompt: ", 2);
+		ft_putendl_fd("command not found", 2);
 		return (NULL);
 	}
 	if (access(cmd, X_OK) && !access(cmd, F_OK) && ft_strchr(cmd, '/'))

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:22:18 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:41:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static int	read_heredoc(const char *end, int *fd)
 		if (!strncmp(line, end, ft_strlen(line)) && *line)
 			break ;
 		rl_redisplay();
-		ft_putstr_fd(line, fd[1]);
-		ft_putchar_fd('\n', fd[1]);
+		ft_putendl_fd(line, fd[1]);
 		free(line);
 	}
 	free(line);

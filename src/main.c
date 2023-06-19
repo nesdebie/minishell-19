@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:08:14 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:37:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static void	ft_prompt(int ac, t_shell *shell)
 	while (ac > 0)
 	{
 		set_input_signals();
-		str = readline("not-bash> ");
+		str = readline("prompt> ");
 		str = ft_strtrim(str, " ");
 		signal(SIGINT, &signal_handler2);
 		if (!str)
 		{
-			ft_putstr_fd("exit\n", 1);
+			ft_putendl_fd("exit", 1);
 			free(str);
 			ft_exit_minishell(shell);
 		}
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **envp)
 	shell.exit_code = 0;
 	if (ac > 1)
 	{
-		printf("No arguments allowed\n");
+		ft_putendl_fd("No arguments allowed", 1);
 		exit (127);
 	}
 	shell.envp_list = ft_init_env(&shell, envp);

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:27:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:38:39 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	ft_read_lst(void *lst)
 	ls_env_node = (t_env *)(lst);
 	if (ls_env_node->name && ls_env_node->value)
 	{
-		ft_putstr_fd(ls_env_node->name, STDOUT_FILENO);
-		write(STDOUT_FILENO, "=", 1);
-		ft_putstr_fd(ls_env_node->value, STDOUT_FILENO);
-		write(STDOUT_FILENO, "\n", 1);
+		ft_putendl_fd(ls_env_node->name, STDOUT_FILENO);
+		ft_putendl_fd(ls_env_node->value, STDOUT_FILENO);
 	}
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre_parser.c                                       :+:      :+:    :+:   */
+/*   quotes_pipes_redir.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:06 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:11:25 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:41:39 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 static char	*print_quotes_er(char quotes)
 {
 	if (quotes == '\'')
-		ft_putstr_fd("not-bash: unclosed single quote error\n", 2);
+		ft_putendl_fd("prompt: unclosed single quote error", 2);
 	else
-		ft_putstr_fd("not bash: unclosed double quote error\n", 2);
+		ft_putendl_fd("prompt: unclosed double quote error", 2);
 	return (NULL);
 }
 
 static char	*print_er(char *error)
 {
-	ft_putstr_fd("not-bash: syntax error near unexpected token ", 2);
-	ft_putstr_fd(error, 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd("prompt: syntax error near unexpected token ", 2);
+	ft_putendl_fd(error, 2);
 	return (NULL);
 }
 

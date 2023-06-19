@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:27:24 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:42:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_unset(t_shell *data, int num_cmd)
 			ft_unset_var_env(&data->envp_list, data->cmd[num_cmd].args[i++]);
 		else
 		{
-			printf("not-bash: unset: `%s': ", data->cmd[num_cmd].args[i++]);
+			printf("prompt: unset: `%s': ", data->cmd[num_cmd].args[i++]);
 			printf("not a valid identifier\n");
 		}
 	}
