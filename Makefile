@@ -28,15 +28,7 @@ CC = cc
 
 CFLAGS = -Werror -Wall -Wextra -g
 
-RDL_PATH = -L/Users/$(USER)/.brew/opt/readline/lib/
-
-RDL_HISTORY_PATH = -L/Users/$(USER)/.brew/opt/readline/lib/
-
-RDL = -lreadline.8.1 $(RDL_PATH)
-
-RDL_HISTORY = -lhistory.8.1 $(RDL_HISTORY_PATH)
-
-READLINE = $(RDL) $(RDL_HISTORY)
+READLINE = -lreadline.8.1 -L/Users/$(USER)/.brew/opt/readline/lib/) -lhistory.8.1 -L/Users/$(USER)/.brew/opt/readline/lib/
 
 RM = rm -rf
 
