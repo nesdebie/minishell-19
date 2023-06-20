@@ -5,17 +5,17 @@ SRCS =	./src/main.c \
 		./src/errors.c \
 		./src/signals.c \
 		./src/tokens.c \
-		./src/builtins_and_executables/builtins/ft_builtins.c \
-		./src/builtins_and_executables/builtins/ft_cd.c \
-		./src/builtins_and_executables/builtins/ft_echo.c \
-		./src/builtins_and_executables/builtins/ft_env.c \
-		./src/builtins_and_executables/builtins/ft_exit.c \
-		./src/builtins_and_executables/builtins/ft_export.c \
-		./src/builtins_and_executables/builtins/ft_pwd.c \
-		./src/builtins_and_executables/builtins/ft_unset.c \
-		./src/builtins_and_executables/processes_and_execve/ft_execute_utils.c \
-		./src/builtins_and_executables/processes_and_execve/ft_execute.c \
-		./src/builtins_and_executables/processes_and_execve/ft_process_manager.c \
+		./src/builtins_and_exec/builtins/ft_builtins.c \
+		./src/builtins_and_exec/builtins/ft_cd.c \
+		./src/builtins_and_exec/builtins/ft_echo.c \
+		./src/builtins_and_exec/builtins/ft_env.c \
+		./src/builtins_and_exec/builtins/ft_exit.c \
+		./src/builtins_and_exec/builtins/ft_export.c \
+		./src/builtins_and_exec/builtins/ft_pwd.c \
+		./src/builtins_and_exec/builtins/ft_unset.c \
+		./src/builtins_and_exec/processes_and_execve/ft_execute_utils.c \
+		./src/builtins_and_exec/processes_and_execve/ft_execute.c \
+		./src/builtins_and_exec/processes_and_execve/ft_process_manager.c \
 		./src/env_list_manager/ft_env_list_create.c \
 		./src/env_list_manager/ft_env_list_sort.c \
 		./src/parsing/init_cmds.c \
