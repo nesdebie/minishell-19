@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:19:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:27 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,17 @@ char	**get_envp(t_list *lst)
 	size = ft_lstsize(lst) + 1;
 	mass = malloc(size * sizeof(char *));
 	if (!mass)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (lst && i < size)
 	{
 		env = (t_env *)lst->content;
 		mass[i++] = ft_join_env(env);
 		if (!mass[i - 1])
+		{
 			ft_free_arr(mass);
+			return (0);
+		}
 		lst = lst->next;
 	}
 	mass[i] = NULL;

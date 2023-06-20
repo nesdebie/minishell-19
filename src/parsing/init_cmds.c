@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:16:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	**set_args(int count_args)
 	args = NULL;
 	args = malloc((sizeof(char *) * count_args) + 1);
 	if (!args)
-		return (NULL);
+		return (0);
 	ft_memset(args, '\0', sizeof(char *) * count_args + 1);
 	args[count_args] = NULL;
 	return (args);
@@ -34,7 +34,7 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 	count_args = args_counter(*lst);
 	args = set_args(count_args);
 	if (!args)
-		return (NULL);
+		return (0);
 	while (count_args-- > 0)
 	{
 		token = (*lst)->content;
@@ -89,7 +89,7 @@ static char	*find_cmd(t_list *lst)
 			return (token);
 		lst = lst->next;
 	}
-	return (NULL);
+	return (0);
 }
 
 void	init_each_command(t_list **lst, t_shell *data, int i)

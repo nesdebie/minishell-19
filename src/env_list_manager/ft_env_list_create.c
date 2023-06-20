@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:51:23 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 
 	ls_content = malloc(sizeof(t_env));
 	if (!i_str || !ls_content)
-		return (NULL);
+		return (0);
 	ls_val_env = ft_split(i_str, '=');
 	if (!ls_val_env)
-		return (NULL);
+		return (0);
 	ls_content->name = ls_val_env[0];
 	ls_content->value = ls_val_env[1];
 	ft_lstadd_back(&is_envp_list, ft_lstnew(ls_content));
@@ -73,7 +73,7 @@ char	*ft_getenv(t_list *is_head, char *i_str)
 	t_env	*val;
 
 	if (!is_head || !i_str)
-		return (NULL);
+		return (0);
 	while (is_head)
 	{
 		val = (t_env *)(is_head->content);
@@ -81,7 +81,7 @@ char	*ft_getenv(t_list *is_head, char *i_str)
 			return (val->value);
 		is_head = is_head->next;
 	}
-	return (NULL);
+	return (0);
 }
 
 t_list	*ft_init_env(t_shell *data, char **env)
@@ -97,7 +97,7 @@ t_list	*ft_init_env(t_shell *data, char **env)
 	{
 		ft_print_error(data, "env list failed", 1);
 		ft_free_env(&ls_envp_list);
-		return (NULL);
+		return (0);
 	}
 	return (ls_envp_list);
 }

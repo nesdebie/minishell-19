@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:13:56 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static int	dollar_quotes(char **line, int start, t_shell *data)
 char	*parse_line(char *line, t_shell *data, int i)
 {
 	if (!line)
-		return (NULL);
+		return (0);
 	while (line[++i])
 	{
 		if (line[i] == '$' && (line[i + 1] == '\'' || line[i + 1] == '\"'))

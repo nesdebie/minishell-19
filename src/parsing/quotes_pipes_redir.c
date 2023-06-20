@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:06 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:41:39 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:23:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static char	*print_quotes_er(char quotes)
 		ft_putendl_fd("prompt: unclosed single quote error", 2);
 	else
 		ft_putendl_fd("prompt: unclosed double quote error", 2);
-	return (NULL);
+	return (0);
 }
 
 static char	*print_er(char *error)
 {
 	ft_putstr_fd("prompt: syntax error near unexpected token ", 2);
 	ft_putendl_fd(error, 2);
-	return (NULL);
+	return (0);
 }
 
 /* check if line is empty or if line is only made up of spaces */
@@ -69,7 +69,7 @@ static char	*ft_check_sign(char *line, char quotes,	int *cnt, t_shell *shell)
 		{
 			print_er("`|'");
 			shell->exit_code = 258;
-			return (NULL);
+			return (0);
 		}
 	}
 	else

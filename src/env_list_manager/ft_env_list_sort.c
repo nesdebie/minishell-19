@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:50:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:16:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:48 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	**ft_sortenv(t_list **is_envp_list)
 	i = 0;
 	ls_envp_list = calloc(ft_lstsize(*is_envp_list) + 1, sizeof(t_env *));
 	if (!ls_envp_list)
-		return (NULL);
+		return (0);
 	ls_cur_env = *is_envp_list;
 	while (ls_cur_env)
 	{

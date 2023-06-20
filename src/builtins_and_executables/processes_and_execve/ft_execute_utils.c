@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:20:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:22:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 	free(command);
 	free(tmp);
 	free(cmd);
-	return (NULL);
+	return (0);
 }
 
 static char	*pre_join_path(char *cmd, t_shell *dt)
@@ -57,7 +57,7 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 		dt->exit_code = 127;
 		ft_putstr_fd("prompt: ", 2);
 		ft_putendl_fd("command not found", 2);
-		return (NULL);
+		return (0);
 	}
 	if (access(cmd, X_OK) && !access(cmd, F_OK) && ft_strchr(cmd, '/'))
 		return (permission_error(cmd, dt));
@@ -65,7 +65,7 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 	{
 		ft_no_file_dir(-1, cmd);
 		dt->exit_code = 127;
-		return (NULL);
+		return (0);
 	}
 	return (cmd);
 }
@@ -80,7 +80,7 @@ char	*join_path(char *cmd, char **path, t_shell *dt)
 	if (!access(cmd, X_OK))
 		return (cmd);
 	if (!pre_join_path(cmd, dt))
-		return (NULL);
+		return (0);
 	command = ft_strdup(cmd);
 	tmp = ft_strjoin("/", cmd);
 	free(cmd);
