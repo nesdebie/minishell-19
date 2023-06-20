@@ -37,8 +37,8 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		make re -C ./libft
-		$(CC) $(CFLAGS) $(OBJS) $(READLINE) -o $(NAME)
+		make bonus -C ./libft
+		$(CC) $(CFLAGS) $(OBJS) $(READLINE) -Llibft -lft -o $(NAME)
 
 clean:
 	make clean -C ./libft
