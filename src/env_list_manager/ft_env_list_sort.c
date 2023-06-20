@@ -6,11 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:50:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:50:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:16:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell"
+#include "../../includes/minishell.h"
 
 static int	ft_comp(char *one, char *two)
 {

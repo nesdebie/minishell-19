@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:40:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:20:44 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	set_exit_status(int exit_status)
 
 void	ft_free_arr(char **arr)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (arr[i])

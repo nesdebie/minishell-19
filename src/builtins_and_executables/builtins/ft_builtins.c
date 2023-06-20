@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:26:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:19:57 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ static char	*ft_join_env(t_env *env)
 	char	*str_env;
 	char	*tmp;
 
-	tmp = ft_strjoin(env->name, "="); //TO SECURE
-	str_env = ft_strjoin(tmp, env->value); //TO SECURE
-	free(tmp);
+	tmp = ft_strjoin(env->name, "=");
+	str_env = ft_strjoin(tmp, env->value);
+	if (tmp)
+		free(tmp);
 	return (str_env);
 }
 
@@ -87,6 +88,8 @@ char	**get_envp(t_list *lst)
 	{
 		env = (t_env *)lst->content;
 		mass[i++] = ft_join_env(env);
+		if (!mass[i - 1])
+			ft_free_arr(mass);
 		lst = lst->next;
 	}
 	mass[i] = NULL;
