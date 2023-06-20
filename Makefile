@@ -28,7 +28,7 @@ CC = cc
 
 CFLAGS = -Werror -Wall -Wextra
 
-READLINE = -lreadline.8.1 -L/Users/$(USER)/.brew/opt/readline/lib/ -lhistory.8.1 -L/Users/$(USER)/.brew/opt/readline/lib/
+READLINE = -lreadline -lhistory -L/Users/$(USER)/.brew/opt/readline/lib/
 
 RM = rm -rf
 
