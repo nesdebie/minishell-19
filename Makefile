@@ -38,7 +38,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		make bonus -C ./libft
-		$(CC) $(CFLAGS) $(OBJS) $(READLINE) -Llibft -lft -o $(NAME)
+		$(CC) $(CFLAGS) $(READLINE) $(OBJS) -Llibft -lft -o $(NAME)
 
 clean:
 	make clean -C ./libft
