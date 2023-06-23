@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/23 12:45:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:49:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_cd(t_shell *d, int num_cmd, char *new_pwd)
 	else
 	{
 		err = ft_update_dir(d);
-		ft_print_error(d, NULL, 0);
+		d->exit_code = 0;
 	}
 	return (err);
 }

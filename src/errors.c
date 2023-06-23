@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:23:06 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:54:40 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 char	*permission_error(char *cmd, t_shell *dt)
 {
-	printf("prompt: %s: permission denied\n", cmd);
+	ft_putstr_fd("prompt: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(": permission denied", 2);
 	dt->exit_code = 126;
 	return (0);
 }
