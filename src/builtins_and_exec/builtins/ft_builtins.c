@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:01 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:45:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	execute_builtin(t_shell *data, int num_cmd)
 	else if (!ft_strncmp(data->cmd[num_cmd].args[0], "echo", 4))
 		ft_echo(data, num_cmd);
 	else if (!ft_strncmp(data->cmd[num_cmd].args[0], "cd", 2))
-		ft_cd(data, num_cmd);
+		ft_cd(data, num_cmd, NULL);
 	else if (!ft_strncmp(data->cmd[num_cmd].args[0], "env", 3))
 		ft_env(&data->envp_list);
 	else if (!ft_strncmp(data->cmd[num_cmd].args[0], "ENV", 3))

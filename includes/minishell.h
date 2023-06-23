@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:25:34 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:46:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_pwd(t_shell *data);
 void	ft_unset(t_shell *data, int num_cmd);
 void	ft_unset_var_env(t_list **is_envp_list, char *str);
 void	ft_export(t_shell *data, int num_cmd);
-int		ft_cd(t_shell *d, int num_cmd);
+int		ft_cd(t_shell *d, int num_cmd, char *new_pwd);
 void	ft_echo(t_shell *d, int num_cmd);
 void	ft_exit(t_shell *data, int num_cmd);
 int		ft_isset(char c, char *set);

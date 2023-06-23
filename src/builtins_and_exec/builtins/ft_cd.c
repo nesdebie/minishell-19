@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:03 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:45:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_no_home(t_shell *d, int num_cmd)
 		ft_putenv(&d->envp_list, "OLDPWD", ft_getenv(d->envp_list, "PWD"));
 	else if (!ft_getenv(d->envp_list, "HOME"))
 	{
-		if (!ft_strlen(d->cmd[num_cmd].args[1]))
+		if (!d->cmd[num_cmd].args[1])
 			return (1);
 		if (!ft_strncmp(d->cmd[num_cmd].args[1], "~", 1))
 			return (1);
@@ -55,17 +55,18 @@ static int	check_no_home(t_shell *d, int num_cmd)
 	return (0);
 }
 
-int	ft_cd(t_shell *d, int num_cmd)
+int	ft_cd(t_shell *d, int num_cmd, char *new_pwd)
 {
 	int		err;
-	char	*new_pwd;
 
 	if (!d || !d->envp_list || !d->cmd[num_cmd].args[0])
 		return (1);
-	if (check_no_home(d, num_cmd))
-		return (no_home_err(d));
-	if (!ft_strlen(d->cmd[num_cmd].args[1]))
+	if (!d->cmd[num_cmd].args[1])
+	{
+		if (check_no_home(d, num_cmd))
+			return (no_home_err(d));
 		err = chdir(ft_getenv(d->envp_list, "HOME"));
+	}
 	else
 	{
 		new_pwd = ft_check_tilde(&d->envp_list, d->cmd[num_cmd].args[1]);
