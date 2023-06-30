@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 09:17:06 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:08:09 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,22 @@ int	ft_check_name(char *name)
 
 int	add_value(char *name, t_shell *d, int num_cmd, int i)
 {
-	char	*value;
+	char	*s;
 
 	if (ft_check_name(name))
 	{
-		if (ft_isset('=', d->cmd[num_cmd].args[i]))
-			value = get_value_env(d->cmd[num_cmd].args[i]);
+		if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
+			s = ft_strjoin(ft_getenv(d->envp_list, name),
+					get_value_env(d->cmd[num_cmd].args[i]));
+		else if (ft_isset('=', d->cmd[num_cmd].args[i]))
+			s = get_value_env(d->cmd[num_cmd].args[i]);
 		else
-			value = get_value_env(d->cmd[num_cmd].args[++i]);
-		if (ft_strlen(value))
-			ft_putenv(&d->envp_list, name, value);
+			s = get_value_env(d->cmd[num_cmd].args[++i]);
+		if (s)
+			ft_putenv(&d->envp_list, name, s);
 		else
-		{
-			free(value);
 			return (-1);
-		}
-		free(value);
+		free(s);
 	}
 	else
 		return (-1);
@@ -91,7 +91,7 @@ void	ft_export(t_shell *data, int num_cmd)
 	if (!data->cmd[num_cmd].args[1])
 		return (ft_print_env(&data->envp_list));
 	i = 1;
-	while (ft_strlen(data->cmd[num_cmd].args[i]))
+	while (data->cmd[num_cmd].args[i] && ft_strlen(data->cmd[num_cmd].args[i]))
 	{
 		name = get_name_env(data->cmd[num_cmd].args[i]);
 		i = add_value(name, data, num_cmd, i);

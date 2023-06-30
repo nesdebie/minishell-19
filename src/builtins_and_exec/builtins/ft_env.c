@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/23 12:23:52 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:49:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*get_name_env(char *s)
 	i = 0;
 	while (s[i] != '=' && s[i] != '\0')
 		i++;
+	if (s[i - 1] == '+')
+		i--;
 	temp = ft_substr(s, 0, i);
 	return (temp);
 }
