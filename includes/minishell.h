@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/23 12:46:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:41:26 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,15 @@ typedef struct s_env{
 }				t_env;
 
 void	rl_replace_line(const char *text, int clear_undo);
-void	set_input_signals(void);
-void	signal_handler2(int signo);
+
 t_list	*ft_init_env(t_shell *shell, char **env);
 int		ft_putenv(t_list **is_head, char *name, char *val);
 char	*ft_getenv(t_list *is_head, char *i_str);
 t_env	**ft_sortenv(t_list **is_envp_list);
 t_list	*ft_search_dubname(t_list **is_head, char *name);
-char	*get_name(char *s);
 char	*get_name_env(char *s);
 char	*get_value_env(char *s);
-char	**get_envp(t_list *lst);
+
 int		ft_env(t_list **is_envp_list);
 void	ft_pwd(t_shell *data);
 void	ft_unset(t_shell *data, int num_cmd);
@@ -84,30 +82,27 @@ void	ft_export(t_shell *data, int num_cmd);
 int		ft_cd(t_shell *d, int num_cmd, char *new_pwd);
 void	ft_echo(t_shell *d, int num_cmd);
 void	ft_exit(t_shell *data, int num_cmd);
-int		ft_isset(char c, char *set);
+
 int		ft_print_error(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
+
 int		parser(char *line, t_shell *mini);
 int		pre_parse(char *line, t_shell *mini);
 char	*parse_line(char *line, t_shell *data, int i);
-int		len_quotes(char *line, int i);
+
 int		is_end(int c);
 int		args_counter(t_list *lst);
 t_list	*get_tokens(char *line, t_list *token);
 void	init_each_command(t_list **lst, t_shell *data, int i);
-int		init_cmd(t_list *lst, t_shell *mini);
 void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx);
 int		is_builtin(t_shell *data, int num_cmd);
 int		execute_builtin(t_shell *data, int num_cmd);
 void	ft_free_env(t_list **is_head);
-void	free_cmd(t_cmnd *cmd);
+
 void	free_shell(t_shell *mini);
-void	ft_free_arr(char **arr);
 void	ft_close_fd(int *fd[2], t_shell *data);
-int		ft_create_pipe(int **fd, t_shell *data);
 int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
-int		heredoc_excep(t_list *lst, int i);
 int		ft_redir(t_cmnd *cmd, t_list *lst, int i);
 void	ft_dup_fd(int i, int **fd, t_shell *data);
 int		ft_executer(t_shell *data);

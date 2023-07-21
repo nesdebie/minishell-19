@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 12:01:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:32:07 by nesdebie         ###   ########.fr       */
+/*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
+/*   Updated: 2023/07/21 17:37:23 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_read_lst(void *lst)
+char	*get_name_env(char *s)
 {
-	t_env	*ls_env_node;
+	int		i;
+	char	*temp;
 
-	ls_env_node = (t_env *)(lst);
-	if (ls_env_node->name && ls_env_node->value)
+	i = 0;
+	while (s[i] != '=' && s[i] != '\0')
+		i++;
+	if (s[i - 1] == '+')
+		i--;
+	temp = ft_substr(s, 0, i);
+	return (temp);
+}
+
+char	*get_value_env(char *s)
+{
+	int		i;
+	char	*temp;
+
+	temp = NULL;
+	i = 0;
+	if (!s)
 	{
-		ft_putstr_fd(ls_env_node->name, STDOUT_FILENO);
-		ft_putchar_fd('=', STDOUT_FILENO);
-		ft_putendl_fd(ls_env_node->value, STDOUT_FILENO);
+		temp = (char *)ft_calloc(1, sizeof(char));
+		return (temp);
 	}
+	while (s[i] != '=' && s[i])
+		i++;
+	if (s[i] == '=')
+		temp = ft_substr(s, i + 1, ft_strlen(s) - i);
+	return (temp);
 }
-
-int	ft_env(t_list **is_envp_list)
-{
-	if (!is_envp_list)
-		return (1);
-	ft_lstiter(*is_envp_list, &ft_read_lst);
-	return (0);
-}
-

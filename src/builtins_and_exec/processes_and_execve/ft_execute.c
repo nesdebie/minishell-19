@@ -6,53 +6,50 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:27 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:41:09 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_close_fd(int *fd[2], t_shell *data)
+static void	ft_free_arr(char **arr)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < data->count_cmd - 1)
+	while (arr[i])
 	{
-		close(fd[i][0]);
-		close(fd[i][1]);
+		free(arr[i]);
 		i++;
 	}
-	i = 0;
-	while (i < data->count_cmd - 1)
-	{
-		free(fd[i]);
-		i++;
-	}
-	free(fd);
+	free(arr);
 }
 
-void	ft_dup_fd(int i, int **fd, t_shell *data)
+static char	**get_envp(t_list *lst)
 {
-	if (data->cmd[i].out_file)
+	int		i;
+	int		size;
+	char	**mass;
+	t_env	*env;
+
+	size = ft_lstsize(lst) + 1;
+	mass = malloc(size * sizeof(char *));
+	if (!mass)
+		return (0);
+	i = 0;
+	while (lst && i < size)
 	{
-		dup2(data->cmd[i].out_file, STDOUT_FILENO);
-		close(data->cmd[i].out_file);
+		env = (t_env *)lst->content;
+		mass[i++] = ft_join_env(env);
+		if (!mass[i - 1])
+		{
+			ft_free_arr(mass);
+			return (0);
+		}
+		lst = lst->next;
 	}
-	else if (i < data->count_cmd - 1)
-		dup2(fd[i][1], STDOUT_FILENO);
-	if (data->cmd[i].in_file)
-	{
-		dup2(data->cmd[i].in_file, STDIN_FILENO);
-		close(data->cmd[i].in_file);
-	}
-	else if (i)
-	{
-		if (heredoc_excep(data->cmd->redir, i))
-			return ;
-		dup2(fd[i - 1][0], STDIN_FILENO);
-	}
-	ft_close_fd(fd, data);
+	mass[i] = NULL;
+	return (mass);
 }
 
 static char	**ft_get_path(t_shell *data)

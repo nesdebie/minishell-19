@@ -6,26 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:22:35 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:18:05 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_end(int c)
-{
-	if (c == '_')
-		return (0);
-	if (ft_isalpha(c))
-		return (0);
-	if (ft_isdigit(c))
-		return (0);
-	if (c == '?')
-		return (0);
-	return (1);
-}
-
-int	init_cmd(t_list *lst, t_shell *mini)
+static int	init_cmd(t_list *lst, t_shell *mini)
 {
 	int		i;
 	char	*token;

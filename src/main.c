@@ -6,47 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/30 15:37:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:25:54 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	heredoc_excep(t_list *lst, int i)
-{
-	t_redir	*redir;
-	int		j;
-
-	j = 1;
-	while (lst)
-	{
-		redir = lst->content;
-		if (j == i && redir->mode == 4)
-			return (1);
-		lst = lst->next;
-		j++;
-	}
-	return (0);
-}
-
-int	args_counter(t_list *lst)
-{
-	int		count;
-	char	*token;
-
-	count = 0;
-	while (lst)
-	{
-		token = lst->content;
-		if (*token == '<' || *token == '>')
-			count = count - 1;
-		if (*token == '|')
-			break ;
-		lst = lst->next;
-		count++;
-	}
-	return (count);
-}
 
 void	ft_exit_minishell(t_shell *data)
 {
@@ -57,6 +21,32 @@ void	ft_exit_minishell(t_shell *data)
 	exit(data->exit_code);
 }
 
+static void	signal_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
+static void	set_input_signals(void)
+{
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	signal_handler2(int signo)
+{
+	if (signo == SIGINT)
+		ft_putendl_fd("", 1);
+}
+
+/*
+Boucle infinie qui affiche le prompt et attend l'input de l'utilisateur
+*/
 static void	ft_prompt(int ac, t_shell *shell)
 {
 	char	*str;

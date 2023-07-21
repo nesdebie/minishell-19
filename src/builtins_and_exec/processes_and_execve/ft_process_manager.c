@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:31 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:20:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	process(t_shell *data, char **envp, int i, int **fd)
 	exit(data->exit_code);
 }
 
-int	ft_create_pipe(int **fd, t_shell *data)
+static int	ft_create_pipe(int **fd, t_shell *data)
 {
 	int	i;
 

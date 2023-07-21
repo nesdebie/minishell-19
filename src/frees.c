@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:44:25 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:08:11 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:39:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_free_env(t_list **is_head)
 		free(is_head);
 }
 
-void	free_redir(t_cmnd *cmd)
+static void	free_redir(t_cmnd *cmd)
 {
 	t_redir	*redir;
 	t_list	*start;
@@ -55,7 +55,7 @@ void	free_redir(t_cmnd *cmd)
 	ft_lstclear(&start, free);
 }
 
-void	free_cmd(t_cmnd *cmd)
+static void	free_cmd(t_cmnd *cmd)
 {
 	int		i;
 

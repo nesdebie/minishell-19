@@ -6,11 +6,25 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/30 16:08:50 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:37:32 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+static int	ft_isset(char c, char *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static void	ft_print_env(t_list **is_envp_list)
 {
@@ -39,19 +53,8 @@ static void	ft_print_env(t_list **is_envp_list)
 	free(env_lst);
 }
 
-char	*get_name(char *s)
-{
-	int		i;
-	char	*temp;
 
-	i = 0;
-	while (s[i] != '=' && s[i] != '\0')
-		i++;
-	temp = ft_substr(s, 0, i);
-	return (temp);
-}
-
-int	ft_check_name(char *name)
+static int	ft_check_name(char *name)
 {
 	if (ft_isalpha(name[0]) || name[0] == '_')
 		return (1);

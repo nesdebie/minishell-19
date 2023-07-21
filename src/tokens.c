@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:07:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/19 12:08:18 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:38:06 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	len_quotes(char *line, int i)
+static int	len_quotes(char *line, int i)
 {
 	char	quotes;
 	int		len;

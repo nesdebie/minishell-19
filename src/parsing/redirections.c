@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:25:02 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:12:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,32 +98,4 @@ int	ft_redir(t_cmnd *cmd, t_list *lst, int i)
 			return (1);
 	}
 	return (0);
-}
-
-void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
-{
-	char	*file;
-	t_redir	*redir;
-
-	if (!lst)
-		return ;
-	redir = malloc(sizeof(t_redir));
-	if (!redir)
-		return ;
-	lst->next->content = parse_line(lst->next->content, data, -1);
-	file = lst->next->content;
-	if (!ft_strncmp(lst->content, "<<", 3))
-		redir->mode = MODE_HEREDOC;
-	else if (!ft_strncmp(lst->content, ">>", 3))
-		redir->mode = MODE_APPEND;
-	else if (!ft_strncmp(lst->content, ">", 2))
-		redir->mode = MODE_WRITE;
-	else if (!ft_strncmp(lst->content, "<", 2))
-		redir->mode = MODE_READ;
-	redir->name = ft_strdup(file);
-	if (redir->mode > 0)
-		redir->idx = idx;
-	else
-		redir->idx = -1;
-	ft_lstadd_back(&cmd->redir, ft_lstnew(redir));
 }

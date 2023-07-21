@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env_list_sort.c                                 :+:      :+:    :+:   */
+/*   ft_env_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:50:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:22:26 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:30:56 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,20 @@ t_env	**ft_sortenv(t_list **is_envp_list)
 	ls_envp_list[i] = NULL;
 	ft_bubble_sort(ls_envp_list, ft_lstsize(*is_envp_list));
 	return (ls_envp_list);
+}
+
+t_list	*ft_search_dubname(t_list **is_head, char *name)
+{
+	t_env	*ls_ptr;
+	t_list	*ls_tmp_head;
+
+	ls_tmp_head = *is_head;
+	while (ls_tmp_head)
+	{
+		ls_ptr = (t_env *)(ls_tmp_head->content);
+		if (!ft_strncmp(ls_ptr->name, name, ft_strlen(name) + 1))
+			break ;
+		ls_tmp_head = ls_tmp_head->next;
+	}
+	return (ls_tmp_head);
 }
