@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env_list_create.c                               :+:      :+:    :+:   */
+/*   ft_env_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:22:22 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:31:04 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static char		**ft_minisplit(char *str)
+{
+	int i;
+	int j;
+	char **arr;
+
+	arr = malloc(sizeof(char *) * 3);
+	arr[0] = ft_strdup("LS_COLORS");
+	i = 0;
+	j = 0;
+	while (str[i + 10])
+		i++;
+	arr[1] = malloc(sizeof(char) * i + 1);
+	while (j < i)
+	{
+		arr[1][j] = str[10 + j];
+		j++;
+	}
+	arr[1][j] = 0;
+	return (arr);
+}
 
 static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 {
@@ -20,7 +42,10 @@ static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 	ls_content = malloc(sizeof(t_env));
 	if (!i_str || !ls_content)
 		return (0);
-	ls_val_env = ft_split(i_str, '=');
+	if (!ft_strncmp(i_str, "LS_COLORS", 9))
+		ls_val_env = ft_minisplit(i_str);
+	else
+		ls_val_env = ft_split(i_str, '=');
 	if (!ls_val_env)
 		return (0);
 	ls_content->name = ls_val_env[0];
