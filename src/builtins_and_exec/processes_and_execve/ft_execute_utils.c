@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:40:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:27:21 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 {
 	dt->exit_code = 127;
-	ft_putstr_fd("prompt: ", 2);
+	ft_putstr_fd("WELCOME-IN-sHELL: ", 2);
 	ft_putstr_fd(command, 2);
 	ft_putendl_fd(": command not found", 2);
 	free(command);
@@ -29,7 +29,7 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 	if (!cmd)
 	{
 		dt->exit_code = 127;
-		ft_putstr_fd("prompt: ", 2);
+		ft_putstr_fd("WELCOME-IN-sHELL: ", 2);
 		ft_putendl_fd("command not found", 2);
 		return (0);
 	}

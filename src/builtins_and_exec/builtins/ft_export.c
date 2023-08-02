@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:14:46 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:45:17 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,26 @@ static void	ft_print_env(t_list **is_envp_list)
 	free(env_lst);
 }
 
-static int	ft_check_name(char *name)
+static int	ft_check_name(t_shell *d, char *s)
 {
-	if (ft_isalpha(name[0]) || name[0] == '_')
-		return (1);
-	ft_print_err_export(name);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isalnum(s[i]))
+		{
+			if (s[i] != '_')
+			{
+				printf("WELCOME-IN-sHELL: unset: `%s': ", s);
+				printf("not a valid identifier\n");
+				d->exit_code = 1;
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	add_value(char *name, t_shell *d, int num_cmd, int i)
@@ -67,7 +81,7 @@ int	add_value(char *name, t_shell *d, int num_cmd, int i)
 	char	*tmp;
 
 	s = NULL;
-	if (ft_check_name(name))
+	if (ft_check_name(d, name))
 	{
 		if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
 		{

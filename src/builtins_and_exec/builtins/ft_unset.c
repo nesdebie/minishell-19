@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:20 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:45:50 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,29 @@ static int	ft_is_valid_token_unset(char *s)
 	while (s && *s)
 	{
 		if (!ft_isalnum(*s))
-			return (0);
+			if (*s != '_')
+				return (0);
 		s++;
 	}
 	return (1);
 }
 
-void	ft_unset(t_shell *data, int num_cmd)
+void	ft_unset(t_shell *d, int nb_cmd)
 {
 	int	i;
 
-	if (!data->cmd[num_cmd].args)
+	if (!d->cmd[nb_cmd].args)
 		return ;
 	i = 1;
-	while (data->cmd[num_cmd].args[i])
+	while (d->cmd[nb_cmd].args[i])
 	{
-		if (ft_is_valid_token_unset(data->cmd[num_cmd].args[i]))
-			ft_unset_var_env(&data->envp_list, data->cmd[num_cmd].args[i++]);
+		if (ft_is_valid_token_unset(d->cmd[nb_cmd].args[i]))
+			ft_unset_var_env(&d->envp_list, d->cmd[nb_cmd].args[i++]);
 		else
 		{
-			printf("prompt: unset: `%s': ", data->cmd[num_cmd].args[i++]);
+			printf("WELCOME-IN-sHELL: unset: `%s': ", d->cmd[nb_cmd].args[i++]);
 			printf("not a valid identifier\n");
+			d->exit_code = 1;
 		}
 	}
 	return ;
