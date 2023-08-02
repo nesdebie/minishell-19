@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:18:05 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 10:56:35 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static char	*open_pipe(char *line)
 		free (tmp);
 	if (nl)
 		free (nl);
+	if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '|')
+		line = open_pipe(line);
 	return (line);
 }
 
