@@ -6,33 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 11:31:04 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:13:02 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static char		**ft_minisplit(char *str)
-{
-	int i;
-	int j;
-	char **arr;
-
-	arr = malloc(sizeof(char *) * 3);
-	arr[0] = ft_strdup("LS_COLORS");
-	i = 0;
-	j = 0;
-	while (str[i + 10])
-		i++;
-	arr[1] = malloc(sizeof(char) * i + 1);
-	while (j < i)
-	{
-		arr[1][j] = str[10 + j];
-		j++;
-	}
-	arr[1][j] = 0;
-	return (arr);
-}
 
 static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 {

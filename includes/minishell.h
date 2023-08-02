@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 10:42:00 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:13:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int		ft_no_file_dir(int fd, char *name);
 char	*join_path(char *cmd, char **path, t_shell *dt);
 int		set_exit_status(int exit_status);
 void	ft_exit_minishell(t_shell *data);
+
+char		**ft_minisplit(char *str);
 
 #endif

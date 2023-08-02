@@ -19,6 +19,7 @@ SRCS =	./src/main.c \
 		./src/builtins_and_exec/processes_and_execve/ft_process_manager_utils.c \
 		./src/env_list_manager/ft_env_list.c \
 		./src/env_list_manager/ft_env_list_utils.c \
+		./src/env_list_manager/ft_mini_split.c \
 		./src/parsing/init_cmds.c \
 		./src/parsing/init_cmds_utils.c \
 		./src/parsing/line_parsing.c \
