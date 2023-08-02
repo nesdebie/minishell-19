@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:27:21 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:58:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_prompt(int ac, t_shell *shell)
 	while (ac > 0)
 	{
 		set_input_signals();
-		str = readline("WELCOME-IN-sHELL> ");
+		str = readline(GREEN"WELCOME-IN-sHELL> "WHITE);
 		str = ft_strtrim(str, " ");
 		signal(SIGINT, &signal_handler2);
 		if (!str)

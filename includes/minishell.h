@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:11:03 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:58:32 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <limits.h>
 # include <errno.h>
 # include <termios.h>
+
+# define GREEN "\033[0;32m"
+# define WHITE "\033[0;37m"
 
 # define NO_FORKS 1
 # define FORKS 2
