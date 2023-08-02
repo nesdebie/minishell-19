@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 10:56:35 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:06:44 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	*open_pipe(char *line)
 	char	*nl;
 
 	tmp = NULL;
-	nl = readline("> ");
+	nl = readline(GREEN"\e[1m> \e[m"WHITE);
 	while (!ft_strlen(nl))
 	{
 		free(nl);
