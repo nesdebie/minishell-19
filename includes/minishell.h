@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:41:26 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 10:42:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	ft_export(t_shell *data, int num_cmd);
 int		ft_cd(t_shell *d, int num_cmd, char *new_pwd);
 void	ft_echo(t_shell *d, int num_cmd);
 void	ft_exit(t_shell *data, int num_cmd);
+
+char	*ft_join_env(t_env *env);
 
 int		ft_print_error(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
