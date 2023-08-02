@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:32:07 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:13:22 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int	ft_env(t_list **is_envp_list)
 	ft_lstiter(*is_envp_list, &ft_read_lst);
 	return (0);
 }
-

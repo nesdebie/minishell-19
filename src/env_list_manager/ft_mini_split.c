@@ -6,16 +6,16 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 12:12:53 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:14:34 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char		**ft_minisplit(char *str)
+char	**ft_minisplit(char *str)
 {
-	int i;
-	char **arr;
+	int		i;
+	char	**arr;
 
 	arr = malloc(sizeof(char *) * 3);
 	if (!arr)
@@ -23,7 +23,7 @@ char		**ft_minisplit(char *str)
 	arr[0] = ft_strdup("LS_COLORS");
 	if (!arr[0])
 	{
-		free (arr);
+		free(arr);
 		return (0);
 	}
 	i = 0;

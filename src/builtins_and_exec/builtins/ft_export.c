@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:00:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:14:46 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static int	ft_isset(char c, char *set)
+static int	ft_isinset(char c, char *set)
 {
 	int	i;
 
@@ -53,7 +53,6 @@ static void	ft_print_env(t_list **is_envp_list)
 	free(env_lst);
 }
 
-
 static int	ft_check_name(char *name)
 {
 	if (ft_isalpha(name[0]) || name[0] == '_')
@@ -76,7 +75,7 @@ int	add_value(char *name, t_shell *d, int num_cmd, int i)
 			s = ft_strjoin(ft_getenv(d->envp_list, name), tmp);
 			free(tmp);
 		}
-		else if (ft_isset('=', d->cmd[num_cmd].args[i]))
+		else if (ft_isinset('=', d->cmd[num_cmd].args[i]))
 			s = get_value_env(d->cmd[num_cmd].args[i]);
 		if (s)
 			ft_putenv(&d->envp_list, name, s);

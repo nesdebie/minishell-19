@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 10:46:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:13:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ int	execute_builtin(t_shell *data, int num_cmd)
 		ft_exit(data, num_cmd);
 	return (EXIT_SUCCESS);
 }
-
