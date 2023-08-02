@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:50:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:30:56 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 10:47:07 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,16 @@ t_list	*ft_search_dubname(t_list **is_head, char *name)
 		ls_tmp_head = ls_tmp_head->next;
 	}
 	return (ls_tmp_head);
+}
+
+char	*ft_join_env(t_env *env)
+{
+	char	*str_env;
+	char	*tmp;
+
+	tmp = ft_strjoin(env->name, "=");
+	str_env = ft_strjoin(tmp, env->value);
+	if (tmp)
+		free(tmp);
+	return (str_env);
 }

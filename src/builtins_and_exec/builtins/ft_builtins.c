@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:54:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 10:41:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 10:46:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,3 @@ int	execute_builtin(t_shell *data, int num_cmd)
 	return (EXIT_SUCCESS);
 }
 
-char	*ft_join_env(t_env *env)
-{
-	char	*str_env;
-	char	*tmp;
-
-	tmp = ft_strjoin(env->name, "=");
-	str_env = ft_strjoin(tmp, env->value);
-	if (tmp)
-		free(tmp);
-	return (str_env);
-}
