@@ -6,20 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:07:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	ft_exit_minishell(t_shell *data)
-{
-	if (data->envp_list)
-		ft_free_env(&data->envp_list);
-	if (data->cmd && data->count_cmd > 0)
-		free_shell(data);
-	exit(data->exit_code);
-}
 
 static void	signal_handler(int signo)
 {

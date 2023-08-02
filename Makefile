@@ -4,6 +4,7 @@ SRCS =	./src/main.c \
 		./src/frees.c \
 		./src/errors.c \
 		./src/tokens.c \
+		./src/exit_minishell.c \
 		./src/builtins_and_exec/builtins/ft_builtins.c \
 		./src/builtins_and_exec/builtins/ft_cd.c \
 		./src/builtins_and_exec/builtins/ft_echo.c \
