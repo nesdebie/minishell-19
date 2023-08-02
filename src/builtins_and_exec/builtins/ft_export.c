@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:37:32 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:00:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,19 @@ static int	ft_check_name(char *name)
 int	add_value(char *name, t_shell *d, int num_cmd, int i)
 {
 	char	*s;
+	char	*tmp;
 
+	s = NULL;
 	if (ft_check_name(name))
 	{
 		if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
-			s = ft_strjoin(ft_getenv(d->envp_list, name),
-					get_value_env(d->cmd[num_cmd].args[i])); //FREES !!!
+		{
+			tmp = get_value_env(d->cmd[num_cmd].args[i]);
+			s = ft_strjoin(ft_getenv(d->envp_list, name), tmp);
+			free(tmp);
+		}
 		else if (ft_isset('=', d->cmd[num_cmd].args[i]))
 			s = get_value_env(d->cmd[num_cmd].args[i]);
-		else
-			s = get_value_env(d->cmd[num_cmd].args[++i]);
 		if (s)
 			ft_putenv(&d->envp_list, name, s);
 		else
