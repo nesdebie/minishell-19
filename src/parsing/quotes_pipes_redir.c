@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:06 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:27:21 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static char	*print_quotes_er(char quotes)
 {
 	if (quotes == '\'')
-		ft_putendl_fd("WELCOME-IN-sHELL: unclosed single quote error", 2);
+		ft_putendl_fd("W3LC0M3-1N-sH3LL: unclosed single quote error", 2);
 	else
-		ft_putendl_fd("WELCOME-IN-sHELL: unclosed double quote error", 2);
+		ft_putendl_fd("W3LC0M3-1N-sH3LL: unclosed double quote error", 2);
 	return (0);
 }
 
 static char	*print_er(char *error)
 {
-	ft_putstr_fd("WELCOME-IN-sHELL: syntax error near unexpected token ", 2);
+	ft_putstr_fd("W3LC0M3-1N-sH3LL: syntax error near unexpected token ", 2);
 	ft_putendl_fd(error, 2);
 	return (0);
 }

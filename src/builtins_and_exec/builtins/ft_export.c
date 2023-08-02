@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:45:17 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	ft_check_name(t_shell *d, char *s)
 		{
 			if (s[i] != '_')
 			{
-				printf("WELCOME-IN-sHELL: unset: `%s': ", s);
+				printf("W3LC0M3-1N-sH3LL: unset: `%s': ", s);
 				printf("not a valid identifier\n");
 				d->exit_code = 1;
 				return (0);

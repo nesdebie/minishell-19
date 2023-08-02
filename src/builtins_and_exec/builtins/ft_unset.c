@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:45:50 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_unset(t_shell *d, int nb_cmd)
 			ft_unset_var_env(&d->envp_list, d->cmd[nb_cmd].args[i++]);
 		else
 		{
-			printf("WELCOME-IN-sHELL: unset: `%s': ", d->cmd[nb_cmd].args[i++]);
+			printf("W3LC0M3-1N-sH3LL: unset: `%s': ", d->cmd[nb_cmd].args[i++]);
 			printf("not a valid identifier\n");
 			d->exit_code = 1;
 		}

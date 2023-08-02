@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:27:21 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*permission_error(char *cmd, t_shell *dt)
 {
-	ft_putstr_fd("WELCOME-IN-sHELL: ", 2);
+	ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(": permission denied", 2);
 	dt->exit_code = 126;
@@ -42,7 +42,7 @@ int	ft_no_file_dir(int fd, char *name)
 {
 	if (fd == -1)
 	{
-		ft_putstr_fd("WELCOME-IN-sHELL: ", 2);
+		ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
 		ft_putstr_fd(name, 2);
 		ft_putendl_fd(": No such file or directory", 2);
 		return (1);
