@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 12:13:02 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:11:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 	ls_content = malloc(sizeof(t_env));
 	if (!i_str || !ls_content)
 		return (0);
-	if (!ft_strncmp(i_str, "LS_COLORS", 9))
-		ls_val_env = ft_minisplit(i_str);
-	else
-		ls_val_env = ft_split(i_str, '=');
+	ls_val_env = ft_minisplit(i_str);
 	if (!ls_val_env)
 		return (0);
 	ls_content->name = ls_val_env[0];
