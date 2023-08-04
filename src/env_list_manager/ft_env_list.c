@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:11:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_list	*ft_init_env(t_shell *data, char **env)
 		ls_envp_list = ft_add2list(ls_envp_list, env[i++]);
 	if (!ls_envp_list || !i)
 	{
-		ft_print_error(data, "env list failed", 1);
+		ft_print_perror(data, "env list failed", 1);
 		ft_free_env(&ls_envp_list);
 		return (0);
 	}

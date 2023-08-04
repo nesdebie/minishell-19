@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:20:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_wait_process(pid_t	*id, t_shell *data)
 	{
 		waitpid(id[i], &ret, 0);
 		ret = set_exit_status(ret);
-		ft_print_error(data, NULL, ret);
+		ft_print_perror(data, NULL, ret);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 15:06:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:31:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	parser(char *line, t_shell *shell)
 	shell->count_cmd = pre_parse(line, shell);
 	if (shell->count_cmd == -1)
 		return (1);
+	if (shell->count_cmd > 400)
+		return (ft_print_error(shell, "W3LC0M3-1N-sH3LL: fork: Resource temporarily unavailable", 1));
 	tokens = get_tokens(line, tokens);
 	if (!check_tokens(tokens))
 	{

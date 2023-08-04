@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:29:06 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,16 @@ char	*permission_error(char *cmd, t_shell *dt)
 	return (0);
 }
 
-int	ft_print_error(t_shell *data, const char *str, int nbr)
+int	ft_print_error(t_shell *data, char *str, int nbr)
+{
+	ft_putendl_fd(str, 2);
+	if (nbr < 0)
+		nbr = EXIT_FAILURE;
+	data->exit_code = nbr;
+	return (nbr);
+}
+
+int	ft_print_perror(t_shell *data, const char *str, int nbr)
 {
 	if (str)
 		perror(str);

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,5 @@ void	ft_export(t_shell *data, int num_cmd)
 			return ;
 		i++;
 	}
-	ft_print_error(data, NULL, 0);
+	ft_print_perror(data, NULL, 0);
 }
