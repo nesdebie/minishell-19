@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:25:01 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:28:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	ft_check_name(t_shell *d, char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (i == 0 && ft_isnum(s[i]))
+		if (ft_isnum(s[0]))
 		{
 			printf("W3LC0M3-1N-sH3LL: export: `%s': ", s);
 			printf("not a valid identifier\n");

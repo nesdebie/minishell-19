@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 12:10:22 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:30:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	ft_is_valid_token_unset(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if ((i == 0 && ft_isnum(s[i])))
+		if (ft_isnum(s[0]))
 			return (0);
 		if (!ft_isalnum(s[i]))
 			if (s[i] != '_')
