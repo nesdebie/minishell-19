@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:03:27 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:25:01 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	ft_check_name(t_shell *d, char *s)
 	return (1);
 }
 
-int	add_value(char *name, t_shell *d, int num_cmd, int i)
+int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 {
 	char	*s;
 	char	*tmp;
@@ -90,23 +90,24 @@ int	add_value(char *name, t_shell *d, int num_cmd, int i)
 	s = NULL;
 	if (!ft_check_name(d, name))
 		return (-1);
-	if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
+	if (ft_strnstr(d->cmd[num_cmd].args[ret], "+=", ft_strlen(name) + 2))
 	{
-		tmp = get_value_env(d->cmd[num_cmd].args[i]);
+		tmp = get_value_env(d->cmd[num_cmd].args[ret]);
 		if (!ft_getenv(d->envp_list, name))
 			s = ft_strdup(tmp);
 		else
 			s = ft_strjoin(ft_getenv(d->envp_list, name), tmp);
 		free(tmp);
 	}
-	else if (ft_isinset('=', d->cmd[num_cmd].args[i]))
-		s = get_value_env(d->cmd[num_cmd].args[i]);
-	if (s)
-		ft_putenv(&d->envp_list, name, s);
+	else if (ft_isinset('=', d->cmd[num_cmd].args[ret]))
+		s = get_value_env(d->cmd[num_cmd].args[ret]);
 	else
-		return (-1);
+		s = ft_calloc(1, 1);
+	ft_putenv(&d->envp_list, name, s);
+	if (!ft_strlen(s))
+		ret = -1;
 	free(s);
-	return (i);
+	return (ret);
 }
 
 void	ft_export(t_shell *data, int num_cmd)
