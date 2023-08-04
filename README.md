@@ -3,7 +3,7 @@ SEGFAULT dossier parent "rm ../../d1"
 
 EXPORT :
 -probleme dans le nom de la clef, uniquement alpha numerique et le premier carractere ne peut etre un chiffre et aussi le _ aui est une exeption (unset as les memes problemes)
--si la variable n'existe pas elle doit etre crée avec += comme avec =
+SOLVED -si la variable n'existe pas elle doit etre crée avec += comme avec =
 -SEGFAULT si espace n'est pas a la fin de la string exportée
 -SEGFAULT si export est envoyé avec une clef sans =
 
