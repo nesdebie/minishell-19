@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:18:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,18 @@ static int	ft_check_name(t_shell *d, char *s)
 	i = 0;
 	while (s[i])
 	{
+		if (i == 0 && ft_isnum(s[i]))
+		{
+			printf("W3LC0M3-1N-sH3LL: export: `%s': ", s);
+			printf("not a valid identifier\n");
+			d->exit_code = 1;
+			return (0);			
+		}
 		if (!ft_isalnum(s[i]))
 		{
 			if (s[i] != '_')
 			{
-				printf("W3LC0M3-1N-sH3LL: unset: `%s': ", s);
+				printf("W3LC0M3-1N-sH3LL: export: `%s': ", s);
 				printf("not a valid identifier\n");
 				d->exit_code = 1;
 				return (0);
@@ -81,24 +88,24 @@ int	add_value(char *name, t_shell *d, int num_cmd, int i)
 	char	*tmp;
 
 	s = NULL;
-	if (ft_check_name(d, name))
+	if (!ft_check_name(d, name))
+		return (-1);
+	if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
 	{
-		if (ft_strnstr(d->cmd[num_cmd].args[i], "+=", ft_strlen(name) + 2))
-		{
-			tmp = get_value_env(d->cmd[num_cmd].args[i]);
-			s = ft_strjoin(ft_getenv(d->envp_list, name), tmp);
-			free(tmp);
-		}
-		else if (ft_isinset('=', d->cmd[num_cmd].args[i]))
-			s = get_value_env(d->cmd[num_cmd].args[i]);
-		if (s)
-			ft_putenv(&d->envp_list, name, s);
+		tmp = get_value_env(d->cmd[num_cmd].args[i]);
+		if (!ft_getenv(d->envp_list, name))
+			s = ft_strdup(tmp);
 		else
-			return (-1);
-		free(s);
+			s = ft_strjoin(ft_getenv(d->envp_list, name), tmp);
+		free(tmp);
 	}
+	else if (ft_isinset('=', d->cmd[num_cmd].args[i]))
+		s = get_value_env(d->cmd[num_cmd].args[i]);
+	if (s)
+		ft_putenv(&d->envp_list, name, s);
 	else
 		return (-1);
+	free(s);
 	return (i);
 }
 

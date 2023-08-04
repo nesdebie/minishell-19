@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:29:18 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:59:20 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int		set_exit_status(int exit_status);
 void	ft_exit_minishell(t_shell *data);
 
 char	**ft_minisplit(char *str);
+int		ft_isnum(char c);
 
 #endif

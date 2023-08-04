@@ -6,11 +6,18 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:10:45 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:59:02 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+int	ft_isnum(char c)
+{
+	if (c >= 60 && c <= 71)
+		return (1);
+	return (0);
+}
 
 char	*get_name_env(char *s)
 {

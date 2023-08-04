@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:10:22 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,17 @@ void	ft_unset_var_env(t_list **is_envp_list, char *str)
 
 static int	ft_is_valid_token_unset(char *s)
 {
-	while (s && *s)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (!ft_isalnum(*s))
-			if (*s != '_')
+		if ((i == 0 && ft_isnum(s[i])))
+			return (0);
+		if (!ft_isalnum(s[i]))
+			if (s[i] != '_')
 				return (0);
-		s++;
+		i++;
 	}
 	return (1);
 }
@@ -74,7 +79,7 @@ void	ft_unset(t_shell *d, int nb_cmd)
 	i = 1;
 	while (d->cmd[nb_cmd].args[i])
 	{
-		if (ft_is_valid_token_unset(d->cmd[nb_cmd].args[i]))
+		if (ft_is_valid_token_unset(d->cmd[nb_cmd].args[i]) == 1)
 			ft_unset_var_env(&d->envp_list, d->cmd[nb_cmd].args[i++]);
 		else
 		{
