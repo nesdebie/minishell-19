@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:28:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:53:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	ft_export(t_shell *data, int num_cmd)
 	int		i;
 	char	*name;
 
+	data->exit_code = 0;
 	if (!data->cmd[num_cmd].args[1])
 		return (ft_print_env(&data->envp_list));
 	i = 1;
@@ -127,5 +128,4 @@ void	ft_export(t_shell *data, int num_cmd)
 			return ;
 		i++;
 	}
-	ft_print_perror(data, NULL, 0);
 }

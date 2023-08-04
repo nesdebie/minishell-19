@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:21 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:49:01 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	ft_pwd(t_shell *data)
 		write(STDOUT_FILENO, str, ft_strlen(str));
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	ft_print_perror(data, NULL, 0);
+	data->exit_code = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:47:47 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	ft_echo(t_shell *d, int num_cmd)
 	}
 	if (!flag)
 		write(1, "\n", 1);
-	ft_print_perror(d, NULL, 0);
+	d->exit_code = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 13:18:50 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:47:27 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_update_dir(t_shell *d)
 	t_list	**head;
 
 	head = &d->envp_list;
-	ft_print_perror(d, NULL, 0);
+	d->exit_code = 0;
 	new_pwd = getcwd(NULL, 0);
 	err = ft_putenv(head, "PWD", new_pwd);
 	free(new_pwd);
