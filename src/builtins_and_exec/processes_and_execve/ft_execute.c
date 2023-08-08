@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 18:40:26 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:02:55 by merlinbourg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	cmd_with_path(t_shell *dt, char **path)
 				dt->exit_code = 127;
 				return (-1);
 			}
-			printf("-->[%s]\n", dt->cmd[i].cmd);
+			//printf("-->[%s]\n", dt->cmd[i].cmd);
 			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt);
 		}
 		i++;

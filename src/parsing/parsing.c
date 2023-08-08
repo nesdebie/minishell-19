@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 18:27:47 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:04:19 by merlinbourg      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,8 @@ t_shell *parse_quotes_cmds(t_shell *shell)
 				}
 				shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] = '\0';
 			}
-			printf("%s\n", shell->cmd[i].args[j]);
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
 	return (shell);
