@@ -1,5 +1,5 @@
 CD :
-SEGFAULT dossier parent "rm ../../d1"
+[SOLVED] SEGFAULT dossier parent "rm ../../d1"
 
 EXPORT :
 [SOLVED] probleme dans le nom de la clef, uniquement alpha numerique et le premier carractere ne peut etre un chiffre et aussi le _ aui est une exeption (unset as les memes problemes)

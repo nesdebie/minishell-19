@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/07 15:26:25 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:51:07 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,46 @@ static int	dollar_quotes(char **line, int start, t_shell *data)
 	return (i);
 }
 
+
+/*	
+**	fonction sevant a faire la substitution du exit_code de la bonne facon
+**
+*/
+
+char *get_dollar_exit_code(char *line, int i, t_shell *data)
+{
+	char *exit_cod2;
+	char *ret;
+	int j;
+	int tmp;
+
+	exit_cod2 = ft_itoa(data->exit_code);
+	j = (ft_strlen(line)) + ft_strlen(exit_cod2);
+	ret = calloc((j + 1), sizeof(char));
+	j = 0;
+	while (j != i)
+	{
+		ret[j] = line[j];
+		j++;
+	}
+	tmp = 0;
+	while ((size_t)tmp != ft_strlen(exit_cod2))
+	{
+		ret[j + tmp] = exit_cod2[tmp];
+		tmp++;
+	}
+	j += tmp;
+	tmp = 0;
+	while (line[i + 2 + tmp])
+	{
+		ret[j] = line[i + 2 + tmp];
+		tmp++;
+		j++;
+	}
+	free(exit_cod2);
+	return (ret);
+}
+
 /* param line is (*lst)->content
 ** parse $"" & $''
 ** parse "" & ''
@@ -129,6 +169,10 @@ char	*parse_line(char *line, t_shell *data, int i)
 			i = del_quotes(&line, i, data, 0);
 			if (i == -1)
 				break ;
+		}
+		else if (line[i] == '$' && line[i + 1] == '?')
+		{
+			line = get_dollar_exit_code(line, i, data);
 		}
 		else if (line[i] == '$')
 		{
