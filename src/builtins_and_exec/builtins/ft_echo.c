@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/07 17:29:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:20:40 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_add_flag(char **args)
 	}
 	return (c);
 }
-
+/*
 static void	ft_parse_and_write(t_shell *d, char *s)
 {
 	int i;
@@ -71,7 +71,7 @@ static void	ft_parse_and_write(t_shell *d, char *s)
 	while(--i >= 0)
 		free(arr[i]);
 	free(arr);
-}
+}*/
 
 void	ft_echo(t_shell *d, int num_cmd)
 {
@@ -86,9 +86,9 @@ void	ft_echo(t_shell *d, int num_cmd)
 	{
 		if (ft_strlen(d->cmd[num_cmd].args[i]))
 		{
-			if (ft_strnstr(d->cmd[num_cmd].args[i], "$?", ft_strlen(d->cmd[num_cmd].args[i])))
-				ft_parse_and_write(d, d->cmd[num_cmd].args[i]);
-			else
+			//if (ft_strnstr(d->cmd[num_cmd].args[i], "$?", ft_strlen(d->cmd[num_cmd].args[i])))
+			//	ft_parse_and_write(d, d->cmd[num_cmd].args[i]); // A CHANGER NE GERE PAS LES QUOTES (mettre exit code dans envp ?)
+			//else
 				ft_putstr_fd(d->cmd[num_cmd].args[i], STDOUT_FILENO);
 			if (d->cmd[num_cmd].args[i + 1])
 				ft_putchar_fd(' ', STDOUT_FILENO);
