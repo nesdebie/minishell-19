@@ -27,11 +27,12 @@ SRCS =	./src/main.c \
 		./src/parsing/line_parsing_utils.c \
 		./src/parsing/parsing.c \
 		./src/parsing/quotes_pipes_redir.c \
-		./src/parsing/redirections.c
+		./src/parsing/redirections.c \
+		./src/parsing/substitute.c
 
 CC = cc
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = #-Werror -Wall -Wextra
 
 READLINE = -lreadline -lhistory -L/Users/$(USER)/.brew/opt/readline/lib/
 

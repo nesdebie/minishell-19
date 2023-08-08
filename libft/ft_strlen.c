@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:04:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/04/03 10:50:04 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:23:54 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(char const *str)
 	size_t	i;
 
 	i = 0;
+	if (!str)
+ 		return (i);
 	while (str[i])
 		i++;
 	return (i);

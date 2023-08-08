@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:49:37 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:23:09 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,19 @@ static char	*find_cmd(t_list *lst)
 
 void	init_each_command(t_list **lst, t_shell *data, int i)
 {
+	char *cmd;
+
+	cmd = find_cmd(*lst);
 	if (!ft_strncmp((*lst)->content, ">", 1)
 		|| !ft_strncmp((*lst)->content, "<", 1))
 	{
-		data->cmd[i].cmd = ft_strdup(find_cmd(*lst));
+		if (!cmd)
+			data->cmd[i].cmd = ft_calloc(1, 1);
+		else
+			data->cmd[i].cmd = ft_strdup(cmd);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
+		
 	}
 	else
 	{

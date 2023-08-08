@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:59:20 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:35:29 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ void	ft_exit_minishell(t_shell *data);
 
 char	**ft_minisplit(char *str);
 int		ft_isnum(char c);
+
+char* substitute_variables(char* input, char **envp, int code, t_list *is_head);
+char **convertListToArray(t_list *head);
 
 #endif

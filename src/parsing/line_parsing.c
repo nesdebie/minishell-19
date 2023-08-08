@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 11:51:07 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:34:21 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,8 @@ char *get_dollar_exit_code(char *line, int i, t_shell *data)
  */
 char	*parse_line(char *line, t_shell *data, int i)
 {
-	if (!line)
+	(void)i;
+	/*if (!line)
 		return (0);
 	while (line[++i])
 	{
@@ -180,6 +181,8 @@ char	*parse_line(char *line, t_shell *data, int i)
 			if (i == -1)
 				break ;
 		}
-	}
+		printf("i : %d\nlen : %zu\nline : %s\n\n", i, ft_strlen(line), line);
+	}*/
+	line = substitute_variables(line, convertListToArray(data->envp_list), data->exit_code, data->envp_list);
 	return (line);
 }

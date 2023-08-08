@@ -24,19 +24,19 @@ PARSING :
 
 EXECUTION PIPE :
 ( cat minishell.h | grep ");"$     "si l'argument de cat n'existe pas, l'execution s'arrete" ) BUG
-exit ecrit exit, ce qui fait que le pipe recois un retour de exit et permet par exemple avec cette commande : "ls | exit | cat" d'ecrire exit
+[SOLVED] exit ecrit exit, ce qui fait que le pipe recois un retour de exit et permet par exemple avec cette commande : "ls | exit | cat" d'ecrire exit
 
 GESTION BUILTINS :
 exit 42 world    "Erreur de message, mini affiche numeric argument required mais devrait afficher too many arguments"
 beaucoup de message d'erreur son affichees sur la sortie standart alors qu'ils devraient etre affiches sur sortie d'erreur
-erreur sur export, si la clef n'est pas bonne, retourner message d'erreur : not a valid identifier)
+[SOLVED] erreur sur export, si la clef n'est pas bonne, retourner message d'erreur : not a valid identifier)
 
 SUBSTITUTION :
-GROSSE ERREUR NIVEAU SUBSTITUTION, PAS FAITE AU BON MOMENT, CELA DEVRAIT REGLER PLEIN D'ERREURS.
-arreter de chercher clef si $? exemple : echo $?HELLO devrait retourner 0HELLO mais retourne juste 0
-plusieurs cas d'erreur sur $? exemple : echo "exit_code ->$? user ->$USER home -> $HOME"
-substitution pas faite au bon moment, exemple : $FGDHGH echo gnah devrait remplacer par rien $FGDHGH et executer echo gnah
-si il y a des substitutions qui se suivent, il ne fait pas la substitution cela ne fonctionne donc pas
+[SOLVED] GROSSE ERREUR NIVEAU SUBSTITUTION, PAS FAITE AU BON MOMENT, CELA DEVRAIT REGLER PLEIN D'ERREURS.
+[SOLVED] arreter de chercher clef si $? exemple : echo $?HELLO devrait retourner 0HELLO mais retourne juste 0
+[SOLVED] plusieurs cas d'erreur sur $? exemple : echo "exit_code ->$? user ->$USER home -> $HOME"
+[SOLVED] substitution pas faite au bon moment, exemple : $FGDHGH echo gnah devrait remplacer par rien $FGDHGH et executer echo gnah
+[SOLVED] si il y a des substitutions qui se suivent, il ne fait pas la substitution cela ne fonctionne donc pas
 
 EXECUTION :
 si commande avec chemin relatif verifier d'abord aue c'est un fichier et puis un dossier , actuellement c'est l'inverse
