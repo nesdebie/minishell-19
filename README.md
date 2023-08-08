@@ -8,7 +8,7 @@ EXPORT :
 [SOLVED] -SEGFAULT si export est envoyé avec une clef sans =
 
 REDIRECTION :
-SEGFAULT : en premier avant la commade ">test ls" (peu importe la redirection)
+[SOLVED] SEGFAULT : en premier avant la commade ">test ls" (peu importe la redirection)
 cas d'erreur indefini : "echo hi >>./outfile01 | echo bye >>./outfile02" (probablement pipe et builtins)
 
 HEREDOC :

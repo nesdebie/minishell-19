@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 14:35:29 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:06:48 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,11 @@ int		set_exit_status(int exit_status);
 void	ft_exit_minishell(t_shell *data);
 
 char	**ft_minisplit(char *str);
+char	**ft_minifree(char **arr, int i);
 int		ft_isnum(char c);
 
-char* substitute_variables(char* input, char **envp, int code, t_list *is_head);
-char **convertListToArray(t_list *head);
+char* substitute_variables(char* input, int code, t_list *is_head);
+
+t_shell *parse_quotes_cmds(t_shell *shell);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 14:35:22 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:41:53 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,7 @@ void* ft_realloc(void* ptr, size_t size)
     return new_ptr;
 }
 
-char **convertListToArray(t_list *head)
-{
-    // Comptons d'abord le nombre d'éléments dans la liste
-    int count = 0;
-    t_list *current = head;
-    while (current != NULL)
-    {
-        count++;
-        current = current->next;
-    }
-
-    // Allouons de la mémoire pour le tableau de pointeurs de char
-    char **array = (char **)malloc((count + 1) * sizeof(char *));
-    if (array == NULL)
-    {
-        // Gestion de l'échec de l'allocation mémoire
-        return NULL;
-    }
-
-    // Parcours de la liste et copie des contenus dans le tableau
-    current = head;
-    for (int i = 0; i < count; i++)
-    {
-        array[i] = (char *)current->content;
-        current = current->next;
-    }
-
-    // Terminons le tableau par un pointeur NULL pour indiquer la fin
-    array[count] = NULL;
-
-    return array;
-}
-
-char* substitute_variables(char* input, char **envp, int code, t_list *is_head)
+char* substitute_variables(char* input, int code, t_list *is_head)
 {
     char* output = NULL;
     int output_size = 0;

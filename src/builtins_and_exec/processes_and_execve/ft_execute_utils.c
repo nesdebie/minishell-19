@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 16:02:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:36:05 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 {
+	for (int m = 0; dt->cmd[0].args[m]; m++)
+				printf("[%s]\n", dt->cmd[0].args[m]);
 	dt->exit_code = 127;
 	ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
 	ft_putstr_fd(command, 2);

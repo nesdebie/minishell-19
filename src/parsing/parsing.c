@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:02:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:27:47 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,47 @@ static char	*open_pipe(char *line)
 	return (line);
 }
 
+t_shell *parse_quotes_cmds(t_shell *shell)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	while (i != shell->count_cmd)
+	{
+		j = 0;
+		while (shell->cmd[i].args[j])
+		{
+			if (shell->cmd[i].args[j][0] == '\'' && shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] == '\'')
+			{
+				k = 0;
+				while (shell->cmd[i].args[j][k])
+				{
+					shell->cmd[i].args[j][k] = shell->cmd[i].args[j][k + 1]; 
+					k++;
+				}
+				shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] = '\0';
+			}
+			if (shell->cmd[i].args[j][0] == '\"' && shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] == '\"')
+			{
+				k = 0;
+				while (shell->cmd[i].args[j][k])
+				{
+					shell->cmd[i].args[j][k] = shell->cmd[i].args[j][k + 1]; 
+					k++;
+				}
+				shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] = '\0';
+			}
+			printf("%s\n", shell->cmd[i].args[j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	return (shell);
+}
+
 int	parser(char *line, t_shell *shell)
 {
 	t_list	*tokens;
@@ -115,5 +156,6 @@ int	parser(char *line, t_shell *shell)
 	ft_memset(shell->cmd, '\0', sizeof(t_cmnd) * shell->count_cmd);
 	init_cmd(tokens, shell);
 	ft_lstclear(&tokens, free);
+	shell = parse_quotes_cmds(shell);
 	return (0);
 }
