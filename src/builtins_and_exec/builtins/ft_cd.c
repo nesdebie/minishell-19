@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 12:43:17 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:24:05 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	no_home_err(t_shell *sh)
 static int	check_no_home(t_shell *d, int num_cmd)
 {
 	if (ft_getenv(d->envp_list, "HOME") && ft_getenv(d->envp_list, "OLDPWD"))
-		ft_putenv(&d->envp_list, "OLDPWD", ft_getenv(d->envp_list, "PWD"));	
+		ft_putenv(&d->envp_list, "OLDPWD", ft_getenv(d->envp_list, "PWD"));
 	else if (!ft_getenv(d->envp_list, "HOME"))
 	{
 		if (!d->cmd[num_cmd].args[1])
@@ -59,54 +59,61 @@ static int	check_no_home(t_shell *d, int num_cmd)
 
 int	check_old_pwd(char *oldpwd, t_shell *d)
 {
+	char	*home;
+
 	if (!oldpwd)
-    {
-        char *home = ft_getenv(d->envp_list, "HOME"); //ceci est une correction degeulasse qui permet que cd ne segfault jamais...
-        if (!home)
-        {
-            ft_putstr_fd("cd: HOME not set\n", 2);
-            return 0;
-        }
-        if (chdir(home) == -1)
-        {
-            perror(home);
-            return 0;
-        }
-        free(oldpwd);
+	{
+		home = ft_getenv(d->envp_list, "HOME");
+		if (!home)
+		{
+			ft_putstr_fd("cd: HOME not set\n", 2);
+			return (0);
+		}
+		if (chdir(home) == -1)
+		{
+			perror(home);
+			return (0);
+		}
+		free(oldpwd);
 		free(home);
-    }
+	}
 	else
 		ft_putenv(&d->envp_list, "OLDPWD", oldpwd);
 	return (1);
 }
 
-//MERGE 8/AOUT/2023
+int	ft_cd2(int num_cmd, t_shell *d, char *new_pwd, int *err)
+{
+	if (!d->cmd[num_cmd].args[1])
+	{
+		if (check_no_home(d, num_cmd))
+			return (no_home_err(d));
+		*err = chdir(ft_getenv(d->envp_list, "HOME"));
+	}
+	else
+	{
+		new_pwd = ft_check_tilde(&d->envp_list, d->cmd[num_cmd].args[1]);
+		*err = chdir(new_pwd);
+		if (new_pwd)
+			free(new_pwd);
+	}
+	return (-2);
+}
 
 int	ft_cd(t_shell *d, int num_cmd, char *new_pwd)
 {
 	int		err;
 	char	*oldpwd;
+	int		ret;
 
-	//MERGE 8/AOUT/2023
 	oldpwd = getcwd(NULL, 0);
-	if (!check_old_pwd(oldpwd, d)) 
+	if (!check_old_pwd(oldpwd, d))
 		return (1);
-	//MERGE 8/AOUT/2023
 	if (!d || !d->envp_list || !d->cmd[num_cmd].args[0])
 		return (1);
-	if (!d->cmd[num_cmd].args[1])
-	{
-		if (check_no_home(d, num_cmd))
-			return (no_home_err(d));
-		err = chdir(ft_getenv(d->envp_list, "HOME"));
-	}
-	else
-	{
-		new_pwd = ft_check_tilde(&d->envp_list, d->cmd[num_cmd].args[1]);
-		err = chdir(new_pwd);
-		if (new_pwd)
-			free(new_pwd);
-	}
+	ret = ft_cd2(num_cmd, d, new_pwd, &err);
+	if (ret != -2)
+		return (ret);
 	if (err)
 		ft_print_perror(d, d->cmd[num_cmd].args[1], 1);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 19:04:19 by merlinbourg      ###   ########.fr       */
+/*   Updated: 2023/08/09 16:02:20 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,10 @@ int	parser(char *line, t_shell *shell)
 
 	tokens = NULL;
 	if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '|')
+	{
 		line = open_pipe(line);
-	add_history(line);
+		add_history(line);
+	}
 	shell->count_cmd = pre_parse(line, shell);
 	if (shell->count_cmd == -1)
 		return (1);

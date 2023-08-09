@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 14:15:17 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:05:22 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	ft_prompt(int ac, t_shell *shell)
 		str = readline(GREEN"\e[1mW3LC0M3-1N-sH3LL> \e[m"WHITE);
 		str = ft_strtrim(str, " ");
 		signal(SIGINT, &signal_handler2);
+		if (str && str[ft_strlen(str) - 1]  != '|')
+			add_history(str);
 		if (!str)
 		{
 			ft_putendl_fd("exit", 1);
