@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:29:49 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:57:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,27 @@ char	*get_value_env(char *s)
 	if (s[i] == '=')
 		temp = ft_substr(s, i + 1, ft_strlen(s) - i);
 	return (temp);
+}
+
+char	*ft_strjoin_export(char const *s1, char const *s2)
+{
+	char				*str;
+	unsigned int		i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	if (s2[0] == '\'' && s2[ft_strlen(s2) == '\''])
+		s2 = ft_strtrim(s2, "\'");
+	else if (s2[0] == '\"' && s2[ft_strlen(s2) == '\"'])
+		s2 = ft_strtrim(s2, "\"");
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!str)
+		return (NULL);
+	while (*s1)
+		str[i++] = *s1++;
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = 0;
+	return (str);
 }

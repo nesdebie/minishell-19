@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:44:25 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 11:56:23 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:52:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	free_cmd(t_cmnd *cmd)
 		close(cmd->in_file);
 	if (cmd->out_file)
 		close(cmd->out_file);
-	//if (cmd->cmd)
-	//	free(cmd->cmd);
+	if (ft_strlen(cmd->cmd) && ft_strncmp(cmd->cmd, "exit", 4))
+		free(cmd->cmd);
 	free_redir(cmd);
 }
 
