@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 11:39:22 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:10:03 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,7 @@ int		ft_isnum(char c);
 char* substitute_variables(char* input, int code, t_list *is_head);
 
 t_shell *parse_quotes_cmds(t_shell *shell);
+
+char* remove_empty_quotes(char* str);
 
 #endif

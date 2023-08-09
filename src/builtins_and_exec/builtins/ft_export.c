@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:53:52 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:25:57 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 		s = get_value_env(d->cmd[num_cmd].args[ret]);
 	else
 		s = ft_calloc(1, 1);
+	if (s[0] == '\"' || s[ft_strlen(s)] == '\"')
+		s = ft_strtrim(s, "\"");
+	else if (s[0] == '\'' || s[ft_strlen(s)] == '\'')
+		s = ft_strtrim(s, "\'");
 	ft_putenv(&d->envp_list, name, s);
 	if (!ft_strlen(s))
 		ret = -1;
