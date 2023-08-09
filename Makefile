@@ -32,7 +32,7 @@ SRCS =	./src/main.c \
 
 CC = cc
 
-CFLAGS = #-Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 
 READLINE = -lreadline -lhistory -L/Users/$(USER)/.brew/opt/readline/lib/
 
