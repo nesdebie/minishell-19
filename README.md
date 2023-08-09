@@ -27,7 +27,7 @@ EXECUTION PIPE :
 [SOLVED] exit ecrit exit, ce qui fait que le pipe recois un retour de exit et permet par exemple avec cette commande : "ls | exit | cat" d'ecrire exit
 
 GESTION BUILTINS :
-exit 42 world    "Erreur de message, mini affiche numeric argument required mais devrait afficher too many arguments"
+[SOLVED] exit 42 world    "Erreur de message, mini affiche numeric argument required mais devrait afficher too many arguments"
 beaucoup de message d'erreur son affichees sur la sortie standart alors qu'ils devraient etre affiches sur sortie d'erreur
 [SOLVED] erreur sur export, si la clef n'est pas bonne, retourner message d'erreur : not a valid identifier)
 

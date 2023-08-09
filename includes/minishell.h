@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 18:06:48 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:39:22 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,21 @@ typedef struct s_env{
 	char	*name;
 	char	*value;
 }				t_env;
+
+typedef struct s_substitute{
+	char *output;
+    char *new_output;
+    int output_size;
+    int input_index;
+	int is_quote;
+	char *var_start;
+	int var_len;
+    char *number_str;
+    int number_len;
+    const char* env_value;
+    int env_len;
+    char *var_name;
+}				t_substitute;
 
 void	rl_replace_line(const char *text, int clear_undo);
 
