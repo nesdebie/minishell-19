@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:13:37 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:01:20 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ int	add_value2(t_shell *d, char *s, int ret, char *name)
 	char	*str;
 
 	str = NULL;
-	if (s[0] == '\"' || s[ft_strlen(s) - 1] == '\"')
-		str = ft_strtrim(s, "\"");
-	else if (s[0] == '\'' || s[ft_strlen(s) - 1] == '\'')
-		str = ft_strtrim(s, "\'");
-	else
-		str = ft_strdup(s);
+	// if (s[0] == '\"' || s[ft_strlen(s) - 1] == '\"')
+	// 	str = ft_strtrim(s, "\"");
+	// else if (s[0] == '\'' || s[ft_strlen(s) - 1] == '\'')
+	// 	str = ft_strtrim(s, "\'");
+	// else
+	str = ft_strdup(s);
 	ft_putenv(&d->envp_list, name, str);
 	if (!ft_strlen(str))
 		ret = -1;
@@ -125,31 +125,30 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 	return (add_value2(d, s, ret, name));
 }
 
-// void	ft_print_cmd(t_shell *data)
-// {
-// 	int	j;
-// 	static int num_use;
+void	ft_print_cmd(t_shell *data)
+{
+	int	j;
+	static int num_use;
 
-// 	j = 0;
-// 	printf("num usage : %d\n", num_use);
-// 	num_use++;
-// 	for (int i = 0; i < data->count_cmd; i++)
-// 	{
-// 		for (j = 0; data->cmd[i].args[j]; j++)
-// 		{
-// 			printf("[%s]\n", data->cmd[i].args[j]);
-// 		}
-// 		printf("\n");
-// 	}
-// 	printf("\n");
-// }
+	j = 0;
+	printf("num usage : %d\n", num_use);
+	num_use++;
+	for (int i = 0; i < data->count_cmd; i++)
+	{
+		for (j = 0; data->cmd[i].args[j]; j++)
+		{
+			printf("[%s]\n", data->cmd[i].args[j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
 
 void	ft_export(t_shell *data, int num_cmd)
 {
 	int		i;
 	char	*name;
 
-	//ft_print_cmd(data);
 	data->exit_code = 0;
 	if (!data->cmd[num_cmd].args[1])
 		return (ft_print_env(&data->envp_list));

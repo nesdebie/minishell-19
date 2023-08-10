@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:14:02 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:48:05 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,6 @@ int	parser(char *line, t_shell *shell)
 	init_cmd(tokens, shell);
 	//ft_print_cmd(shell);
 	ft_lstclear(&tokens, free);
-	shell = parse_quotes_cmds(shell);
+	//shell = parse_quotes_cmds(shell);
 	return (0);
 }

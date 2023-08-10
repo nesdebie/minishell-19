@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:57:18 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:00:37 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,25 @@ static char	*find_cmd(t_list *lst)
 	return (0);
 }
 
+void	ft_quote_args(t_shell *data)
+{
+	int	j;
+	int i;
+
+	j = 0;
+	i = 0;
+	while (i < data->count_cmd)
+	{
+		j = 0;
+		while (data->cmd[i].args[j])
+		{
+			removeQuotes(data->cmd[i].args[j]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	init_each_command(t_list **lst, t_shell *data, int i)
 {
 	char	*cmd;
@@ -103,15 +122,19 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		if (!cmd)
 			data->cmd[i].cmd = ft_calloc(1, 1);
 		else
+		{
 			data->cmd[i].cmd = ft_strdup(cmd);
+		}
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
+		ft_quote_args(data);
 	}
 	else
 	{
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
+		ft_quote_args(data);
 		if (!is_builtin_ll(data->cmd[i].cmd))
 			free (data->cmd[i].cmd);
 	}

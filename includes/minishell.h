@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:13:43 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:37:27 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ char	*ft_strjoin_export(char const *s1, char const *s2);
 
 t_shell	*parse_quotes_cmds(t_shell *shell);
 
-char	*remove_empty_quotes(char	*str);
+//char	*remove_empty_quotes(char	*str);
+void removeQuotes(char *input);
 
 //a retirer a la fin (fonction de debug pour print les arguments parsés)
 //void	ft_print_cmd(t_shell *data);
