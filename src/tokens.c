@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:07:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:11:05 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:07:22 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static int	len_token(char *line, int i)
 	int is_quote;
 
 	len = 0;
+	is_quote = 1;
 	if (line[i] == '<' || line[i] == '>')
 	{
 		i++;
