@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 11:37:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:30:20 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static int	check_if_exit_code_substitute(char *input,
 		if (s->new_output == NULL)
 			return (2);
 		s->output = s->new_output;
-		free(s->new_output);
 		ft_memcpy(s->output + s->output_size, s->number_str, s->number_len);
 		s->output_size += s->number_len;
 		s->input_index = ft_setinput_index(input, s->input_index);
@@ -89,7 +88,6 @@ static int	check_parentesis_substitute2(t_substitute *s)
 	if (s->new_output == NULL)
 		return (0);
 	s->output = s->new_output;
-	free(s->new_output);
 	ft_memcpy(s->output + s->output_size, s->env_value, s->env_len);
 	s->output_size += s->env_len;
 	return (1);
@@ -131,7 +129,6 @@ static int	check_classic_substitute2(t_substitute *s, const char *env_value)
 	if (s->new_output == NULL)
 		return (0);
 	s->output = s->new_output;
-	free(s->new_output);
 	ft_memcpy(s->output + s->output_size, env_value, s->env_len);
 	s->output_size += s->env_len;
 	return (1);
