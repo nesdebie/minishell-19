@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/07/21 17:12:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:15:47 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	read_heredoc(const char *end, int *fd)
 	while (1)
 	{
 		line = readline("> ");
-		if (!strncmp(line, end, ft_strlen(line)) && *line)
+		if (!strncmp(line, end, ft_strlen(line) + 1) && *line)
 			break ;
 		rl_redisplay();
 		ft_putendl_fd(line, fd[1]);

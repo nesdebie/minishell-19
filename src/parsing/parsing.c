@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 11:02:56 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:14:02 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int	parser(char *line, t_shell *shell)
 		return (1);
 	ft_memset(shell->cmd, '\0', sizeof(t_cmnd) * shell->count_cmd);
 	init_cmd(tokens, shell);
+	//ft_print_cmd(shell);
 	ft_lstclear(&tokens, free);
 	shell = parse_quotes_cmds(shell);
 	return (0);

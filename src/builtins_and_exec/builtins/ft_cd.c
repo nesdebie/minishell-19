@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 16:24:05 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:16:09 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*ft_check_tilde(t_list **head, char *str)
 
 static int	no_home_err(t_shell *sh)
 {
-	ft_putendl_fd("bash: cd: HOME not set", 1);
+	ft_putendl_fd("bash: cd: HOME not set", 2);
 	sh->exit_code = 1;
 	return (sh->exit_code);
 }

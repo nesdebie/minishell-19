@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_manager_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 14:14:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:16:45 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	heredoc_excep(t_list *lst, int i)
 	while (lst)
 	{
 		redir = lst->content;
-		if (j == i && redir->mode == 4)
+		if (j == i && redir->mode == MODE_HEREDOC)
 			return (1);
 		lst = lst->next;
 		j++;
