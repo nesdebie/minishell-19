@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 13:01:26 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:13:32 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int	add_value2(t_shell *d, char *s, int ret, char *name)
 	char	*str;
 
 	str = NULL;
-	if (s[0] == '\"' || s[ft_strlen(s)] == '\"')
+	if (s[0] == '\"' || s[ft_strlen(s) - 1] == '\"')
 		str = ft_strtrim(s, "\"");
-	else if (s[0] == '\'' || s[ft_strlen(s)] == '\'')
+	else if (s[0] == '\'' || s[ft_strlen(s) - 1] == '\'')
 		str = ft_strtrim(s, "\'");
-	ft_putenv(&d->envp_list, name, s);
+	ft_putenv(&d->envp_list, name, str);
 	if (!ft_strlen(str))
 		ret = -1;
 	free(s);
