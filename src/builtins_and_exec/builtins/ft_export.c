@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 12:15:47 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:01:26 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,18 @@ static int	ft_check_name(t_shell *d, char *s)
 
 int	add_value2(t_shell *d, char *s, int ret, char *name)
 {
+	char	*str;
+
+	str = NULL;
 	if (s[0] == '\"' || s[ft_strlen(s)] == '\"')
-		s = ft_strtrim(s, "\"");
+		str = ft_strtrim(s, "\"");
 	else if (s[0] == '\'' || s[ft_strlen(s)] == '\'')
-		s = ft_strtrim(s, "\'");
+		str = ft_strtrim(s, "\'");
 	ft_putenv(&d->envp_list, name, s);
-	if (!ft_strlen(s))
+	if (!ft_strlen(str))
 		ret = -1;
 	free(s);
+	free(str);
 	return (ret);
 }
 
