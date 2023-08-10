@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 12:16:11 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:19:06 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
-		if (ft_strncmp(data->cmd[i].cmd, "exit", 4))
+		if (!is_builtin_ll(data->cmd[i].cmd))
 			free (data->cmd[i].cmd);
 	}
 }
