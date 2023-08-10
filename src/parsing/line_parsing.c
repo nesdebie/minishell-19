@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 14:19:06 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:13:25 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ char* remove_empty_quotes(char* str)
 char	*parse_line(char *line, t_shell *data, int i)
 {
 	(void)i;
-	line = substitute_variables(line, data->exit_code, data->envp_list);
-	return (line);
+	char	*ret;
+
+	ret = substitute_variables(line, data->exit_code, data->envp_list);
+	free(line);
+	return (ret);
 }
