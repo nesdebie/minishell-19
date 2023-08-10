@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:04:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 15:23:54 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:07:31 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlen(char const *str)
 
 	i = 0;
 	if (!str)
- 		return (i);
+		return (i);
 	while (str[i])
 		i++;
 	return (i);

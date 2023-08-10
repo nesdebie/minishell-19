@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 11:05:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:10:04 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	ft_prompt(int ac, t_shell *shell)
 		str = readline(GREEN"\e[1mW3LC0M3-1N-sH3LL> \e[m"WHITE);
 		str = ft_strtrim(str, " ");
 		signal(SIGINT, &signal_handler2);
-		if (str && ft_strlen(str) && str[ft_strlen(str) - 1]  != '|')
+		if (str && ft_strlen(str) && str[ft_strlen(str) - 1] != '|')
 			add_history(str);
 		if (!str)
 		{

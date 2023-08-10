@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 11:13:25 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:13:45 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,35 @@
 
 // ceci est une fonction destinée a supprimer les "" ou les ''
 
-char* remove_empty_quotes(char* str)
+char	*remove_empty_quotes(char	*str)
 {
-    int len = strlen(str);
-    char* new_str = (char*)malloc(len+1);
-	int single_quote;
-	int dubble_quote;
-    int j = 0;
+	char	*new_str;
+	int		single_quote;
+	int		dubble_quote;
+	int		j;
+	int		i;
 
-    for (int i = 0; i < len; i++)
+	new_str = (char *)malloc(ft_strlen(str) + 1);
+	j = 0;
+	i = 0;
+	while ((size_t)i < ft_strlen(str))
 	{
-        if (str[i] == '"' && str[i+1] == '"')
+		if (str[i] == '"' && str[i + 1] == '"')
 		{
-            i++;
-        }
-		else if (str[i] == '\'' && str[i+1] == '\'')
+			i++;
+		}
+		else if (str[i] == '\'' && str[i + 1] == '\'')
 		{
-            i++;
-        }
+			i++;
+		}
 		else
 		{
-            new_str[j] = str[i];
-            j++;
-        }
-    }
-    new_str[j] = '\0';
+			new_str[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	new_str[j] = '\0';
 	free(str);
 	j = 0;
 	single_quote = 0;
@@ -67,7 +71,7 @@ char* remove_empty_quotes(char* str)
 		free(new_str);
 		return (NULL);
 	}
-    return new_str;
+	return (new_str);
 }
 
 // parsing de la substitution 

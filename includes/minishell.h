@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 15:56:27 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:06:45 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ typedef struct s_env{
 }				t_env;
 
 typedef struct s_substitute{
-	char *output;
-    char *new_output;
-    int output_size;
-    int input_index;
-	int is_quote;
-	char *var_start;
-	int var_len;
-    char *number_str;
-    int number_len;
-    const char* env_value;
-    int env_len;
-    char *var_name;
+	char		*output;
+	char		*new_output;
+	int			output_size;
+	int			input_index;
+	int			is_quote;
+	char		*var_start;
+	int			var_len;
+	char		*number_str;
+	int			number_len;
+	const char	*env_value;
+	int			env_len;
+	char		*var_name;
 }				t_substitute;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -136,12 +136,12 @@ char	**ft_minisplit(char *str);
 char	**ft_minifree(char **arr, int i);
 int		ft_isnum(char c);
 
-char* substitute_variables(char* input, int code, t_list *is_head);
+char	*substitute_variables(char	*input, int code, t_list *is_head);
 
 char	*ft_strjoin_export(char const *s1, char const *s2);
 
-t_shell *parse_quotes_cmds(t_shell *shell);
+t_shell	*parse_quotes_cmds(t_shell *shell);
 
-char* remove_empty_quotes(char* str);
+char	*remove_empty_quotes(char	*str);
 
 #endif
