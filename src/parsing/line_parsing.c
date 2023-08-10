@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nedebies <nedebies@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 18:12:58 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:42:31 by nedebies         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void removeQuotes(char *input)
         }
     }
     input[j] = '\0';
-	printf("INPUT VALUE [%s]\n", input);
+	//printf("INPUT VALUE [%s]\n", input);
 }
 
 

@@ -88,10 +88,8 @@ t_list	*get_tokens(char *line, t_list *token)
 	int		len;
 	int		i;
 	char	*tmp;
-	int		quote;
 
 	len = 0;
-	quote = 0;
 	i = 0;
 	while (line[i])
 	{
