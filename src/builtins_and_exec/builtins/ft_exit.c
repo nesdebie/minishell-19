@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/08 15:35:35 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:15:17 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ static int	ft_isnumber(char *str)
 
 static void	ft_return_error_isnum(t_shell *data, int num_cmd, int i)
 {
-	printf("exit\nprompt: exit: %s : ", data->cmd[num_cmd].args[i]);
-	printf("numeric argument required\n");
+	ft_putstr_fd("exit\nW3LC0M3-1N-sH3LL: exit: ", 2);
+	ft_putstr_fd(data->cmd[num_cmd].args[i], 2);
+	ft_putendl_fd(" : numeric argument required", 2);
 	data->exit_code = 255;
 	exit (255);
 }
@@ -90,7 +91,7 @@ void	ft_exit(t_shell *data, int num_cmd)
 	}
 	if ((i - 1) > 1)
 	{
-		printf("exit\nprompt: exit: too many arguments\n");
+		printf("exit\nW3LC0M3-1N-sH3LL: exit: too many arguments\n");
 		ft_print_perror(data, NULL, 1);
 		return ;
 	}

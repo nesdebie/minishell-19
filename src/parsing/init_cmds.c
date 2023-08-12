@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 14:07:43 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:37:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 	int		count_args;
 	char	**args;
 	char	*token;
-
 	count_args = args_counter(*lst);
 	args = set_args(count_args);
 	if (!args)
@@ -46,7 +45,9 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 		else
 		{
 			(*lst)->content = parse_line((*lst)->content, data, -1);
-			args[j++] = ft_strdup((*lst)->content);
+			if ((*lst)->content)
+				args[j] = ft_strdup((*lst)->content);
+			j++;
 			(*lst) = (*lst)->next;
 		}
 	}
