@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 20:49:47 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:04:26 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void removeQuotes(char *input)
 {
     int length = strlen(input);
     int i, j;
-
     for (i = 0, j = 0; i < length; i++)
 	{
-        if (input[i] == '\'' || input[i] == '\"')
+        if (input[i] && (input[i] == '\'' || input[i] == '\"'))
 		{
             int quoteType = input[i];
             int endQuoteIndex = -1;
@@ -31,7 +30,6 @@ void removeQuotes(char *input)
                     break;
                 }
             }
-
             if (endQuoteIndex != -1)
 			{
                 for (int k = i + 1; k < endQuoteIndex; k++)

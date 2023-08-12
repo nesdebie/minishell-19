@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 13:32:29 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:07:43 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_quote_args(t_shell *data)
 
 	j = 0;
 	i = 0;
-	while (i < data->count_cmd)
+	while (i < data->count_cmd && data->cmd[i].cmd)
 	{
 		j = 0;
 		while (data->cmd[i].args[j])
