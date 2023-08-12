@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 18:00:37 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 13:32:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
 		ft_quote_args(data);
-		if (!is_builtin_ll(data->cmd[i].cmd))
+		if (!is_builtin_ll(data->cmd[i].cmd) && ft_getenv(data->envp_list, "PATH"))
 			free (data->cmd[i].cmd);
 	}
 }
