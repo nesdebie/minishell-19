@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 14:15:17 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:48:42 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,18 @@ void	ft_exit(t_shell *data, int num_cmd)
 	i = 1;
 	while (data->cmd[num_cmd].args[i])
 	{
+		if (data->cmd[num_cmd].args[i + 1])
+		{
+			ft_putendl_fd("exit\nW3LC0M3-1N-sH3LL: exit: too many arguments", 2);
+			ft_print_perror(data, NULL, 1);
+			return ;
+		}
 		if (!ft_isnumber(data->cmd[num_cmd].args[i]))
 		{
 			ft_return_error_isnum(data, num_cmd, i);
 			return ;
 		}
 		i++;
-	}
-	if ((i - 1) > 1)
-	{
-		printf("exit\nW3LC0M3-1N-sH3LL: exit: too many arguments\n");
-		ft_print_perror(data, NULL, 1);
-		return ;
 	}
 	if ((i - 1) == 1)
 		ft_set_retcode(data, num_cmd);

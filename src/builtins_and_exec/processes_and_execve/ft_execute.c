@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 13:47:36 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:40:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	cmd_with_path(t_shell *dt, char **path)
 			{
 				if (access(dt->cmd[i].cmd, X_OK) == 0)
 					return (0);
-				ft_no_file_dir(-1, dt->cmd[i].cmd);
+				ft_no_file_dir(dt, -1, dt->cmd[i].cmd);
 				dt->exit_code = 127;
 				return (-1);
 			}
@@ -94,7 +94,7 @@ int	ft_executer(t_shell *data)
 
 	if (!data->cmd[0].cmd)
 	{
-		if (ft_redir(&data->cmd[0], data->cmd->redir, 0))
+		if (ft_redir(data, &data->cmd[0], data->cmd->redir, 0))
 			return (0);
 	}
 	else

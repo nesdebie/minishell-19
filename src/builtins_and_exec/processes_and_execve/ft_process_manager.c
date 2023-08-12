@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 11:27:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:41:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	process(t_shell *data, char **envp, int i, int **fd)
 {
 	signal(SIGQUIT, SIG_DFL);
-	if (ft_redir(&data->cmd[i], data->cmd->redir, i))
+	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i))
 		exit(EXIT_FAILURE);
 	ft_dup_fd(i, fd, data);
 	if (is_builtin(data, i))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 15:15:47 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:38:33 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	ft_check_fd(t_cmnd *cmd, t_redir **rd, t_list *lst)
 	}
 }
 
-int	ft_redir(t_cmnd *cmd, t_list *lst, int i)
+int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 {
 	t_redir	*rd;
 
@@ -92,9 +92,9 @@ int	ft_redir(t_cmnd *cmd, t_list *lst, int i)
 		else if (rd->mode == MODE_HEREDOC && i == rd->idx)
 			heredoc(cmd, rd->name);
 		lst = lst->next;
-		if (ft_no_file_dir(cmd->in_file, rd->name))
+		if (ft_no_file_dir(data, cmd->in_file, rd->name))
 			return (1);
-		else if (ft_no_file_dir(cmd->out_file, rd->name))
+		else if (ft_no_file_dir(data, cmd->out_file, rd->name))
 			return (1);
 	}
 	return (0);

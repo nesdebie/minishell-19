@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 18:01:20 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:58:20 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,13 @@ static void	ft_print_env(t_list **is_envp_list)
 	free(env_lst);
 }
 
-static int	ft_check_name(t_shell *d, char *s)
+static int	ft_check_name(t_shell *d, char *s, int i)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	while (s[++i])
 	{
 		if (ft_isnum(s[0]))
 		{
-			printf("W3LC0M3-1N-sH3LL: export: `%s': ", s);
-			printf("not a valid identifier\n");
+			ft_print_err_export(s);
 			d->exit_code = 1;
 			return (0);
 		}
@@ -71,13 +67,11 @@ static int	ft_check_name(t_shell *d, char *s)
 		{
 			if (s[i] != '_')
 			{
-				printf("W3LC0M3-1N-sH3LL: export: `%s': ", s);
-				printf("not a valid identifier\n");
+				ft_print_err_export(s);
 				d->exit_code = 1;
 				return (0);
 			}
 		}
-		i++;
 	}
 	return (1);
 }
@@ -107,7 +101,7 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 	char	*tmp;
 
 	s = NULL;
-	if (!ft_check_name(d, name))
+	if (!ft_check_name(d, name, -1))
 		return (-1);
 	if (ft_strnstr(d->cmd[num_cmd].args[ret], "+=", ft_strlen(name) + 2))
 	{
@@ -156,6 +150,12 @@ void	ft_export(t_shell *data, int num_cmd)
 	while (data->cmd[num_cmd].args[i] && ft_strlen(data->cmd[num_cmd].args[i]))
 	{
 		name = get_name_env(data->cmd[num_cmd].args[i]);
+		if (!name || !ft_strlen(name))
+		{
+			ft_print_err_export(name);
+			data->exit_code = 1;
+			return ;
+		}
 		i = add_value(name, data, num_cmd, i);
 		free(name);
 		if (i == -1)

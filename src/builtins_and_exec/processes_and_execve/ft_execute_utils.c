@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 12:09:05 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:39:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 		return (permission_error(cmd, dt));
 	if (access(cmd, F_OK) && ft_strchr(cmd, '/'))
 	{
-		ft_no_file_dir(-1, cmd);
+		ft_no_file_dir(dt, -1, cmd);
 		dt->exit_code = 127;
 		return (0);
 	}
