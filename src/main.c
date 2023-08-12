@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 17:51:34 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:54:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	ft_prompt(int ac, t_shell *shell)
 		}
 		if (ft_strlen(str))
 		{
+			str = substitute_variables(str, shell->exit_code, shell->envp_list); // AJOUT ICI permet de reussir $CMD="cmd args"
 			if (!parser(str, shell))
 			{
 				ft_executer(shell);
