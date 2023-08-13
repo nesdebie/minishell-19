@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:01:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/09 16:25:04 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:26:53 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_echo(t_shell *d, int num_cmd)
 		{
 			ft_putstr_fd(d->cmd[num_cmd].args[i], STDOUT_FILENO);
 			if (d->cmd[num_cmd].args[i + 1])
-				ft_putchar_fd(' ', STDOUT_FILENO);
+				ft_putchar_fd(' ', STDOUT_FILENO); // FLAG POUR QUOTES
 		}
 		i++;
 	}

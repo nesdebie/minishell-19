@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 14:04:26 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:27:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void removeQuotes(char *input)
 {
-    int length = strlen(input);
+    int length = ft_strlen(input);
     int i, j;
     for (i = 0, j = 0; i < length; i++)
 	{
