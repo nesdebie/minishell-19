@@ -6,11 +6,24 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:39:52 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:15:56 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	ft_free_cmds(t_shell *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->count_cmd)
+	{
+		if (!is_builtin(data, i) && ft_getenv(data->envp_list, "PATH"))
+			free (data->cmd[i].cmd);
+		i++;
+	}
+}
 
 static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 {
@@ -26,19 +39,22 @@ static char	*error_path(t_shell *dt, char *command, char *tmp, char *cmd)
 
 static char	*pre_join_path(char *cmd, t_shell *dt)
 {
-	if (!cmd)
+	if (cmd)
+	{
+		if (access(cmd, X_OK) && !access(cmd, F_OK) && ft_strchr(cmd, '/'))
+			return (permission_error(cmd, dt));
+		if (access(cmd, F_OK) && ft_strchr(cmd, '/'))
+		{
+			ft_no_file_dir(dt, -1, cmd);
+			dt->exit_code = 127;
+			return (0);
+		}
+	}
+	else
 	{
 		dt->exit_code = 127;
 		ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
 		ft_putendl_fd("command not found", 2);
-		return (0);
-	}
-	if (access(cmd, X_OK) && !access(cmd, F_OK) && ft_strchr(cmd, '/'))
-		return (permission_error(cmd, dt));
-	if (access(cmd, F_OK) && ft_strchr(cmd, '/'))
-	{
-		ft_no_file_dir(dt, -1, cmd);
-		dt->exit_code = 127;
 		return (0);
 	}
 	return (cmd);

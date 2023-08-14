@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:38:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:16:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ void	ft_close_fd(int *fd[2], t_shell *data);
 int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
 int		ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i);
 void	ft_dup_fd(int i, int **fd, t_shell *data);
-int		ft_executer(t_shell *data);
+void	ft_executer(t_shell *data);
+void	ft_free_cmds(t_shell *data);
 int		ft_no_file_dir(t_shell *data, int fd, char *name);
 char	*join_path(char *cmd, char **path, t_shell *dt);
 int		set_exit_status(int exit_status);

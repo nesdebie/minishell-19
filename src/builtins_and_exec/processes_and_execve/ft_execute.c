@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:40:52 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:16:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,30 +86,31 @@ static int	cmd_with_path(t_shell *dt, char **path)
 	return (0);
 }
 
-int	ft_executer(t_shell *data)
+void	ft_executer(t_shell *data)
 {
 	pid_t	*id;
 	char	**path;
 	char	**envp;
 
-	if (!data->cmd[0].cmd)
+	if (!data->cmd[0].cmd || !ft_strlen(data->cmd[0].cmd))
 	{
+		free(data->cmd[0].cmd);
 		if (ft_redir(data, &data->cmd[0], data->cmd->redir, 0))
-			return (0);
+			return ;
 	}
 	else
 	{
+		ft_free_cmds(data);
 		envp = get_envp(data->envp_list);
 		path = ft_get_path(data);
 		cmd_with_path(data, path);
 		id = malloc(sizeof(pid_t) * data->count_cmd);
 		if (!id)
-			return (-1);
+			return ;
 		ft_process_manager(id, data, envp, -1);
 		free(id);
 		if (path)
 			ft_free_arr(path);
 		ft_free_arr(envp);
 	}
-	return (0);
 }
