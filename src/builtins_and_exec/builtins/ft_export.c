@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:58:20 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:16:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,8 @@ int	add_value2(t_shell *d, char *s, int ret, char *name)
 	char	*str;
 
 	str = NULL;
-	// if (s[0] == '\"' || s[ft_strlen(s) - 1] == '\"')
-	// 	str = ft_strtrim(s, "\"");
-	// else if (s[0] == '\'' || s[ft_strlen(s) - 1] == '\'')
-	// 	str = ft_strtrim(s, "\'");
-	// else
+	if (!s)
+		return (-1);
 	str = ft_strdup(s);
 	ft_putenv(&d->envp_list, name, str);
 	if (!ft_strlen(str))
@@ -106,6 +103,8 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 	if (ft_strnstr(d->cmd[num_cmd].args[ret], "+=", ft_strlen(name) + 2))
 	{
 		tmp = get_value_env(d->cmd[num_cmd].args[ret]);
+		if (!tmp)
+			return (-1);
 		if (!ft_getenv(d->envp_list, name))
 			s = ft_strdup(tmp);
 		else
