@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 14:52:10 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 15:04:30 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static int	cmd_with_path(t_shell *dt, char **path)
 {
 	int		i;
 
-	i = 0;
-	while (i < dt->count_cmd)
+	i = -1;
+	while (++i < dt->count_cmd)
 	{
 		if (!is_builtin(dt, i))
 		{
@@ -83,7 +83,6 @@ static int	cmd_with_path(t_shell *dt, char **path)
 			}
 			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt);
 		}
-		i++;
 	}
 	if (path)
 		ft_free_arr(path);

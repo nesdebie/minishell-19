@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 11:16:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:23:02 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ static void	ft_print_env(t_list **is_envp_list)
 	{
 		write(STDOUT_FILENO, "declare -x ", 11);
 		write(STDOUT_FILENO, env_lst[i]->name, ft_strlen(env_lst[i]->name));
-		write(STDOUT_FILENO, "=\"", 2);
-		if (ft_getenv(*is_envp_list, env_lst[i]->name))
+		s = ft_getenv(*is_envp_list, env_lst[i]->name);
+		if (s && s[0])
 		{
-			s = ft_getenv(*is_envp_list, env_lst[i]->name);
+			write(STDOUT_FILENO, "=\"", 2);
 			write(STDOUT_FILENO, s, ft_strlen(s));
 			write(STDOUT_FILENO, "\"\n", 2);
 		}
 		else
-			write(STDOUT_FILENO, "\"\n", 2);
+			write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
 	free(env_lst);

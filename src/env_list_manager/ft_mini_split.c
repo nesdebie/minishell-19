@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mini_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 12:09:33 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:14:17 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	**ft_minisplit(char *str)
 	i++;
 	while (str[i + j])
 		j++;
-	arr[1] = ft_substr(str, i, j);
+	if (ft_strncmp(arr[0], "OLDPWD", 7))
+		arr[1] = ft_substr(str, i, j);
+	else
+		arr[1] = ft_calloc(1, 1);
 	if (!arr[1])
 		return (ft_minifree(arr, 1));
 	arr[2] = 0;
