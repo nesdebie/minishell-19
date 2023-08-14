@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:03:58 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/04 14:30:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:25:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ void	ft_unset(t_shell *d, int nb_cmd)
 			ft_unset_var_env(&d->envp_list, d->cmd[nb_cmd].args[i++]);
 		else
 		{
-			printf("W3LC0M3-1N-sH3LL: unset: `%s': ", d->cmd[nb_cmd].args[i++]);
-			printf("not a valid identifier\n");
+			ft_putstr_fd("W3LC0M3-1N-sH3LL: unset: `", 2);
+			ft_putstr_fd(d->cmd[nb_cmd].args[i++], 2);
+			ft_putendl_fd("': not a valid identifier", 2);
 			d->exit_code = 1;
 		}
 	}
