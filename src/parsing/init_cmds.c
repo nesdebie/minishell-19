@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 13:52:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:24:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ static char	**set_args(int count_args)
 
 static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 {
-	int		count_args;
 	char	**args;
 	char	*token;
-	count_args = args_counter(*lst);
-	args = set_args(count_args);
+
+	args = set_args(args_counter(*lst));
 	if (!args)
 		return (0);
-	while (count_args-- > 0)
+	while (args_counter(*lst) > 0)
 	{
 		token = (*lst)->content;
 		if (*token == '<' || *token == '>')

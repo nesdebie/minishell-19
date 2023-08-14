@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 14:23:50 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:01:21 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 	t_env	*ls_content;
 	char	**ls_val_env;
 
+	if (!i_str)
+		return (0);
 	ls_content = malloc(sizeof(t_env));
-	if (!i_str || !ls_content)
+	if (!ls_content)
 		return (0);
 	ls_val_env = ft_minisplit(i_str);
 	if (!ls_val_env)
+	{
+		free(ls_content);
 		return (0);
+	}
 	ls_content->name = ls_val_env[0];
 	ls_content->value = ls_val_env[1];
 	ft_lstadd_back(&is_envp_list, ft_lstnew(ls_content));
@@ -38,9 +43,14 @@ static int	ft_insnewlst(t_list **is_head, char *name, char *val)
 	if (!is_head || !name || !val || !content)
 		return (1);
 	content->name = ft_calloc(ft_strlen(name) + 1, sizeof(char));
-	content->value = ft_calloc(ft_strlen(val) + 1, sizeof(char));
-	if (!content->name || !content->value)
+	if (!content->name)
 		return (1);
+	content->value = ft_calloc(ft_strlen(val) + 1, sizeof(char));
+	if (!content->value)
+	{
+		free(content->name);
+		return (1);
+	}
 	content->name = ft_memcpy(content->name, name, ft_strlen(name));
 	content->value = ft_memcpy(content->value, val, ft_strlen(val) + 1);
 	ft_lstadd_back(is_head, ft_lstnew(content));
@@ -58,7 +68,8 @@ int	ft_putenv(t_list **is_head, char *name, char *val)
 		ls_ptr = (t_env *)(ls_tmp_head->content);
 		free(ls_ptr->value);
 		ls_ptr->value = ft_calloc(ft_strlen(val) + 1, sizeof(char));
-		ls_ptr->value = ft_memcpy(ls_ptr->value, val, ft_strlen(val));
+		if (ls_ptr->value)
+			ls_ptr->value = ft_memcpy(ls_ptr->value, val, ft_strlen(val));
 	}
 	else
 		return (ft_insnewlst(is_head, name, val));

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:50:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/02 10:47:07 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:53:10 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,14 @@ char	*ft_join_env(t_env *env)
 	char	*tmp;
 
 	tmp = ft_strjoin(env->name, "=");
+	if (!tmp)
+		return (0);
 	str_env = ft_strjoin(tmp, env->value);
-	if (tmp)
+	if (!str_env)
+	{
 		free(tmp);
+		return (0);
+	}
+	free(tmp);
 	return (str_env);
 }
