@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 13:16:29 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:40:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static int	cmd_with_path(t_shell *dt, char **path)
 	int		i;
 
 	i = 0;
+	if (!path)
+		return (-1);
 	while (i < dt->count_cmd)
 	{
 		if (!is_builtin(dt, i))
@@ -77,40 +79,41 @@ static int	cmd_with_path(t_shell *dt, char **path)
 					return (0);
 				ft_no_file_dir(dt, -1, dt->cmd[i].cmd);
 				dt->exit_code = 127;
+				ft_free_arr(path);
 				return (-1);
 			}
 			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt);
 		}
 		i++;
 	}
+	ft_free_arr(path);
 	return (0);
 }
 
-void	ft_executer(t_shell *data)
+void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 {
-	pid_t	*id;
-	char	**path;
-	char	**envp;
-
-	if (!data->cmd[0].cmd || !ft_strlen(data->cmd[0].cmd))
+	if (!ft_strlen(data->cmd[0].cmd) && data->count_cmd == 1)
 	{
 		free(data->cmd[0].cmd);
-		if (ft_redir(data, &data->cmd[0], data->cmd->redir, 0))
-			return ;
+		ft_redir(data, &data->cmd[0], data->cmd->redir, 0);
 	}
 	else
 	{
 		ft_free_cmds(data);
-		envp = get_envp(data->envp_list);
 		path = ft_get_path(data);
-		cmd_with_path(data, path);
+		if (cmd_with_path(data, path) == -1)
+			return ;
 		id = malloc(sizeof(pid_t) * data->count_cmd);
 		if (!id)
 			return ;
+		envp = get_envp(data->envp_list);
+		if (!envp)
+		{
+			free(id);
+			return ;
+		}
 		ft_process_manager(id, data, envp, -1);
 		free(id);
-		if (path)
-			ft_free_arr(path);
 		ft_free_arr(envp);
 	}
 }
