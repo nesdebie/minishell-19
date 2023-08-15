@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_manager.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 14:32:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:03:02 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,12 @@ static int	**ft_malloc_fd(t_shell *data, int i)
 	{
 		fd[i] = malloc(sizeof(int ) * 2);
 		if (!fd[i])
+		{
+			while (--i >= 0)
+				free(fd[i]);
+			free(fd);
 			return (0);
+		}
 	}
 	if ((ft_create_pipe(fd, data)) || !fd)
 		return (0);
