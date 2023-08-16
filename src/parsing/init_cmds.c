@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:49:21 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:51:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
-		data->cmd[i].cmd = NULL;
 		//ft_quote_args(data);
 	}
 }
