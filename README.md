@@ -13,7 +13,7 @@ cas d'erreur indefini : "echo hi >>./outfile01 | echo bye >>./outfile02" (probab
 
 HEREDOC :
 bug d'affichage heredoc, espace devant prompt si "\n"
-bug si mot clef pas tape entierement
+[SOLVED] bug si mot clef pas tape entierement
 bug si double heredoc l'une après l'autre : "cat <<"gnah" <<gnih"
 BOUCLE INFINIE si simple redirection precedee de cat et suivie de heredoc : cat <gnouh <<gnah
 
@@ -28,7 +28,7 @@ EXECUTION PIPE :
 
 GESTION BUILTINS :
 [SOLVED] exit 42 world    "Erreur de message, mini affiche numeric argument required mais devrait afficher too many arguments"
-beaucoup de message d'erreur son affichees sur la sortie standart alors qu'ils devraient etre affiches sur sortie d'erreur
+[SOLVED] beaucoup de message d'erreur son affichees sur la sortie standart alors qu'ils devraient etre affiches sur sortie d'erreur
 [SOLVED] erreur sur export, si la clef n'est pas bonne, retourner message d'erreur : not a valid identifier)
 
 SUBSTITUTION :

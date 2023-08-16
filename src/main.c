@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 13:41:09 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:54:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ static void	ft_prompt(int ac, t_shell *shell)
 		if (str && ft_strlen(str) && str[ft_strlen(str) - 1] != '|')
 			add_history(str);
 		if (!str)
-		{
-			ft_putendl_fd("exit", 1);
 			ft_exit_minishell(shell);
-		}
 		if (ft_strlen(str))
 		{
 			str = parse_line(str, shell, shell->exit_code); // AJOUT ICI permet de reussir $CMD="cmd args" (ne marche pas si redir)

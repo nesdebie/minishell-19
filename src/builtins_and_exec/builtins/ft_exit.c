@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:48:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:54:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,5 @@ void	ft_exit(t_shell *data, int num_cmd)
 	}
 	if ((i - 1) == 1)
 		ft_set_retcode(data, num_cmd);
-	if (data->count_cmd == 1)
-		ft_putendl_fd("exit", 1);
 	ft_exit_minishell(data);
 }
