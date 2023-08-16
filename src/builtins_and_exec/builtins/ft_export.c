@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 16:23:02 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:34:58 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 		s = ft_calloc(1, 1);
 	return (add_value2(d, s, ret, name));
 }
-
+/**
 void	ft_print_cmd(t_shell *data)
 {
 	int	j;
@@ -135,7 +135,7 @@ void	ft_print_cmd(t_shell *data)
 		printf("\n");
 	}
 	printf("\n");
-}
+}**/
 
 void	ft_export(t_shell *data, int num_cmd)
 {

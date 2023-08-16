@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 13:46:06 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:35:04 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,8 @@ t_shell *parse_quotes_cmds(t_shell *shell)
 	return (shell);
 }
 
-int	parser(char *line, t_shell *shell)
+int	parser(char *line, t_shell *shell, t_list *tokens)
 {
-	t_list	*tokens;
-
-	tokens = NULL;
 	if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '|')
 	{
 		line = open_pipe(line);
@@ -154,7 +151,11 @@ int	parser(char *line, t_shell *shell)
 	if (!shell->count_cmd)
 		return (1);
 	ft_memset(shell->cmd, '\0', sizeof(t_cmnd) * shell->count_cmd);
-	init_cmd(tokens, shell);
+	if (init_cmd(tokens, shell))
+	{
+		ft_lstclear(&tokens, free);
+		return(free_shell(shell));
+	}
 	//ft_print_cmd(shell);
 	ft_lstclear(&tokens, free);
 	//shell = parse_quotes_cmds(shell);

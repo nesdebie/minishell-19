@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:44:25 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/10 10:34:37 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:36:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	free_cmd(t_cmnd *cmd)
 	free_redir(cmd);
 }
 
-void	free_shell(t_shell *shell)
+int	free_shell(t_shell *shell)
 {
 	int	i;
 
@@ -90,4 +90,5 @@ void	free_shell(t_shell *shell)
 	shell->count_cmd = 0;
 	free(shell->cmd);
 	shell->cmd = NULL;
+	return (1);
 }

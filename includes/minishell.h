@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 16:59:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:34:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		ft_print_perror(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
 
-int		parser(char *line, t_shell *mini);
+int		parser(char *line, t_shell *mini, t_list *tokens);
 int		pre_parse(char *line, t_shell *mini);
 char	*parse_line(char *line, t_shell *data, int i);
 
@@ -121,7 +121,7 @@ int		is_builtin(t_shell *data, int num_cmd);
 int		execute_builtin(t_shell *data, int num_cmd);
 void	ft_free_env(t_list **is_head);
 
-void	free_shell(t_shell *mini);
+int		free_shell(t_shell *mini);
 void	ft_close_fd(int *fd[2], t_shell *data);
 int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
 int		ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i);

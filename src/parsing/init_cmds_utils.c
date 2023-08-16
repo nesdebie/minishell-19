@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 17:11:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:31:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ int	args_counter(t_list *lst)
 	return (count);
 }
 
+static void	free_content(void *content)
+{
+	if (content)
+		free (content);
+}
+
 void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
 {
 	t_redir	*redir;
@@ -53,7 +59,7 @@ void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
 		redir->mode = MODE_READ;
 	redir->name = ft_strdup(lst->next->content);
 	if (!redir->name)
-		return ;
+		return free_content(lst->next->content);
 	redir->idx = -1;
 	if (redir->mode > 0)
 		redir->idx = idx;

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/13 17:27:29 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:34:14 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ char	*parse_line(char *line, t_shell *data, int i)
 	char	*ret;
 
 	ret = substitute_variables(line, data->exit_code, data->envp_list);
-	free(line);
+    if (line)
+	    free(line);
 	return (ret);
 }
