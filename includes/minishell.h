@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:34:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:47:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ char	*ft_strjoin_export(char const *s1, char const *s2);
 
 t_shell	*parse_quotes_cmds(t_shell *shell);
 
+
+void	ft_quote_args(t_shell *data);
 //char	*remove_empty_quotes(char	*str);
 void removeQuotes(char *input);
 

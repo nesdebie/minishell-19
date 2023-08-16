@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:35:04 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:46:15 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ static int	init_cmd(t_list *lst, t_shell *mini)
 			lst = lst->next;
 		}
 		else
+		{
 			init_each_command(&lst, mini, i);
+			if (!mini->cmd[i].cmd || !mini->cmd[i].args)
+				return (1);
+			ft_quote_args(mini);
+		}
 	}
 	return (0);
 }
