@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 13:50:00 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:40:24 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@ static char	*pre_join_path(char *cmd, t_shell *dt)
 			return (0);
 		}
 	}
-	else
-	{
-		dt->exit_code = 127;
-		ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
-		ft_putendl_fd("command not found", 2);
-		return (0);
-	}
 	return (cmd);
 }
 
@@ -79,7 +72,7 @@ char	*join_path(char *cmd, char **path, t_shell *dt)
 		free(cmd);
 		cmd = ft_strjoin(path[i++], tmp);
 	}
-	if (path[i] == NULL)
+	if (path[i] == NULL || access(cmd, X_OK) != 0)
 		return (error_path(dt, command, tmp, cmd));
 	free(command);
 	free(tmp);

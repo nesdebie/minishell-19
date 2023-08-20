@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:10:06 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:57:28 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,74 +49,7 @@ void removeQuotes(char *input)
 		}
 	}
 	input[j] = '\0';
-	//printf("INPUT VALUE [%s]\n", input);
 }
-
-
-// ceci est une fonction destinée a supprimer les "" ou les ''
-
-
-// char	*remove_empty_quotes(char	*str)
-// {
-// 	char	*new_str;
-// 	int		single_quote;
-// 	int		dubble_quote;
-// 	int		j;
-// 	int		i;
-
-// 	new_str = (char *)malloc(ft_strlen(str) + 1);
-// 	j = 0;
-// 	i = 0;
-// 	while ((size_t)i < ft_strlen(str))
-// 	{
-// 		if (str[i] == '"' && str[i + 1] == '"')
-// 		{
-// 			i++;
-// 		}
-// 		else if (str[i] == '\'' && str[i + 1] == '\'')
-// 		{
-// 			i++;
-// 		}
-// 		else
-// 		{
-// 			new_str[j] = str[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	new_str[j] = '\0';
-// 	free(str);
-// 	j = 0;
-// 	single_quote = 0;
-// 	dubble_quote = 0;
-// 	while (new_str[j] != '\0')
-// 	{
-// 		if (new_str[j] == '\'' && dubble_quote != 1)
-// 		{
-// 			if (single_quote == 0)
-// 				single_quote = 1;
-// 			else
-// 				single_quote = 0;
-// 		}
-// 		if (new_str[j] == '\"' && single_quote != 1)
-// 		{
-// 			if (dubble_quote == 0)
-// 				dubble_quote = 1;
-// 			else
-// 				dubble_quote = 0;
-// 		}
-// 		j++;
-// 	}
-// 	if (dubble_quote == 1 || single_quote == 1)
-// 	{
-// 		ft_putstr_fd("parser error : alone standing quote\n", 2);
-// 		free(new_str);
-// 		return (NULL);
-// 	}
-// 	return (new_str);
-// }
-
-// parsing de la substitution 
 
 char	*parse_line(char *line, t_shell *data)
 {
