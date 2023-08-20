@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/12 15:39:23 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:04:37 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,9 @@ char	*permission_error(char *cmd, t_shell *dt)
 {
 	ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
 	ft_putstr_fd(cmd, 2);
-	ft_putendl_fd(": permission denied", 2);
+	ft_putendl_fd(": Permission denied", 2);
 	dt->exit_code = 126;
 	return (0);
-}
-
-int	ft_print_error(t_shell *data, char *str, int nbr)
-{
-	ft_putendl_fd(str, 2);
-	if (nbr < 0)
-		nbr = EXIT_FAILURE;
-	data->exit_code = nbr;
-	return (nbr);
 }
 
 int	ft_print_perror(t_shell *data, const char *str, int nbr)
@@ -51,9 +42,14 @@ int	ft_no_file_dir(t_shell *data, int fd, char *name)
 {
 	if (fd == -1)
 	{
-		ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
-		ft_putstr_fd(name, 2);
-		ft_putendl_fd(": No such file or directory", 2);
+		if (errno == EACCES)
+			permission_error(name, data);
+		else
+		{
+			ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
+			ft_putstr_fd(name, 2);
+			ft_putendl_fd(": No such file or directory", 2);
+		}
 		data->exit_code = 1;
 		return (1);
 	}

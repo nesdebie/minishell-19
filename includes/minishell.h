@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 11:57:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:50:39 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	ft_exit(t_shell *data, int num_cmd);
 
 char	*ft_join_env(t_env *env);
 
-int		ft_print_error(t_shell *shell, char *str, int nbr);
 int		ft_print_perror(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 11:19:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:31:01 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,18 @@ static void	ft_wait_process(pid_t	*id, t_shell *data)
 {
 	int		i;
 	int		ret;
+	int		prev;
 
+	prev = 0;
 	i = 0;
 	while (i < data->count_cmd)
 	{
 		waitpid(id[i], &ret, 0);
-		ret = set_exit_status(ret);
-		ft_print_perror(data, NULL, ret);
+		data->exit_code = set_exit_status(ret);
+		if (data->exit_code == 2 && i > 0 && prev > 0)
+			data->exit_code = 1;
+		if (i == 0 || data->exit_code)
+			prev = data->exit_code;
 		i++;
 	}
 }
