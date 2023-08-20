@@ -23,7 +23,7 @@ PARSING :
 ( -ecrit une newline quand "echo L|echo j" )
 
 EXECUTION PIPE :
-( cat minishell.h | grep ");"$     "si l'argument de cat n'existe pas, l'execution s'arrete" ) BUG
+[SOLVED]( cat minishell.h | grep ");"$     "si l'argument de cat n'existe pas, l'execution s'arrete" ) BUG
 [SOLVED] exit ecrit exit, ce qui fait que le pipe recois un retour de exit et permet par exemple avec cette commande : "ls | exit | cat" d'ecrire exit
 
 GESTION BUILTINS :
