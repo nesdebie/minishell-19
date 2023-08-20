@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:34:58 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:13:30 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,6 @@ static int	ft_isinset(char c, char *set)
 		i++;
 	}
 	return (0);
-}
-
-static void	ft_print_env(t_list **is_envp_list)
-{
-	t_env	**env_lst;
-	int		i;
-	char	*s;
-
-	s = NULL;
-	i = 0;
-	env_lst = ft_sortenv(is_envp_list);
-	while (env_lst && env_lst[i])
-	{
-		write(STDOUT_FILENO, "declare -x ", 11);
-		write(STDOUT_FILENO, env_lst[i]->name, ft_strlen(env_lst[i]->name));
-		s = ft_getenv(*is_envp_list, env_lst[i]->name);
-		if (s && s[0])
-		{
-			write(STDOUT_FILENO, "=\"", 2);
-			write(STDOUT_FILENO, s, ft_strlen(s));
-			write(STDOUT_FILENO, "\"\n", 2);
-		}
-		else
-			write(STDOUT_FILENO, "\n", 1);
-		i++;
-	}
-	free(env_lst);
 }
 
 static int	ft_check_name(t_shell *d, char *s, int i)
@@ -76,7 +49,7 @@ static int	ft_check_name(t_shell *d, char *s, int i)
 	return (1);
 }
 
-int	add_value2(t_shell *d, char *s, int ret, char *name)
+static int	add_value2(t_shell *d, char *s, int ret, char *name)
 {
 	char	*str;
 
@@ -117,25 +90,6 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 		s = ft_calloc(1, 1);
 	return (add_value2(d, s, ret, name));
 }
-/**
-void	ft_print_cmd(t_shell *data)
-{
-	int	j;
-	static int num_use;
-
-	j = 0;
-	printf("num usage : %d\n", num_use);
-	num_use++;
-	for (int i = 0; i < data->count_cmd; i++)
-	{
-		for (j = 0; data->cmd[i].args[j]; j++)
-		{
-			printf("[%s]\n", data->cmd[i].args[j]);
-		}
-		printf("\n");
-	}
-	printf("\n");
-}**/
 
 void	ft_export(t_shell *data, int num_cmd)
 {

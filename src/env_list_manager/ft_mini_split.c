@@ -6,11 +6,25 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 16:14:17 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:21:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_update_dir(t_shell *d)
+{
+	int		err;
+	char	*new_pwd;
+	t_list	**head;
+
+	head = &d->envp_list;
+	d->exit_code = 0;
+	new_pwd = getcwd(NULL, 0);
+	err = ft_putenv(head, "PWD", new_pwd);
+	free(new_pwd);
+	return (err);
+}
 
 char	**ft_minifree(char **arr, int i)
 {

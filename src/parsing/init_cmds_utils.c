@@ -6,11 +6,30 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 11:58:32 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:27:50 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_quote_args(t_shell *data)
+{
+	int	j;
+	int	i;
+
+	j = 0;
+	i = 0;
+	while (i < data->count_cmd && data->cmd[i].cmd)
+	{
+		j = 0;
+		while (data->cmd[i].args[j])
+		{
+			removeQuotes(data->cmd[i].args[j]);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	args_counter(t_list *lst)
 {

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 11:58:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:09:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	check_tokens(t_list *lst)
 }
 
 static char	*open_pipe(char *line)
-{	
+{
 	char	*tmp;
 	char	*nl;
 
@@ -94,37 +94,6 @@ static char	*open_pipe(char *line)
 	add_history(line);
 	return (line);
 }
-/*
-t_shell *parse_quotes_cmds(t_shell *shell)
-{
-	int i;
-	int j;
-	int k;
-
-	i = -1;
-	while (++i != shell->count_cmd)
-	{
-		j = -1;
-		while (shell->cmd[i].args[++j])
-		{
-			if (shell->cmd[i].args[j][0] == '\'' && shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] == '\'')
-			{
-				k = -1;
-				while (shell->cmd[i].args[j][++k])
-					shell->cmd[i].args[j][k] = shell->cmd[i].args[j][k + 1]; 
-				shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] = '\0';
-			}
-			if (shell->cmd[i].args[j][0] == '\"' && shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] == '\"')
-			{
-				k = -1;
-				while (shell->cmd[i].args[j][++k])
-					shell->cmd[i].args[j][k] = shell->cmd[i].args[j][k + 1]; 
-				shell->cmd[i].args[j][ft_strlen(shell->cmd[i].args[j]) - 1] = '\0';
-			}
-		}
-	}
-	return (shell);
-}*/
 
 static int	check_nb_cmd(t_shell *dt)
 {
@@ -163,8 +132,8 @@ int	parser(char *line, t_shell *shell, t_list *tokens)
 	if (init_cmd(tokens, shell))
 	{
 		ft_lstclear(&tokens, free);
-		return(free_shell(shell));
+		return (free_shell(shell));
 	}
-	ft_lstclear(&tokens, free);;
+	ft_lstclear(&tokens, free);
 	return (0);
 }

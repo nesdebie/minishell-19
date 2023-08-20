@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 11:58:14 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:26:34 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,25 +90,6 @@ static char	*find_cmd(t_list *lst)
 		lst = lst->next;
 	}
 	return (0);
-}
-
-void	ft_quote_args(t_shell *data)
-{
-	int	j;
-	int i;
-
-	j = 0;
-	i = 0;
-	while (i < data->count_cmd && data->cmd[i].cmd)
-	{
-		j = 0;
-		while (data->cmd[i].args[j])
-		{
-			removeQuotes(data->cmd[i].args[j]);
-			j++;
-		}
-		i++;
-	}
 }
 
 void	init_each_command(t_list **lst, t_shell *data, int i)

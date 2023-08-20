@@ -28,7 +28,8 @@ SRCS =	./src/main.c \
 		./src/parsing/parsing.c \
 		./src/parsing/quotes_pipes_redir.c \
 		./src/parsing/redirections.c \
-		./src/parsing/substitute.c
+		./src/parsing/substitute.c \
+		./src/parsing/substitute_utils.c
 
 CC = cc
 

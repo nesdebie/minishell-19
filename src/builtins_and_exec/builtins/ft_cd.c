@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 11:19:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:24:26 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
-static int	ft_update_dir(t_shell *d)
-{
-	int		err;
-	char	*new_pwd;
-	t_list	**head;
-
-	head = &d->envp_list;
-	d->exit_code = 0;
-	new_pwd = getcwd(NULL, 0);
-	err = ft_putenv(head, "PWD", new_pwd);
-	free(new_pwd);
-	return (err);
-}
 
 static char	*ft_check_tilde(t_list **head, char *str)
 {
@@ -32,13 +18,6 @@ static char	*ft_check_tilde(t_list **head, char *str)
 		return (ft_strdup(str));
 	str++;
 	return (ft_strjoin(ft_getenv(*head, "HOME"), str));
-}
-
-static int	no_home_err(t_shell *sh)
-{
-	ft_putendl_fd("bash: cd: HOME not set", 2);
-	sh->exit_code = 1;
-	return (sh->exit_code);
 }
 
 static int	check_no_home(t_shell *d, int num_cmd)
@@ -55,8 +34,6 @@ static int	check_no_home(t_shell *d, int num_cmd)
 	return (0);
 }
 
-//MERGE 8/AOUT/2023
-
 int	check_old_pwd(char *oldpwd, t_shell *d)
 {
 	char	*home;
@@ -66,7 +43,7 @@ int	check_old_pwd(char *oldpwd, t_shell *d)
 		home = ft_getenv(d->envp_list, "HOME");
 		if (!home)
 		{
-			ft_putstr_fd("cd: HOME not set\n", 2);
+			no_home_err(d);
 			return (0);
 		}
 		if (chdir(home) == -1)
@@ -82,7 +59,7 @@ int	check_old_pwd(char *oldpwd, t_shell *d)
 	return (1);
 }
 
-int	ft_cd2(int num_cmd, t_shell *d, char *new_pwd, int *err)
+static int	ft_cd2(int num_cmd, t_shell *d, char *new_pwd, int *err)
 {
 	if (!d->cmd[num_cmd].args[1])
 	{

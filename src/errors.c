@@ -6,11 +6,18 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 14:04:37 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:18:53 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	no_home_err(t_shell *sh)
+{
+	ft_putendl_fd("bash: cd: HOME not set", 2);
+	sh->exit_code = 1;
+	return (sh->exit_code);
+}
 
 char	*permission_error(char *cmd, t_shell *dt)
 {

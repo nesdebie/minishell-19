@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 13:50:39 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:21:15 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,22 @@ typedef struct s_env{
 
 typedef struct s_substitute{
 	char		*output;
-	char		*new_output;
-	int			output_size;
-	int			input_index;
+	char		*new_out;
+	int			out_size;
+	int			input_i;
 	int			is_quote;
 	char		*var_start;
 	int			var_len;
-	char		*number_str;
-	int			number_len;
-	const char	*env_value;
+	char		*nb_str;
+	int			nb_len;
+	const char	*env_val;
 	int			env_len;
 	char		*var_name;
-}				t_substitute;
+}				t_sub;
 
 void	rl_replace_line(const char *text, int clear_undo);
 
+/* ENVP MANAGER */
 t_list	*ft_init_env(t_shell *shell, char **env);
 int		ft_putenv(t_list **is_head, char *name, char *val);
 char	*ft_getenv(t_list *is_head, char *i_str);
@@ -91,7 +92,11 @@ t_env	**ft_sortenv(t_list **is_envp_list);
 t_list	*ft_search_dubname(t_list **is_head, char *name);
 char	*get_name_env(char *s);
 char	*get_value_env(char *s);
+char	*ft_join_env(t_env *env);
+void	ft_print_env(t_list **is_envp_list);
+int		ft_update_dir(t_shell *d);
 
+/* BUILTINS */
 int		ft_env(t_list **is_envp_list);
 void	ft_pwd(t_shell *data);
 void	ft_unset(t_shell *data, int num_cmd);
@@ -101,11 +106,11 @@ int		ft_cd(t_shell *d, int num_cmd, char *new_pwd);
 void	ft_echo(t_shell *d, int num_cmd);
 void	ft_exit(t_shell *data, int num_cmd);
 
-char	*ft_join_env(t_env *env);
-
+/* ERRORS */
 int		ft_print_perror(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
+int		no_home_err(t_shell *sh);
 
 int		parser(char *line, t_shell *mini, t_list *tokens);
 int		pre_parse(char *line, t_shell *mini);
@@ -140,12 +145,14 @@ char	*substitute_variables(char	*input, int code, t_list *is_head);
 
 char	*ft_strjoin_export(char const *s1, char const *s2);
 
-//t_shell	*parse_quotes_cmds(t_shell *shell);
-
 void	ft_quote_args(t_shell *data);
+
+void	*ft_realloc(void	*ptr, size_t size);
+int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
+int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
+
 //char	*remove_empty_quotes(char	*str);
 void	removeQuotes(char *input);
 //a retirer a la fin (fonction de debug pour print les arguments parsés)
 //void	ft_print_cmd(t_shell *data);
-
 #endif

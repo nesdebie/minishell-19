@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/14 11:03:49 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:13:37 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	ft_print_env(t_list **is_envp_list)
+{
+	t_env	**env_lst;
+	int		i;
+	char	*s;
+
+	s = NULL;
+	i = 0;
+	env_lst = ft_sortenv(is_envp_list);
+	while (env_lst && env_lst[i])
+	{
+		write(STDOUT_FILENO, "declare -x ", 11);
+		write(STDOUT_FILENO, env_lst[i]->name, ft_strlen(env_lst[i]->name));
+		s = ft_getenv(*is_envp_list, env_lst[i]->name);
+		if (s && s[0])
+		{
+			write(STDOUT_FILENO, "=\"", 2);
+			write(STDOUT_FILENO, s, ft_strlen(s));
+			write(STDOUT_FILENO, "\"\n", 2);
+		}
+		else
+			write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+	free(env_lst);
+}
 
 int	ft_isnum(char c)
 {
