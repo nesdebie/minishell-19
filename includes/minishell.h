@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:47:38 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:57:57 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*permission_error(char *cmd, t_shell *dt);
 
 int		parser(char *line, t_shell *mini, t_list *tokens);
 int		pre_parse(char *line, t_shell *mini);
-char	*parse_line(char *line, t_shell *data, int i);
+char	*parse_line(char *line, t_shell *data);
 
 int		is_end(int c);
 int		args_counter(t_list *lst);
@@ -141,13 +141,11 @@ char	*substitute_variables(char	*input, int code, t_list *is_head);
 
 char	*ft_strjoin_export(char const *s1, char const *s2);
 
-t_shell	*parse_quotes_cmds(t_shell *shell);
-
+//t_shell	*parse_quotes_cmds(t_shell *shell);
 
 void	ft_quote_args(t_shell *data);
 //char	*remove_empty_quotes(char	*str);
-void removeQuotes(char *input);
-
+void	removeQuotes(char *input);
 //a retirer a la fin (fonction de debug pour print les arguments parsés)
 //void	ft_print_cmd(t_shell *data);
 

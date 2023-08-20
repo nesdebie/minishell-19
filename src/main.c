@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:28:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:47:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	ft_prompt(int ac, t_shell *shell)
 			ft_exit_minishell(shell);
 		if (ft_strlen(str))
 		{
-			str = parse_line(str, shell, shell->exit_code);
 			if (!parser(str, shell, NULL))
 			{
 				ft_executer(shell, NULL, NULL, NULL);

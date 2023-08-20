@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:51:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:58:14 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 		}
 		else
 		{
-			(*lst)->content = parse_line((*lst)->content, data, -1); // TO SECURE
+			(*lst)->content = parse_line((*lst)->content, data); // TO SECURE
 			if ((*lst)->content) //TO SECURE
 				args[j] = ft_strdup((*lst)->content); // TO SECURE
 			j++;
@@ -123,15 +123,13 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 			data->cmd[i].cmd = ft_calloc(1, 1);
 		else
 			data->cmd[i].cmd = ft_strdup(cmd);
-		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
+		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
-		//ft_quote_args(data);
 	}
 	else
 	{
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
-		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data, -1);
+		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
 		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
-		//ft_quote_args(data);
 	}
 }
