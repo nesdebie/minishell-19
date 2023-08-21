@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 16:19:21 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:36:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 {
 	t_redir	*rd;
 
+	cmd->in_file = 0; // TEST
+	cmd->out_file = 1; // TEST
 	while (lst)
 	{
 		ft_check_fd(cmd, &rd, lst);
@@ -92,6 +94,7 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 		else if (rd->mode == MODE_HEREDOC && i == rd->idx)
 			heredoc(cmd, rd->name);
 		lst = lst->next;
+		printf ("[%d]-->|%s|[%d:%d]\n", i, cmd->cmd, cmd->in_file, cmd->out_file); // DEBUG
 		if (ft_no_file_dir(data, cmd->in_file, rd->name))
 			return (1);
 		else if (ft_no_file_dir(data, cmd->out_file, rd->name))
