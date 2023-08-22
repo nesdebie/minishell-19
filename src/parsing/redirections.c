@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/21 14:36:16 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:23:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,28 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 {
 	t_redir	*rd;
 
-	cmd->in_file = 0; // TEST
-	cmd->out_file = 1; // TEST
 	while (lst)
 	{
-		ft_check_fd(cmd, &rd, lst);
-		if (rd->mode == MODE_READ && i == rd->idx)
-			cmd->in_file = open(rd->name, O_RDONLY);
-		else if (rd->mode == MODE_WRITE && i == rd->idx)
-			cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		else if (rd->mode == MODE_APPEND && i == rd->idx)
-			cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		else if (rd->mode == MODE_HEREDOC && i == rd->idx)
-			heredoc(cmd, rd->name);
+		if (data->count_cmd == 1)
+			ft_check_fd(cmd, &rd, lst);
+		else
+			rd = lst->content;
+		if (i == rd->idx)
+		{
+			if (rd->mode == MODE_READ)
+				cmd->in_file = open(rd->name, O_RDONLY);
+			if (ft_no_file_dir(data, cmd->in_file, rd->name))
+				return (1);
+			if (rd->mode == MODE_HEREDOC)
+				heredoc(cmd, rd->name);
+			if (rd->mode == MODE_WRITE)
+				cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			else if (rd->mode == MODE_APPEND)
+				cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_APPEND, 0644);
+			if (ft_no_file_dir(data, cmd->out_file, rd->name))
+				return (1);
+		}
 		lst = lst->next;
-		printf ("[%d]-->|%s|[%d:%d]\n", i, cmd->cmd, cmd->in_file, cmd->out_file); // DEBUG
-		if (ft_no_file_dir(data, cmd->in_file, rd->name))
-			return (1);
-		else if (ft_no_file_dir(data, cmd->out_file, rd->name))
-			return (1);
 	}
 	return (0);
 }

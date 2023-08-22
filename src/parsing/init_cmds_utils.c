@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 16:57:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:06:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,19 @@ static void	free_content(void *content)
 		free (content);
 }
 
+static int	set_redir_mode(void *content)
+{
+	if (!ft_strncmp(content, "<<", 3))
+		return (MODE_HEREDOC);
+	else if (!ft_strncmp(content, ">>", 3))
+		return (MODE_APPEND);
+	else if (!ft_strncmp(content, ">", 2))
+		return (MODE_WRITE);
+	else if (!ft_strncmp(content, "<", 2))
+		return (MODE_READ);
+	return (0);
+}
+
 void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
 {
 	t_redir	*redir;
@@ -68,14 +81,7 @@ void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
 	lst->next->content = parse_line(lst->next->content, data);
 	if (!lst->next->content)
 		return ;
-	if (!ft_strncmp(lst->content, "<<", 3))
-		redir->mode = MODE_HEREDOC;
-	else if (!ft_strncmp(lst->content, ">>", 3))
-		redir->mode = MODE_APPEND;
-	else if (!ft_strncmp(lst->content, ">", 2))
-		redir->mode = MODE_WRITE;
-	else if (!ft_strncmp(lst->content, "<", 2))
-		redir->mode = MODE_READ;
+	redir->mode = set_redir_mode(lst->content);
 	redir->name = ft_strdup(lst->next->content);
 	if (!redir->name)
 		return (free_content(lst->next->content));

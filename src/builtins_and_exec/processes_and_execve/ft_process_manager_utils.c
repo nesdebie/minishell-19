@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_manager_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/21 14:35:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:15:09 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	ft_close_fd(int *fd[2], t_shell *data)
 
 void	ft_dup_fd(int i, int **fd, t_shell *data)
 {
-	if (data->cmd[i].out_file == 0)
+	if (data->cmd[i].out_file)// == 0)
 	{
 		dup2(data->cmd[i].out_file, STDOUT_FILENO);
 		close(data->cmd[i].out_file);
 	}
 	else if (i < data->count_cmd - 1)
 		dup2(fd[i][1], STDOUT_FILENO);
-	if (data->cmd[i].in_file != 0)
+	if (data->cmd[i].in_file)// != 0)
 	{
 		dup2(data->cmd[i].in_file, STDIN_FILENO);
 		close(data->cmd[i].in_file);

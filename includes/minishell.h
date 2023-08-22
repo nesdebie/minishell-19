@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:21:15 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:53:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 typedef struct s_redir{
 	char	*name;
-	char	mode;
+	int		mode;
 	int		idx;
 }				t_redir;
 
