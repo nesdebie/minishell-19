@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:25:24 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:26:17 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	is_substitute(t_sub *s, char *input, t_list *is_head, int tmp)
 	return (1);
 }
 
-static int	check_if_exit_code_substitute(char *str, int code, t_sub *s, int is_continue)
+static int	check_if_exit_code_substitute(char *str,
+	int code, t_sub *s, int is_continue)
 {
 	if (str[s->input_i] == '\'' || !ft_strncmp(&str[s->input_i], "\"$\"", 3))
 	{
@@ -88,9 +89,9 @@ static int	substitute_loop(char *input, int code, t_list *is_head, t_sub *s)
 		return (0);
 	if (input[s->input_i] == '$' && !s->is_quote)
 	{
-			tmp = is_substitute(s, input, is_head, 0);
-			if (tmp == 0)
-				return (0);
+		tmp = is_substitute(s, input, is_head, 0);
+		if (tmp == 0)
+			return (0);
 	}
 	else
 	{
