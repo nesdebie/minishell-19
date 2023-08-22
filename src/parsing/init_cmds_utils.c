@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 13:06:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:01:14 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	args_counter(t_list *lst)
 	return (count);
 }
 
-static void	free_content(void *content)
+void	free_content(void *content)
 {
 	if (content)
 		free (content);

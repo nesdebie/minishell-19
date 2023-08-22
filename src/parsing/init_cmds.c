@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:26:34 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:04:31 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	**set_args(int count_args)
 {
 	char	**args;
 
+	return (0);
 	args = NULL;
 	args = malloc((sizeof(char *) * count_args) + 1);
 	if (!args)
@@ -31,9 +32,7 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 	char	*token;
 
 	args = set_args(args_counter(*lst));
-	if (!args)
-		return (0);
-	while (args_counter(*lst) > 0)
+	while (args && args_counter(*lst) > 0)
 	{
 		token = (*lst)->content;
 		if (*token == '<' || *token == '>')
@@ -43,9 +42,12 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 		}
 		else
 		{
-			(*lst)->content = parse_line((*lst)->content, data); // TO SECURE
-			if ((*lst)->content) //TO SECURE
-				args[j] = ft_strdup((*lst)->content); // TO SECURE
+			(*lst)->content = parse_line((*lst)->content, data); 
+			if (!(*lst)->content)
+				return (ft_free_arr(args, j, (*lst)->content));
+			args[j] = ft_strdup((*lst)->content);
+			if (!args[j])
+				return (ft_free_arr_content(args, j - 1, (*lst)->content));
 			j++;
 			(*lst) = (*lst)->next;
 		}

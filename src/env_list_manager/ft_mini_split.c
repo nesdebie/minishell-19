@@ -6,11 +6,24 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:21:00 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:03:44 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	*ft_free_arr_content(char **arr, int i, void *content)
+{
+	if (content)
+		free(content);
+	while (i >= 0)
+	{
+		free(arr[i]);
+		i--;
+	}
+	free(arr);
+	return (0);
+}
 
 int	ft_update_dir(t_shell *d)
 {

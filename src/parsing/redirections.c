@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 13:52:15 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:47:28 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,25 @@ static int	read_heredoc(const char *end, int *fd)
 	exit(EXIT_SUCCESS);
 }
 
-static int	heredoc(t_cmnd *cmd, const char *end_file)
+static void	heredoc(t_cmnd *cmd, const char *stop,
+	struct termios *attr_out, struct termios *attr_in)
 {
 	int				fd[2];
 	pid_t			id;
-	struct termios	*attr_out;
-	struct termios	*attr_in;
 
 	attr_out = (struct termios *)malloc(sizeof(struct termios));
+	if (!attr_out)
+		return ;
 	attr_in = (struct termios *)malloc(sizeof(struct termios));
-	if (!attr_out || !attr_in)
-		return (0);
+	if (!attr_in)
+		return (free_content(attr_out));
 	pipe(fd);
 	tcgetattr(STDOUT_FILENO, attr_out);
 	tcgetattr(STDIN_FILENO, attr_in);
 	id = fork();
 	signal(SIGINT, SIG_IGN);
 	if (!id)
-		read_heredoc(end_file, fd);
+		read_heredoc(stop, fd);
 	close(fd[1]);
 	waitpid(id, NULL, 0);
 	tcsetattr(STDOUT_FILENO, TCSAFLUSH, attr_out);
@@ -58,7 +59,6 @@ static int	heredoc(t_cmnd *cmd, const char *end_file)
 	free(attr_in);
 	dup2(fd[0], cmd->in_file);
 	close(fd[0]);
-	return (0);
 }
 
 static void	ft_check_fd(t_cmnd *cmd, t_redir **rd, t_list *lst)
@@ -78,7 +78,8 @@ static void	ft_check_fd(t_cmnd *cmd, t_redir **rd, t_list *lst)
 
 static void	set_in_out(t_redir *rd, t_cmnd *cmd)
 {
-	char *tmp;
+	char	*tmp;
+
 	tmp = ft_strtrim(rd->name, "\"");
 	if (!tmp)
 		tmp = rd->name;
@@ -89,8 +90,9 @@ static void	set_in_out(t_redir *rd, t_cmnd *cmd)
 	else if (rd->mode == MODE_APPEND)
 		cmd->out_file = open(tmp, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else if (rd->mode == MODE_HEREDOC)
-		heredoc(cmd, tmp);
-	free(tmp);
+		heredoc(cmd, tmp, NULL, NULL);
+	if (tmp)
+		free(tmp);
 }
 
 int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
