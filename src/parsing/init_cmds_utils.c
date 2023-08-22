@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:01:14 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:51:05 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_quote_args(t_shell *data)
 		j = 0;
 		while (data->cmd[i].args[j])
 		{
-			removeQuotes(data->cmd[i].args[j]);
+			remove_quotes(data->cmd[i].args[j]);
 			j++;
 		}
 		i++;

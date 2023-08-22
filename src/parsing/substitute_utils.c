@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:56:10 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:07:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:44:45 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	check_classic_substitute(t_sub *s, char *input, t_list *is_head)
 	ft_memcpy(var_name, s->var_start, s->var_len);
 	var_name[s->var_len] = '\0';
 	env_val = ft_getenv(is_head, var_name);
+	if (!env_val && !ft_strlen(var_name))
+		env_val = ft_strjoin("$", var_name);
 	if (env_val)
 	{
 		if (!check_classic_substitute2(s, env_val))

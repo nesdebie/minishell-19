@@ -3,52 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   line_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:09:51 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 16:57:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:23:41 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void removeQuotes(char *input)
+void	remove_quotes2(char *input, int i[3], int length, int quote_type[2])
 {
-	int length = ft_strlen(input);
-	int i, j;
-	for (i = 0, j = 0; i < length; i++)
+	quote_type[0] = input[i[0]];
+	quote_type[1] = -1;
+	i[2] = i[0] + 1;
+	while (i[2] < length)
 	{
-		if (input[i] && (input[i] == '\'' || input[i] == '\"'))
+		if (input[i[2]] == quote_type[0])
 		{
-			int quoteType = input[i];
-			int endQuoteIndex = -1;
-			for (int k = i + 1; k < length; k++)
-			{
-				if (input[k] == quoteType)
-				{
-					endQuoteIndex = k;
-					break;
-				}
-			}
-			if (endQuoteIndex != -1)
-			{
-				for (int k = i + 1; k < endQuoteIndex; k++)
-				{
-					input[j++] = input[k];
-				}
-				i = endQuoteIndex;
-			}
-			else
-			{
-				input[j++] = input[i];
-			}
+			quote_type[1] = i[2];
+			break ;
 		}
-		else
-		{
-			input[j++] = input[i];
-		}
+		i[2]++;
 	}
-	input[j] = '\0';
+	if (quote_type[1] != -1)
+	{
+		i[2] = i[0] + 1;
+		while (i[2] < quote_type[1])
+		{
+			input[i[1]++] = input[i[2]];
+			i[2]++;
+		}
+		i[0] = quote_type[1];
+	}
+	else
+		input[i[1]++] = input[i[1]];
+}
+
+void	remove_quotes(char *input)
+{
+	int	length;
+	int	i[3];
+	int	quote_type[2];
+
+	quote_type[0] = 0;
+	length = ft_strlen(input);
+	ft_bzero(i, 8);
+	while (i[0] < length)
+	{
+		if (input[i[0]] && (input[i[0]] == '\'' || input[i[0]] == '\"'))
+			remove_quotes2(input, i, length, quote_type);
+		else
+			input[i[1]++] = input[i[0]];
+		i[0]++;
+	}
+	input[i[1]] = '\0';
 }
 
 char	*parse_line(char *line, t_shell *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:17:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:51:25 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	free_content(void *content);
 char	**ft_free_arr_content(char **arr, int i, void *content);
 
 //char	*remove_empty_quotes(char	*str);
-void	removeQuotes(char *input);
+void	remove_quotes(char *input);
 //a retirer a la fin (fonction de debug pour print les arguments parsés)
 //void	ft_print_cmd(t_shell *data);
 #endif
