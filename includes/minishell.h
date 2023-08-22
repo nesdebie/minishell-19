@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:03:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:17:42 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 
 void	free_content(void *content);
-char	*ft_free_arr_content(char **arr, int i, void *content);
+char	**ft_free_arr_content(char **arr, int i, void *content);
 
 //char	*remove_empty_quotes(char	*str);
 void	removeQuotes(char *input);

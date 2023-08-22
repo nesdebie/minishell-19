@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:04:31 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:26:56 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static char	**set_args(int count_args)
 {
 	char	**args;
 
-	return (0);
 	args = NULL;
 	args = malloc((sizeof(char *) * count_args) + 1);
 	if (!args)
@@ -44,7 +43,7 @@ static char	**init_cmd_args(t_list **lst, t_shell *data, int idx, int j)
 		{
 			(*lst)->content = parse_line((*lst)->content, data); 
 			if (!(*lst)->content)
-				return (ft_free_arr(args, j, (*lst)->content));
+				return (ft_free_arr_content(args, j, (*lst)->content));
 			args[j] = ft_strdup((*lst)->content);
 			if (!args[j])
 				return (ft_free_arr_content(args, j - 1, (*lst)->content));

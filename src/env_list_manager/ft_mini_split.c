@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:03:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:17:36 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_free_arr_content(char **arr, int i, void *content)
+char	**ft_free_arr_content(char **arr, int i, void *content)
 {
 	if (content)
 		free(content);
