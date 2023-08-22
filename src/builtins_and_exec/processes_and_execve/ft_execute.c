@@ -6,7 +6,7 @@
 /*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 23:53:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:22:01 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static char	**ft_get_path(t_shell *data)
 	char	**path;
 
 	tmp = ft_getenv(data->envp_list, "PATH");
+	if (!tmp)
+		return (0);
 	path = ft_split(tmp, ':');
+	if (!path)
+		return (0);
 	return (path);
 }
 

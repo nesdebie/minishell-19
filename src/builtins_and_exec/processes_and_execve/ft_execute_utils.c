@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 16:40:24 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:18:03 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*join_path(char *cmd, char **path, t_shell *dt)
 	char	*command;
 
 	i = 0;
+	if (!path)
+		return (0);
 	if (!access(cmd, X_OK))
 		return (cmd);
 	if (!pre_join_path(cmd, dt))

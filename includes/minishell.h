@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 19:01:39 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:38:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	ft_free_cmds(t_shell *data);
 int		ft_no_file_dir(t_shell *data, int fd, char *name);
 char	*join_path(char *cmd, char **path, t_shell *dt);
 int		set_exit_status(int exit_status);
-void	ft_exit_minishell(t_shell *data);
+void	ft_exit_minishell(t_shell *data, int flag);
 
 char	**ft_minisplit(char *str);
 char	**ft_minifree(char **arr, int i);

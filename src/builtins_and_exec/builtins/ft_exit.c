@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 14:52:05 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:35:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,5 @@ void	ft_exit(t_shell *data, int num_cmd)
 	}
 	if ((i - 1) == 1)
 		ft_set_retcode(data, num_cmd);
-	ft_exit_minishell(data);
+	ft_exit_minishell(data, 1);
 }

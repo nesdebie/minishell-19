@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:22:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:37:54 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_prompt(int ac, t_shell *shell)
 		if (str && ft_strlen(str) && str[ft_strlen(str) - 1] != '|')
 			add_history(str);
 		if (!str)
-			ft_exit_minishell(shell);
+			ft_exit_minishell(shell, 0);
 		if (ft_strlen(str))
 		{
 			if (!parser(str, shell, NULL))
