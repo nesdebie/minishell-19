@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:51:25 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:01:39 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 void	free_content(void *content);
 char	**ft_free_arr_content(char **arr, int i, void *content);
 
-//char	*remove_empty_quotes(char	*str);
 void	remove_quotes(char *input);
-//a retirer a la fin (fonction de debug pour print les arguments parsés)
-//void	ft_print_cmd(t_shell *data);
+
+void	ft_supp_null_args(t_shell *data);
+
 #endif

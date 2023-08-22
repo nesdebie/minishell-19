@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 14:47:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:56:36 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	set_in_out(t_redir *rd, t_cmnd *cmd)
 	tmp = ft_strtrim(rd->name, "\"");
 	if (!tmp)
 		tmp = rd->name;
+	remove_quotes(tmp);
 	if (rd->mode == MODE_READ)
 		cmd->in_file = open(tmp, O_RDONLY);
 	else if (rd->mode == MODE_WRITE)

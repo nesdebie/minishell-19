@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:51:05 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:02:47 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_quote_args(t_shell *data)
 		}
 		i++;
 	}
+	ft_supp_null_args(data);
 }
 
 int	args_counter(t_list *lst)
