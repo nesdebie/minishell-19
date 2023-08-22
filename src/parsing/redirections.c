@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 13:23:49 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:52:15 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,23 @@ static void	ft_check_fd(t_cmnd *cmd, t_redir **rd, t_list *lst)
 	}
 }
 
+static void	set_in_out(t_redir *rd, t_cmnd *cmd)
+{
+	char *tmp;
+	tmp = ft_strtrim(rd->name, "\"");
+	if (!tmp)
+		tmp = rd->name;
+	if (rd->mode == MODE_READ)
+		cmd->in_file = open(tmp, O_RDONLY);
+	else if (rd->mode == MODE_WRITE)
+		cmd->out_file = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else if (rd->mode == MODE_APPEND)
+		cmd->out_file = open(tmp, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else if (rd->mode == MODE_HEREDOC)
+		heredoc(cmd, tmp);
+	free(tmp);
+}
+
 int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 {
 	t_redir	*rd;
@@ -88,17 +105,10 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 			rd = lst->content;
 		if (i == rd->idx)
 		{
-			if (rd->mode == MODE_READ)
-				cmd->in_file = open(rd->name, O_RDONLY);
+			set_in_out(rd, cmd);
 			if (ft_no_file_dir(data, cmd->in_file, rd->name))
 				return (1);
-			if (rd->mode == MODE_HEREDOC)
-				heredoc(cmd, rd->name);
-			if (rd->mode == MODE_WRITE)
-				cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			else if (rd->mode == MODE_APPEND)
-				cmd->out_file = open(rd->name, O_WRONLY | O_CREAT | O_APPEND, 0644);
-			if (ft_no_file_dir(data, cmd->out_file, rd->name))
+			else if (ft_no_file_dir(data, cmd->out_file, rd->name))
 				return (1);
 		}
 		lst = lst->next;
