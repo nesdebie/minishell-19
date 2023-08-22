@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 11:54:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:06:42 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static int	ft_isnumber(char *str)
 
 static void	ft_return_error_isnum(t_shell *data, int num_cmd, int i)
 {
-	ft_putstr_fd("exit\nW3LC0M3-1N-sH3LL: exit: ", 2);
+	ft_putendl_fd("exit", 1);
+	ft_putstr_fd("W3LC0M3-1N-sH3LL: exit: ", 2);
 	ft_putstr_fd(data->cmd[num_cmd].args[i], 2);
 	ft_putendl_fd(" : numeric argument required", 2);
 	data->exit_code = 255;
@@ -84,7 +85,8 @@ void	ft_exit(t_shell *data, int num_cmd)
 	{
 		if (data->cmd[num_cmd].args[i + 1])
 		{
-			ft_putendl_fd("exit\nW3LC0M3-1N-sH3LL: exit: too many arguments", 2);
+			ft_putendl_fd("exit", 1);
+			ft_putendl_fd("W3LC0M3-1N-sH3LL: exit: too many arguments", 2);
 			ft_print_perror(data, NULL, 1);
 			return ;
 		}
