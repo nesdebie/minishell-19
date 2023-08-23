@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:44:11 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:55:52 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ char	*ft_strjoin_export(char const *s1, char const *s2, unsigned int i);
 void	ft_supp_null_args(t_shell *data);
 int		args_counter(t_list *lst);
 t_list	*get_tokens(char *line, t_list *token);
-char	*join_path(char *cmd, char **path, t_shell *dt);
+char	*join_path(char *cmd, char **path, t_shell *dt, int i);
 void	*ft_realloc(void	*ptr, size_t size);
 
 /* PROCESSES */

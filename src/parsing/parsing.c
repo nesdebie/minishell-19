@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 16:59:47 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:58:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static char	*open_pipe(char *line)
 		free (line);
 	if (ft_strlen(nl))
 		line = ft_strjoin(tmp, nl);
-	if (!line)
-		return (0); 
 	if (tmp)
 		free (tmp);
+	if (!line)
+		return (0); 
 	if (nl)
 		free (nl);
 	if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '|')

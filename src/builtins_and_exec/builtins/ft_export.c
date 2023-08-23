@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:36:47 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:53:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ static int	add_value2(t_shell *d, char *s, int ret, char *name)
 	if (!s)
 		return (-1);
 	str = ft_strdup(s);
+	if (!str)
+	{
+		free(s);
+		return (-1);
+	}
 	ft_putenv(&d->envp_list, name, str);
 	if (!ft_strlen(str))
 		ret = -1;

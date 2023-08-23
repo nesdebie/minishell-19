@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:45:34 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:49:09 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*get_name_env(char *s)
 	if (s[i - 1] == '+')
 		i--;
 	temp = ft_substr(s, 0, i);
+	if (!temp)
+		return (0);
 	return (temp);
 }
 
@@ -70,12 +72,18 @@ char	*get_value_env(char *s)
 	if (!s)
 	{
 		temp = (char *)ft_calloc(1, sizeof(char));
+		if (!temp)
+			return (0);
 		return (temp);
 	}
 	while (s[i] != '=' && s[i])
 		i++;
 	if (s[i] == '=')
+	{
 		temp = ft_substr(s, i + 1, ft_strlen(s) - i);
+		if (!temp)
+			return (0);
+	}
 	return (temp);
 }
 

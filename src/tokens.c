@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:07:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 18:59:37 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:52:24 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	skip_quotes(char *s, int i)
 	return (i);
 }
 
-/* check the len of tokens (< or <<, len of words between quotes) */
 static int	len_token(char *s, int i)
 {
 	if (s[i] == '|')
@@ -85,6 +84,8 @@ t_list	*get_tokens(char *line, t_list *token)
 			i++;
 		len = len_token(line, i);
 		tmp = ft_substr(line, i, len - i);
+		if (!tmp)
+			return(token);
 		ft_lstadd_back(&token, ft_lstnew(tmp));
 		i = len;
 	}
