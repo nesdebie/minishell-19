@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:24:03 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:36:47 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 		if (!ft_getenv(d->envp_list, name))
 			s = ft_strdup(tmp);
 		else
-			s = ft_strjoin_export(ft_getenv(d->envp_list, name), tmp);
+			s = ft_strjoin_export(ft_getenv(d->envp_list, name), tmp, 0);
 		free(tmp);
 	}
 	else if (ft_isinset('=', d->cmd[num_cmd].args[ret]))

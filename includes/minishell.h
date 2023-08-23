@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:24:35 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:44:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ typedef struct s_substitute{
 
 void	rl_replace_line(const char *text, int clear_undo);
 
+int		set_exit_status(int exit_status);
+
+void	ft_exit_minishell(t_shell *data, int flag);
+
 /* ENVP MANAGER */
 t_list	*ft_init_env(t_shell *shell, char **env);
 int		ft_putenv(t_list **is_head, char *name, char *val);
@@ -97,6 +101,7 @@ void	ft_print_env(t_list **is_envp_list);
 int		ft_update_dir(t_shell *d);
 
 /* BUILTINS */
+int		execute_builtin(t_shell *data, int num_cmd);
 int		ft_env(t_list **is_envp_list);
 void	ft_pwd(t_shell *data);
 void	ft_unset(t_shell *data, int num_cmd);
@@ -111,53 +116,50 @@ int		ft_print_perror(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
 int		no_home_err(t_shell *sh);
+int		ft_no_file_dir(t_shell *data, int fd, char *name);
 
+/* PARSING */
 int		parser(char *line, t_shell *mini, t_list *tokens);
 int		pre_parse(char *line, t_shell *mini);
 char	*parse_line(char *line, t_shell *data);
-
-int		is_end(int c);
-int		args_counter(t_list *lst);
-t_list	*get_tokens(char *line, t_list *token);
+void	ft_quote_args(t_shell *data);
+void	remove_quotes(char *input);
 void	init_each_command(t_list **lst, t_shell *data, int i);
 void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx);
-int		is_builtin(t_shell *data, int num_cmd);
-int		execute_builtin(t_shell *data, int num_cmd);
-void	ft_free_env(t_list **is_head);
 
+/* CHECKERS */
+int		is_end(int c);
+int		is_builtin(t_shell *data, int num_cmd);
+int		ft_isinset(char c, char *set);
+int		ft_isnum(char c);
+
+/* FREES */
+void	ft_free_env(t_list **is_head);
+void	ft_free_cmds(t_shell *data);
 int		free_shell(t_shell *mini);
 void	ft_close_fd(int *fd[2], t_shell *data);
+void	free_content(void *content);
+char	**ft_free_arr_content(char **arr, int i, void *content);
+
+/* UTILS */
+char	**ft_minisplit(char *str);
+char	**ft_minifree(char **arr, int i);
+char	*ft_strjoin_export(char const *s1, char const *s2, unsigned int i);
+void	ft_supp_null_args(t_shell *data);
+int		args_counter(t_list *lst);
+t_list	*get_tokens(char *line, t_list *token);
+char	*join_path(char *cmd, char **path, t_shell *dt);
+void	*ft_realloc(void	*ptr, size_t size);
+
+/* PROCESSES */
 int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
 int		ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i);
 void	ft_dup_fd(int i, int **fd, t_shell *data);
 void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
-void	ft_free_cmds(t_shell *data);
-int		ft_no_file_dir(t_shell *data, int fd, char *name);
-char	*join_path(char *cmd, char **path, t_shell *dt);
-int		set_exit_status(int exit_status);
-void	ft_exit_minishell(t_shell *data, int flag);
 
-char	**ft_minisplit(char *str);
-char	**ft_minifree(char **arr, int i);
-int		ft_isnum(char c);
-
+/* SUBSITUTIONS */
 char	*substitute_variables(char	*input, int code, t_list *is_head);
-
-char	*ft_strjoin_export(char const *s1, char const *s2);
-
-void	ft_quote_args(t_shell *data);
-
-void	*ft_realloc(void	*ptr, size_t size);
 int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
-
-void	free_content(void *content);
-char	**ft_free_arr_content(char **arr, int i, void *content);
-
-void	remove_quotes(char *input);
-
-void	ft_supp_null_args(t_shell *data);
-
-int		ft_isinset(char c, char *set);
 
 #endif
