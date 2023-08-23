@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:13:30 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:24:03 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static int	ft_isinset(char c, char *set)
+int	ft_isinset(char c, char *set)
 {
 	int	i;
 

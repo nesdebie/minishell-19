@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 23:38:16 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:24:35 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,7 @@ char	**ft_free_arr_content(char **arr, int i, void *content);
 void	remove_quotes(char *input);
 
 void	ft_supp_null_args(t_shell *data);
+
+int		ft_isinset(char c, char *set);
 
 #endif
