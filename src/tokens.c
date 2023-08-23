@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:07:22 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:52:24 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:01:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_list	*get_tokens(char *line, t_list *token)
 		len = len_token(line, i);
 		tmp = ft_substr(line, i, len - i);
 		if (!tmp)
-			return(token);
+			return (token);
 		ft_lstadd_back(&token, ft_lstnew(tmp));
 		i = len;
 	}
