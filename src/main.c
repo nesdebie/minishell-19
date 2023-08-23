@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 12:28:36 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:01:52 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
+		g_exit_code = 1;
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
@@ -45,6 +46,11 @@ static void	ft_prompt(int ac, t_shell *shell)
 		str = readline(GREEN"\e[1mW3LC0M3-1N-sH3LL> \e[m"WHITE);
 		str = ft_strtrim(str, " ");
 		signal(SIGINT, &signal_handler2);
+		if (g_exit_code == 1)
+		{
+			shell->exit_code = g_exit_code;
+			g_exit_code = 0;
+		}
 		if (str && ft_strlen(str) && str[ft_strlen(str) - 1] != '|')
 			add_history(str);
 		if (!str)
