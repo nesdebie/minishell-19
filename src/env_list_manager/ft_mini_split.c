@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 12:25:32 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:50:11 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 char	**ft_free_arr_content(char **arr, int i, void *content)
 {
+	if (i == -1)
+	{
+		i = 0;
+		while (arr[i])
+			i++;
+		i--;
+	}
 	if (content)
 		free(content);
 	while (i >= 0)

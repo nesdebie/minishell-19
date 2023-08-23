@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 12:10:15 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:59:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	is_builtin_ll(char *token)
 	return (0);
 }
 
-static char	*find_cmd(t_list *lst)
+static char	*find_cmd(t_list *lst, t_shell *data)
 {
 	char	*token;
 
@@ -87,6 +87,8 @@ static char	*find_cmd(t_list *lst)
 	{
 		token = lst->content;
 		if (is_builtin_ll(token))
+			return (token);
+		else if (is_non_builtin(token, data, NULL, -1))
 			return (token);
 		lst = lst->next;
 	}
@@ -97,7 +99,7 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 {
 	char	*cmd;
 
-	cmd = find_cmd(*lst);
+	cmd = find_cmd(*lst, data);
 	if (!ft_strncmp((*lst)->content, ">", 1)
 		|| !ft_strncmp((*lst)->content, "<", 1))
 	{

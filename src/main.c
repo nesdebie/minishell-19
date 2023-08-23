@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 15:01:52 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:59:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ static void	signal_handler2(int signo)
 		ft_putendl_fd("", 1);
 }
 
-static void	ft_prompt(int ac, t_shell *shell)
+static void	ft_prompt(int ac, t_shell *shell, char *str)
 {
-	char	*str;
-
 	while (ac > 0)
 	{
 		set_input_signals();
@@ -81,6 +79,6 @@ int	main(int ac, char **av, char **envp)
 	if (!shell.envp_list)
 		return (0);
 	shell.exit_code = 0;
-	ft_prompt(ac, &shell);
+	ft_prompt(ac, &shell, NULL);
 	return (0);
 }

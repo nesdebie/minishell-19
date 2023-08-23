@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:56:05 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:41:33 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	**get_envp(t_list *lst)
 	return (mass);
 }
 
-static char	**ft_get_path(t_shell *data)
+char	**ft_get_path(t_shell *data)
 {
 	char	*tmp;
 	char	**path;

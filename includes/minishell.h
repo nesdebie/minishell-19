@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 14:59:06 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:57:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int		is_end(int c);
 int		is_builtin(t_shell *data, int num_cmd);
 int		ft_isinset(char c, char *set);
 int		ft_isnum(char c);
+int		is_non_builtin(char *str, t_shell *data, char *tmp, size_t i);
 
 /* FREES */
 void	ft_free_env(t_list **is_head);
@@ -152,6 +153,7 @@ int		args_counter(t_list *lst);
 t_list	*get_tokens(char *line, t_list *token);
 char	*join_path(char *cmd, char **path, t_shell *dt, int i);
 void	*ft_realloc(void	*ptr, size_t size);
+char	**ft_get_path(t_shell *data);
 
 /* PROCESSES */
 int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
