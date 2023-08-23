@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:06 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 13:01:17 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:28:57 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static char	*print_er(char *error)
 	return (0);
 }
 
-/* check if line is empty or if line is only made up of spaces */
 static	int	check_empty_line(char *line)
 {
 	if (!line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 23:37:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:28:36 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ static void	signal_handler2(int signo)
 	if (signo == SIGINT)
 		ft_putendl_fd("", 1);
 }
-
-/*
-Boucle infinie qui affiche le prompt et attend l'input de l'utilisateur
-*/
 
 static void	ft_prompt(int ac, t_shell *shell)
 {
