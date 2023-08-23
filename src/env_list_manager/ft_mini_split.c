@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mini_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:12:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 23:20:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:25:32 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**ft_minisplit(char *str)
 
 	i = 0;
 	j = 0;
-	arr = malloc(sizeof(char *) * 3);
+	arr = malloc(sizeof(char *) * 2);
 	if (!arr)
 		return (0);
 	while (str[i] && str[i] != '=')
@@ -72,6 +72,5 @@ char	**ft_minisplit(char *str)
 		arr[1] = ft_calloc(1, 1);
 	if (!arr[1])
 		return (ft_minifree(arr, 1));
-	arr[2] = 0;
 	return (arr);
 }
