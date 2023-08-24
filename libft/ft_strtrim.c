@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 23:05:10 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/04/03 10:49:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:10:35 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (start <= end)
 		str[i++] = s1[start++];
 	str[i] = 0;
+	free((char *)s1);
 	return (str);
 }
