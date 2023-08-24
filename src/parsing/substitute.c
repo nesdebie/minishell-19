@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 16:26:17 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:31:16 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,13 @@ static int	ft_setinput_i(char *input, int input_i)
 	if (ft_strnstr(input + input_i, "$?",
 			ft_strlen(input)) == input + input_i)
 		input_i += 2;
-	if (ft_strnstr(input + input_i, "${?}",
-			ft_strlen(input)) == input + input_i)
-		input_i += 4;
 	return (input_i);
 }
 
 static int	is_substitute(t_sub *s, char *input, t_list *is_head, int tmp)
 {
 	s->input_i++;
-	if (input[s->input_i] == '{')
-	{
-		tmp = check_parentesis_substitute(input, s, is_head);
-		if (tmp == 0)
-			return (0);
-	}
-	else if (input[s->input_i])
+	if (input[s->input_i])
 	{
 		tmp = check_classic_substitute(s, input, is_head);
 		if (tmp == 0)
@@ -58,10 +49,7 @@ static int	check_if_exit_code_substitute(char *str,
 		else
 			s->is_quote = 0;
 	}
-	if ((ft_strnstr(&str[s->input_i], "$?", ft_strlen(str))
-			== &str[s->input_i] || ft_strnstr(&str[s->input_i],
-				"${?}", ft_strlen(str))
-			== &str[s->input_i]) && !s->is_quote)
+	if ((ft_strnstr(&str[s->input_i], "$?", ft_strlen(str)) == &str[s->input_i]) && !s->is_quote)
 	{
 		s->nb_str = ft_itoa(code);
 		s->nb_len = ft_strlen(s->nb_str);

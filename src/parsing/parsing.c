@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:10:28 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 13:38:58 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:37:39 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int	parser(char *line, t_shell *shell, t_list *tokens)
 {
 	if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '|')
 		line = open_pipe(line);
-	line = parse_line(line, shell);
 	if (!line)
 		return (1);
 	shell->count_cmd = pre_parse(line, shell);

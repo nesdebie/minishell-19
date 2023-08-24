@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 15:57:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:32:00 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,6 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
 /* SUBSITUTIONS */
 char	*substitute_variables(char	*input, int code, t_list *is_head);
 int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
-int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
+//int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 
 #endif

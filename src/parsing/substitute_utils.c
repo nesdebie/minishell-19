@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:56:10 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:44:45 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:31:40 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,49 +35,6 @@ void	*ft_realloc(void *ptr, size_t size)
 	ft_memcpy(new_ptr, ptr, size);
 	free(ptr);
 	return (new_ptr);
-}
-
-static int	check_parentesis_substitute2(t_sub *s)
-{
-	s->env_len = ft_strlen(s->env_val);
-	s->new_out = ft_realloc(s->output, s->out_size + s->env_len);
-	if (s->new_out == NULL)
-		return (0);
-	s->new_out = ft_realloc(s->output, s->out_size + s->env_len);
-	if (s->new_out == NULL)
-		return (0);
-	s->output = s->new_out;
-	ft_memcpy(s->output + s->out_size, s->env_val, s->env_len);
-	s->out_size += s->env_len;
-	return (1);
-}
-
-int	check_parentesis_substitute(char *input, t_sub *s, t_list *is_head)
-{
-	char	*var_name;
-
-	var_name = NULL;
-	s->input_i++;
-	s->var_start = input + s->input_i;
-	while (input[s->input_i] != '}' && input[s->input_i])
-		s->input_i++;
-	if (input[s->input_i] == '}')
-	{
-		s->var_len = &input[s->input_i] - s->var_start;
-		var_name = malloc((s->var_len + 1) * sizeof(char));
-		ft_memcpy(var_name, s->var_start, s->var_len);
-		var_name[s->var_len] = '\0';
-		s->env_val = ft_getenv(is_head, var_name);
-		if (s->env_val)
-		{
-			if (!check_parentesis_substitute2(s))
-				return (0);
-		}
-		s->input_i++;
-	}
-	if (var_name)
-		free (var_name);
-	return (1);
 }
 
 static int	check_classic_substitute2(t_sub *s, const char *env_val)
