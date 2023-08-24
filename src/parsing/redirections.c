@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 16:07:03 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:23:06 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,33 @@
 static int	read_heredoc(const char *end, int *fd)
 {
 	char	*line;
+	char	*str;
+	char	*tmp;
 
 	signal(SIGINT, SIG_DFL);
 	close(fd[0]);
+	g_exit_code = 0;
+	str = calloc(1,1);
 	while (1)
 	{
 		line = readline("> ");
 		if (!strncmp(line, end, ft_strlen(line) + 1) && *line)
+		{	
+			g_exit_code = -1;
 			break ;
-		ft_putendl_fd(line, fd[1]);
+		}
+		tmp = ft_strjoin(line, "\n");
+		str = ft_strjoin(str, tmp);
+		free(tmp);
 		free(line);
 	}
 	free(line);
+	if (g_exit_code == -1)
+	{
+		str[ft_strlen(str) - 1] = '\0';
+		ft_putendl_fd(str, fd[1]);
+	}
+	free (str);
 	close(fd[1]);
 	exit(EXIT_SUCCESS);
 }
@@ -111,6 +126,8 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 			if (ft_no_file_dir(data, cmd->in_file, rd->name))
 				return (1);
 			else if (ft_no_file_dir(data, cmd->out_file, rd->name))
+				return (1);
+			if (g_exit_code == 0)
 				return (1);
 		}
 		lst = lst->next;
