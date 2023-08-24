@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 16:18:18 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:55:43 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ void	ft_export(t_shell *data, int num_cmd)
 	if (!data->cmd[num_cmd].args[1])
 		return (ft_print_env(&data->envp_list));
 	i = 1;
-	if (!ft_isinset('=', data->cmd[num_cmd].args[1]))
-		return ;
 	while (data->cmd[num_cmd].args[i] && ft_strlen(data->cmd[num_cmd].args[i]))
 	{
 		name = get_name_env(data->cmd[num_cmd].args[i]);
