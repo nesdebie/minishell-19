@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 18:48:09 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/27 18:50:38 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,25 @@ static int	ft_create_pipe(int **fd, t_shell *data)
 	return (0);
 }
 
-static void	ft_wait_process(pid_t	*id, t_shell *data)
+static void	ft_wait_process(pid_t	*id, t_shell *data, int i)
 {
-	int		i;
+	//int		i;
 	int		ret;
 	int		prev;
 
 	prev = 0;
-	i = 0;
-	while (i < data->count_cmd)
-	{
+//	i = 0;
+	//while (i < data->count_cmd)
+	//{
 		waitpid(id[i], &ret, 0);
 		data->exit_code = set_exit_status(ret);
+		if (i == data->flag_heredoc && data->exit_code == 1)
+			exit(EXIT_SUCCESS);
 		if (data->exit_code == 2 && i > 0 && prev > 0)
 			data->exit_code = 1;
 		if (i == 0 || data->exit_code)
 			prev = data->exit_code;
-		i++;
-	}
+//	}
 }
 
 static int	**ft_malloc_fd(t_shell *data, int i)
@@ -104,8 +105,9 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 			exit(EXIT_FAILURE);
 		if (!id[i])
 			process(data, envp, i, fd);
+		ft_wait_process(id, data, i);
 	}
 	ft_close_fd(fd, data);
-	ft_wait_process(id, data);
+	//ft_wait_process(id, data, i);
 	return (0);
 }
