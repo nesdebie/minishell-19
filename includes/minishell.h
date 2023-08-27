@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 18:46:31 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:35:22 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
 /* SUBSITUTIONS */
 char	*substitute_variables(char	*input, int code, t_list *is_head);
 int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
+void	get_quote_sub_value(char *str, t_sub *s);
 //int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 
 int		heredoc(t_cmnd *command, char *stop);

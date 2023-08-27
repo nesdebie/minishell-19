@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:56:10 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:35:12 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ int	check_classic_substitute(t_sub *s, char *input, t_list *is_head)
 	if (var_name)
 		free (var_name);
 	return (1);
+}
+
+void	get_quote_sub_value(char *str, t_sub *s)
+{
+	if (str[s->in_i] == '\'' || str[s->in_i] == '"')
+	{
+		if (!s->is_quote)
+			s->is_quote = str[s->in_i];
+		else if (str[s->in_i] == s->is_quote)
+			s->is_quote = 0;
+	}
 }

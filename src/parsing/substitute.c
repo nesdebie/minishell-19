@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:35:04 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,9 @@ static int	check_if_exit_code_substitute(char *str,
 	int	len;
 
 	len = ft_strlen(str);
-	if (str[s->in_i] == '\'' || !ft_strncmp(&str[s->in_i], "\"$\"", 3))
-	{
-		if (!s->is_quote)
-			s->is_quote = 1;
-		else
-			s->is_quote = 0;
-	}
-	if ((ft_strnstr(&str[s->in_i], "$?", len) == &str[s->in_i]) && !s->is_quote)
+	get_quote_sub_value(str, s);
+	if ((ft_strnstr(&str[s->in_i], "$?", len)
+			== &str[s->in_i]) && s->is_quote != '\'')
 	{
 		s->nb_str = ft_itoa(code);
 		s->nb_len = ft_strlen(s->nb_str);
@@ -78,7 +73,7 @@ static int	substitute_loop(char *input, int code, t_list *is_head, t_sub *s)
 		return (1);
 	else if (tmp == 2)
 		return (0);
-	if (input[s->in_i] == '$' && !s->is_quote)
+	if (input[s->in_i] == '$' && s->is_quote != '\'')
 	{
 		tmp = is_substitute(s, input, is_head, 0);
 		if (tmp == 0)
