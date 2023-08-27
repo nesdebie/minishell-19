@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 15:41:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 17:42:12 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 	{
 		free(data->cmd[0].cmd);
 		ft_redir(data, &data->cmd[0], data->cmd->redir, 0);
-		return ;
 	}
 	else
 	{
@@ -120,4 +119,5 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 		free(id);
 		ft_free_arr(envp);
 	}
+	free_shell(data);
 }

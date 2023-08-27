@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:44:25 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/16 14:36:00 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:59:04 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	ft_delete_env(void *lst)
 		free(ls_env_node->name);
 	if (ls_env_node->value)
 		free(ls_env_node->value);
-	free(ls_env_node);
+	if (ls_env_node)
+		free(ls_env_node);
 }
 
 void	ft_free_env(t_list **is_head)
@@ -62,7 +63,8 @@ static void	free_cmd(t_cmnd *cmd)
 	i = 0;
 	while (cmd->args && cmd->args[i])
 	{
-		free (cmd->args[i]);
+		if (cmd->args[i])
+			free (cmd->args[i]);
 		i++;
 	}
 	i = 0;
@@ -72,7 +74,7 @@ static void	free_cmd(t_cmnd *cmd)
 		close(cmd->in_file);
 	if (cmd->out_file)
 		close(cmd->out_file);
-	if (ft_strlen(cmd->cmd) && ft_strncmp(cmd->cmd, "exit", 4))
+	if (cmd->cmd && ft_strncmp(cmd->cmd, "exit", 4))
 		free(cmd->cmd);
 	free_redir(cmd);
 }
@@ -88,7 +90,8 @@ int	free_shell(t_shell *shell)
 		i++;
 	}
 	shell->count_cmd = 0;
-	free(shell->cmd);
+	if (shell->cmd)
+		free(shell->cmd);
 	shell->cmd = NULL;
 	return (1);
 }
