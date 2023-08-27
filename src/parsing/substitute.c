@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   substitute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 15:31:16 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_setinput_i(char *input, int input_i)
+static int	ft_setin_i(char *input, int in_i)
 {
-	if (ft_strnstr(input + input_i, "$?",
-			ft_strlen(input)) == input + input_i)
-		input_i += 2;
-	return (input_i);
+	if (ft_strnstr(input + in_i, "$?",
+			ft_strlen(input)) == input + in_i)
+		in_i += 2;
+	return (in_i);
 }
 
 static int	is_substitute(t_sub *s, char *input, t_list *is_head, int tmp)
 {
-	s->input_i++;
-	if (input[s->input_i])
+	s->in_i++;
+	if (input[s->in_i])
 	{
 		tmp = check_classic_substitute(s, input, is_head);
 		if (tmp == 0)
@@ -42,14 +42,17 @@ static int	is_substitute(t_sub *s, char *input, t_list *is_head, int tmp)
 static int	check_if_exit_code_substitute(char *str,
 	int code, t_sub *s, int is_continue)
 {
-	if (str[s->input_i] == '\'' || !ft_strncmp(&str[s->input_i], "\"$\"", 3))
+	int	len;
+
+	len = ft_strlen(str);
+	if (str[s->in_i] == '\'' || !ft_strncmp(&str[s->in_i], "\"$\"", 3))
 	{
 		if (!s->is_quote)
 			s->is_quote = 1;
 		else
 			s->is_quote = 0;
 	}
-	if ((ft_strnstr(&str[s->input_i], "$?", ft_strlen(str)) == &str[s->input_i]) && !s->is_quote)
+	if ((ft_strnstr(&str[s->in_i], "$?", len) == &str[s->in_i]) && !s->is_quote)
 	{
 		s->nb_str = ft_itoa(code);
 		s->nb_len = ft_strlen(s->nb_str);
@@ -59,7 +62,7 @@ static int	check_if_exit_code_substitute(char *str,
 		s->output = s->new_out;
 		ft_memcpy(s->output + s->out_size, s->nb_str, s->nb_len);
 		s->out_size += s->nb_len;
-		s->input_i = ft_setinput_i(str, s->input_i);
+		s->in_i = ft_setin_i(str, s->in_i);
 		free(s->nb_str);
 		is_continue = 1;
 	}
@@ -75,7 +78,7 @@ static int	substitute_loop(char *input, int code, t_list *is_head, t_sub *s)
 		return (1);
 	else if (tmp == 2)
 		return (0);
-	if (input[s->input_i] == '$' && !s->is_quote)
+	if (input[s->in_i] == '$' && !s->is_quote)
 	{
 		tmp = is_substitute(s, input, is_head, 0);
 		if (tmp == 0)
@@ -86,7 +89,7 @@ static int	substitute_loop(char *input, int code, t_list *is_head, t_sub *s)
 		s->output = ft_realloc(s->output, s->out_size + 1);
 		if (s->output == NULL)
 			return (0);
-		s->output[s->out_size++] = input[s->input_i++];
+		s->output[s->out_size++] = input[s->in_i++];
 	}
 	return (2);
 }
@@ -102,9 +105,9 @@ char	*substitute_variables(char	*input, int code, t_list	*is_head)
 	s.output = NULL;
 	s.new_out = NULL;
 	s.out_size = 0;
-	s.input_i = 0;
+	s.in_i = 0;
 	s.is_quote = 0;
-	while (input[s.input_i])
+	while (input[s.in_i])
 	{
 		tmp = substitute_loop(input, code, is_head, &s);
 		if (tmp == 1)

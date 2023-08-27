@@ -30,7 +30,9 @@ SRCS =	./src/main.c \
 		./src/parsing/redirections.c \
 		./src/parsing/substitute.c \
 		./src/parsing/substitute_utils.c \
-		./src/parsing/init_cmds_secure.c
+		./src/parsing/init_cmds_secure.c \
+		./src/parsing/heredoc.c \
+		./src/parsing/heredoc_utils.c
 
 CC = cc
 

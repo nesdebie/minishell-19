@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitute_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:56:10 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 15:31:40 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	check_classic_substitute(t_sub *s, char *input, t_list *is_head)
 	char		*var_name;
 	const char	*env_val;
 
-	s->var_start = input + s->input_i;
-	while (ft_isalnum(input[s->input_i]) || input[s->input_i] == '_')
-		s->input_i++;
-	s->var_len = input + s->input_i - s->var_start;
+	s->var_start = input + s->in_i;
+	while (ft_isalnum(input[s->in_i]) || input[s->in_i] == '_')
+		s->in_i++;
+	s->var_len = input + s->in_i - s->var_start;
 	var_name = malloc((s->var_len + 1) * sizeof(char));
 	if (!var_name)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 13:23:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:25:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,14 @@ static void	process(t_shell *data, char **envp, int i, int **fd)
 {
 	signal(SIGQUIT, SIG_DFL);
 	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i) || g_exit_code == 1)
-		exit(EXIT_FAILURE);
+		exit(data->exit_code);
 	ft_dup_fd(i, fd, data);
 	if (i < data->flag_heredoc)
 		exit(EXIT_SUCCESS);
 	if (is_builtin(data, i))
 		execute_builtin(data, i);
 	else if (execve(data->cmd[i].cmd, data->cmd[i].args, envp) == -1)
-	{
-		if (errno == EACCES)
-		{
-			ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
-			ft_putstr_fd(data->cmd[i].cmd, 2);
-			if (ft_isinset('/', data->cmd[i].cmd))
-			{
-				ft_putendl_fd(": is a directory", 2);
-				data->exit_code = 126;
-			}
-			else
-			{
-				ft_putendl_fd(": command not found", 2);
-				data->exit_code = 127;
-			}
-		}
-	}
+		exec_error(data, i);
 	exit(data->exit_code);
 }
 
@@ -119,7 +103,7 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 		if (id[i] == -1)
 			exit(EXIT_FAILURE);
 		if (!id[i])
-			process(data, envp, i, fd);	
+			process(data, envp, i, fd);
 	}
 	ft_close_fd(fd, data);
 	ft_wait_process(id, data);

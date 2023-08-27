@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 12:00:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_substitute{
 	char		*output;
 	char		*new_out;
 	int			out_size;
-	int			input_i;
+	int			in_i;
 	int			is_quote;
 	char		*var_start;
 	int			var_len;
@@ -120,6 +120,7 @@ void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
 int		no_home_err(t_shell *sh);
 int		ft_no_file_dir(t_shell *data, int fd, char *name);
+void	exec_error(t_shell *data, int i);
 
 /* PARSING */
 int		parser(char *line, t_shell *mini, t_list *tokens);
@@ -166,5 +167,9 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
 char	*substitute_variables(char	*input, int code, t_list *is_head);
 int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 //int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
+
+int		heredoc(t_cmnd *command, char *stop);
+void	handle_sigint_heredoc(int sig);
+void	signals_init(void);
 
 #endif
