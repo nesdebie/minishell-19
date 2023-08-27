@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 14:01:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 15:18:47 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:09:47 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static char	*read_heredoc(const char *end, int *fd, char *str)
 		}
 		if (!strncmp(line, end, ft_strlen(line) + 1))
 		{
-			free(line);
 			g_exit_code = -1;
 			break ;
 		}
@@ -37,7 +36,8 @@ static char	*read_heredoc(const char *end, int *fd, char *str)
 		free(tmp);
 		free(line);
 	}
-	free(line);
+	if (line)
+		free(line);
 	return (str);
 }
 
@@ -75,7 +75,7 @@ static int	parent_heredoc(t_cmnd *command, int *id)
 		close(id[0]);
 	}
 	signals_init();
-	g_exit_code = 0;
+	g_exit_code = -1;
 	return (g_exit_code);
 }
 
