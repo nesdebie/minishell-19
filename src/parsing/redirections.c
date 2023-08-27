@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 15:23:06 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:10:40 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ static int	read_heredoc(const char *end, int *fd)
 	char	*str;
 	char	*tmp;
 
-	signal(SIGINT, SIG_DFL);
 	close(fd[0]);
-	g_exit_code = 0;
 	str = calloc(1,1);
 	while (1)
 	{
@@ -45,7 +43,7 @@ static int	read_heredoc(const char *end, int *fd)
 	close(fd[1]);
 	exit(EXIT_SUCCESS);
 }
-
+/*
 static void	heredoc(t_cmnd *cmd, const char *stop,
 	struct termios *attr_out, struct termios *attr_in)
 {
@@ -73,6 +71,104 @@ static void	heredoc(t_cmnd *cmd, const char *stop,
 	free(attr_in);
 	dup2(fd[0], cmd->in_file);
 	close(fd[0]);
+}*/
+
+static void	suppress_output(void)
+{
+	struct termios	termios_p;
+
+	if (tcgetattr(0, &termios_p) != 0)
+		perror("Minishell: tcgetattr");
+	termios_p.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(0, 0, &termios_p) != 0)
+		perror("Minishell: tcsetattr");
+}
+
+
+void	handle_sigint_heredoc(int sig)
+{
+	if (sig == SIGINT)
+	{
+		//ft_putendl_fd("ctrl-C", 2);
+		//rl_redisplay();
+	//write(1, "\n", 1);
+	exit(1);
+	}
+}
+
+static void	child_heredoc(char *stop, int *id)
+{
+	signal(SIGINT, handle_sigint_heredoc);
+	close(id[0]);
+	read_heredoc(stop, id);
+	close(id[1]);
+	exit(0);
+}
+
+static void	handle_sigint(int sig)
+{
+	(void)sig;
+	//write(1, "\n", 1);
+	//rl_on_new_line();
+	//rl_replace_line("", 0);
+	g_exit_code = 1;
+	rl_redisplay();
+	exit (1);
+}
+
+static void	handle_sigquit(int sig)
+{
+	if (sig == SIGQUIT)
+	{
+		//ft_putendl_fd("ctrl-V", 2);
+	//rl_redisplay();
+	g_exit_code = 0;
+	exit(0);
+	}
+}
+
+void	signals_init(void)
+{
+	suppress_output();
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
+}
+
+static int	parent_heredoc(t_cmnd *command, int *id)
+{
+	signal(SIGINT, SIG_IGN);
+	wait(&g_exit_code);
+	close(id[1]);
+	if (WIFEXITED(g_exit_code))
+	{
+		g_exit_code = WEXITSTATUS(g_exit_code);
+		if (g_exit_code > 0)
+			return (g_exit_code);
+		else
+			command->in_file = dup(id[0]);
+		close(id[0]);
+	}
+	signals_init();
+	g_exit_code = 0;
+	return (g_exit_code);
+}
+
+int	heredoc(t_cmnd *command, char *stop)
+{
+	int	pid;
+	int	id[2];
+	int	i;
+
+	g_exit_code = -1;
+	i = pipe(id);
+	if (i == -1)
+		exit(1);
+	pid = fork();
+	if (pid == 0)
+		child_heredoc(stop, id);
+	else
+		return (parent_heredoc(command, id));
+	return (0);
 }
 
 static void	ft_check_fd(t_cmnd *cmd, t_redir **rd, t_list *lst)
@@ -105,7 +201,7 @@ static void	set_in_out(t_redir *rd, t_cmnd *cmd)
 	else if (rd->mode == MODE_APPEND)
 		cmd->out_file = open(tmp, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else if (rd->mode == MODE_HEREDOC)
-		heredoc(cmd, tmp, NULL, NULL);
+		heredoc(cmd, tmp);
 	if (tmp)
 		free(tmp);
 }
@@ -127,7 +223,8 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 				return (1);
 			else if (ft_no_file_dir(data, cmd->out_file, rd->name))
 				return (1);
-			if (g_exit_code == 0)
+			//printf ("|%d|", g_exit_code);
+			if (g_exit_code > 0)
 				return (1);
 		}
 		lst = lst->next;

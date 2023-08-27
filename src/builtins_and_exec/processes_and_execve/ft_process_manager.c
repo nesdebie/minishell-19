@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_manager.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:27:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:21:27 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	process(t_shell *data, char **envp, int i, int **fd)
 {
-	signal(SIGQUIT, SIG_DFL);
-	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i))
+	//signal(SIGQUIT, SIG_DFL);
+	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i) || g_exit_code == 1)
 		exit(EXIT_FAILURE);
 	ft_dup_fd(i, fd, data);
 	if (is_builtin(data, i))

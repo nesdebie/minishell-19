@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 15:32:00 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/25 08:50:23 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_substitute{
 	char		*var_name;
 }				t_sub;
 
-void	rl_replace_line(const char *text, int clear_undo);
+//void	rl_replace_line(const char *text, int clear_undo);
 
 int		set_exit_status(int exit_status);
 

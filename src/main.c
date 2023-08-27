@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 16:11:56 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/25 08:49:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	signal_handler(int signo)
 	{
 		g_exit_code = 1;
 		write(1, "\n", 1);
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
