@@ -10,6 +10,7 @@ SRCS =	./src/main.c \
 		./src/builtins_and_exec/builtins/ft_echo.c \
 		./src/builtins_and_exec/builtins/ft_env.c \
 		./src/builtins_and_exec/builtins/ft_exit.c \
+		./src/builtins_and_exec/builtins/ft_exit_utils.c \
 		./src/builtins_and_exec/builtins/ft_export.c \
 		./src/builtins_and_exec/builtins/ft_export_utils.c \
 		./src/builtins_and_exec/builtins/ft_pwd.c \

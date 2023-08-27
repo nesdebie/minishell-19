@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 15:20:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 18:46:31 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,9 @@ int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 int		heredoc(t_cmnd *command, char *stop);
 void	handle_sigint_heredoc(int sig);
 void	signals_init(void);
+
+/* EXIT_UTILS */
+void	ft_is_digict_arg_place(t_shell *data, int num_cmd);
+void	ft_return_error_isnum(t_shell *data, int num_cmd, int i);
 
 #endif
