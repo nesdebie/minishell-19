@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:41:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/25 08:49:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:35:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	signal_handler(int signo)
 	{
 		g_exit_code = 1;
 		write(1, "\n", 1);
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
@@ -79,6 +79,7 @@ int	main(int ac, char **av, char **envp)
 	if (!shell.envp_list)
 		return (0);
 	shell.exit_code = 0;
+	shell.flag_heredoc = -1;
 	ft_prompt(ac, &shell, NULL);
 	return (0);
 }

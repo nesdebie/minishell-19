@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:53:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 19:02:47 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/27 12:29:47 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ void	ft_init_file(t_list *lst, t_cmnd *cmd, t_shell *data, int idx)
 	redir->idx = -1;
 	if (redir->mode > 0)
 		redir->idx = idx;
+	if (redir->mode == MODE_HEREDOC)
+		data->flag_heredoc = idx;
 	ft_lstadd_back(&cmd->redir, ft_lstnew(redir));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/25 08:50:23 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 12:00:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_shell{
 	int		count_cmd;
 	t_list	*envp_list;
 	int		exit_code;
+	int		flag_heredoc;
 }				t_shell;
 
 typedef struct s_env{
@@ -84,7 +85,7 @@ typedef struct s_substitute{
 	char		*var_name;
 }				t_sub;
 
-//void	rl_replace_line(const char *text, int clear_undo);
+void	rl_replace_line(const char *text, int clear_undo);
 
 int		set_exit_status(int exit_status);
 

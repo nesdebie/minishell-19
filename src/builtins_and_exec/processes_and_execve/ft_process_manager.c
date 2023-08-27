@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_manager.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/25 17:21:27 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:23:42 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static void	process(t_shell *data, char **envp, int i, int **fd)
 {
-	//signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i) || g_exit_code == 1)
 		exit(EXIT_FAILURE);
 	ft_dup_fd(i, fd, data);
+	if (i < data->flag_heredoc)
+		exit(EXIT_SUCCESS);
 	if (is_builtin(data, i))
 		execute_builtin(data, i);
 	else if (execve(data->cmd[i].cmd, data->cmd[i].args, envp) == -1)
@@ -106,10 +108,7 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 	int		**fd;
 
 	if (is_builtin(data, 0) == NO_FORKS && data->count_cmd == 1)
-	{
-		execute_builtin(data, 0);
-		return (0);
-	}
+		return (execute_builtin(data, 0));
 	fd = ft_malloc_fd(data, i);
 	if (!fd)
 		return (1);
@@ -120,7 +119,7 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 		if (id[i] == -1)
 			exit(EXIT_FAILURE);
 		if (!id[i])
-			process(data, envp, i, fd);
+			process(data, envp, i, fd);	
 	}
 	ft_close_fd(fd, data);
 	ft_wait_process(id, data);

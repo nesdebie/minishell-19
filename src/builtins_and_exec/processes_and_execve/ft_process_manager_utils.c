@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 14:47:48 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/27 11:08:41 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	set_exit_status(int exit_status)
 	else if (WIFSIGNALED(exit_status))
 	{
 		if (WTERMSIG(exit_status) == SIGQUIT)
-			write(1, "Quit: 3\n", 8);
+			ft_putendl_fd("^\\Quit: 3", 1);
 		exit_status = 128 + WTERMSIG(exit_status);
 	}
 	return (exit_status);
