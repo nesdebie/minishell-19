@@ -6,30 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 13:51:41 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:39:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
-void	exec_error(t_shell *data, int i)
-{
-	if (errno == EACCES)
-	{
-		ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
-		ft_putstr_fd(data->cmd[i].cmd, 2);
-		if (ft_isinset('/', data->cmd[i].cmd))
-		{
-			ft_putendl_fd(": is a directory", 2);
-			data->exit_code = 126;
-		}
-		else
-		{
-			ft_putendl_fd(": command not found", 2);
-			data->exit_code = 127;
-		}
-	}
-}
 
 static int	heredoc_excep(t_list *lst, int i)
 {
@@ -98,7 +79,7 @@ int	set_exit_status(int exit_status)
 	else if (WIFSIGNALED(exit_status))
 	{
 		if (WTERMSIG(exit_status) == SIGQUIT)
-			ft_putendl_fd("^\\Quit: 3", 1);
+			write(1, "Quit: 3\n", 8);
 		exit_status = 128 + WTERMSIG(exit_status);
 	}
 	return (exit_status);
