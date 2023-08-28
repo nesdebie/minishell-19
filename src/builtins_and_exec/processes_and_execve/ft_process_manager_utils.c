@@ -6,12 +6,12 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 11:28:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:42:54 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
+/*
 static int	heredoc_excep(t_list *lst, int i)
 {
 	t_redir	*redir;
@@ -27,7 +27,7 @@ static int	heredoc_excep(t_list *lst, int i)
 		j++;
 	}
 	return (0);
-}
+}*/
 
 void	ft_close_fd(int *fd[2], t_shell *data)
 {
@@ -68,8 +68,8 @@ void	ft_dup_fd(int i, int **fd, t_shell *data)
 	}
 	else if (i)
 	{
-		if (heredoc_excep(data->cmd->redir, i))
-			return ;
+		//if (heredoc_excep(data->cmd->redir, i))
+		//	return ;
 		if (dup2(fd[i - 1][0], STDIN_FILENO) == -1)
 			exit (EXIT_FAILURE);
 	}

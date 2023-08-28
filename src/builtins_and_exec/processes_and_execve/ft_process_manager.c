@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 12:12:13 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:44:47 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	process(t_shell *data, char **envp, int i, int **fd)
 {
 	signal(SIGQUIT, SIG_DFL);
-	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i))
+	if (ft_redir(data, &data->cmd[i], data->cmd->redir, i) || g_exit_code == 1)
 		exit(EXIT_FAILURE);
 	ft_dup_fd(i, fd, data);
 	if (i < data->flag_heredoc)
@@ -70,13 +70,15 @@ static void	ft_wait_process(pid_t	*id, t_shell *data)
 	i = 0;
 	while (i < data->count_cmd)
 	{
-		if (waitpid(id[i], &ret, 0) == -1)
-			exit (EXIT_FAILURE);
-		data->exit_code = set_exit_status(ret);
-		if (data->exit_code == 2 && i > 0 && prev > 0)
-			data->exit_code = 1;
-		if (i == 0 || data->exit_code)
-			prev = data->exit_code;
+		//if (i != data->flag_heredoc)
+		//{
+			waitpid(id[i], &ret, 0);
+			data->exit_code = set_exit_status(ret);
+			if (data->exit_code == 2 && i > 0 && prev > 0)
+				data->exit_code = 1;
+			if (i == 0 || data->exit_code)
+				prev = data->exit_code;
+	//	}
 		i++;
 	}
 }
@@ -126,7 +128,6 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 			process(data, envp, i, fd);
 		else if (i == data->flag_heredoc)
 			waitpid(id[i], &g_exit_code, 0);
-
 	}
 	ft_close_fd(fd, data);
 	ft_wait_process(id, data);
