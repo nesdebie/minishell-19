@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 13:48:58 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:15:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,18 @@ static int	**ft_malloc_fd(t_shell *data, int i)
 	return (fd);
 }
 
-int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
+void	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 {
 	int		**fd;
 
 	if (is_builtin(data, 0) == NO_FORKS && data->count_cmd == 1)
 	{
 		execute_builtin(data, 0);
-		return (0);
+		return ;
 	}
 	fd = ft_malloc_fd(data, i);
 	if (!fd)
-		return (1);
+		return ;
 	i = -1;
 	while (++i < data->count_cmd)
 	{
@@ -124,9 +124,8 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 		if (!id[i])
 			process(data, envp, i, fd);
 		else if (i == data->flag_heredoc)
-			waitpid(id[i], &g_exit_code, 0);
+			set_heredocflag(data, data->cmd->redir, id, i);
 	}
 	ft_close_fd(fd, data);
 	ft_wait_process(id, data);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 12:17:49 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:16:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	*ft_realloc(void	*ptr, size_t size);
 char	**ft_get_path(t_shell *data);
 
 /* PROCESSES */
-int		ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
+void	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i);
 int		ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i);
 void	ft_dup_fd(int i, int **fd, t_shell *data);
 void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
@@ -170,6 +170,7 @@ int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 void	get_quote_sub_value(char *str, t_sub *s);
 //int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 
+void	set_heredocflag(t_shell *data, t_list *lst, pid_t *id, int i);
 int		heredoc(t_cmnd *command, char *stop);
 void	handle_sigint_heredoc(int sig);
 void	signals_init(void);

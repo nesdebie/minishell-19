@@ -6,11 +6,37 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 13:48:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:15:55 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	set_heredocflag(t_shell *data, t_list *lst, pid_t *id, int i)
+{
+	t_redir *rd;
+	
+	rd = lst->content;
+	while (lst)
+	{
+		rd = lst->content;
+		if (rd->idx > i)
+		{
+			if (rd->mode == MODE_HEREDOC)
+			{
+				data->flag_heredoc = rd->idx;
+				break ;
+			}
+		}
+		lst = lst->next;	
+	}
+	if (lst)
+		data->flag_heredoc = rd->idx;
+	else
+		data->flag_heredoc = -1;
+	waitpid(id[i], &g_exit_code, 0);
+
+}
 
 void	ft_close_fd(int *fd[2], t_shell *data)
 {
