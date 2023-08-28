@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:56:57 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 10:39:19 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:28:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,25 @@ void	ft_dup_fd(int i, int **fd, t_shell *data)
 {
 	if (data->cmd[i].out_file)
 	{
-		dup2(data->cmd[i].out_file, STDOUT_FILENO);
+		if (dup2(data->cmd[i].out_file, STDOUT_FILENO) == -1)
+			exit (EXIT_FAILURE);
 		close(data->cmd[i].out_file);
 	}
 	else if (i < data->count_cmd - 1)
-		dup2(fd[i][1], STDOUT_FILENO);
+		if (dup2(fd[i][1], STDOUT_FILENO) == -1)
+			exit (EXIT_FAILURE);
 	if (data->cmd[i].in_file)
 	{
-		dup2(data->cmd[i].in_file, STDIN_FILENO);
+		if (dup2(data->cmd[i].in_file, STDIN_FILENO) == -1)
+			exit (EXIT_FAILURE);
 		close(data->cmd[i].in_file);
 	}
 	else if (i)
 	{
 		if (heredoc_excep(data->cmd->redir, i))
 			return ;
-		dup2(fd[i - 1][0], STDIN_FILENO);
+		if (dup2(fd[i - 1][0], STDIN_FILENO) == -1)
+			exit (EXIT_FAILURE);
 	}
 	ft_close_fd(fd, data);
 }
