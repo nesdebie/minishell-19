@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 10:56:45 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:08:20 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,15 +122,10 @@ int	ft_process_manager(pid_t	*id, t_shell *data, char **envp, int i)
 		if (id[i] == -1)
 			exit(EXIT_FAILURE);
 		if (!id[i])
-		{
 			process(data, envp, i, fd);
-		}
-		else{
-		if (i == data->flag_heredoc)
-		{
+		else if (i == data->flag_heredoc)
 			waitpid(id[i], &g_exit_code, 0);
-		}
-		}
+
 	}
 	ft_close_fd(fd, data);
 	ft_wait_process(id, data);
