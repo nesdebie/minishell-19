@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 15:03:10 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:23:27 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ char	*join_path(char *cmd, char **path, t_shell *dt, int i)
 
 	if (!path)
 		return (0);
-	if (!access(cmd, X_OK))
-		return (ft_strdup(cmd));
 	if (!pre_join_path(cmd, dt))
 		return (0);
 	command = ft_strdup(cmd);
@@ -85,9 +83,11 @@ char	*join_path(char *cmd, char **path, t_shell *dt, int i)
 	}
 	if (path[i] == NULL || (!access(cmd, F_OK) && access(cmd, X_OK) != 0))
 		return (error_path(dt, command, tmp, cmd));
-	if (command)
-		free(command);
 	if (tmp)
 		free(tmp);
-	return (cmd);
+	if (!access(cmd, X_OK))
+		return (cmd);
+	if (cmd)
+		free(cmd);
+	return (command);
 }
