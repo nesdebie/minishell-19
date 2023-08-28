@@ -6,21 +6,32 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 17:42:12 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:57:02 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static void	ft_free_arr(char **arr)
+static void	ft_free_arr(char **arr, int flag)
 {
 	size_t	i;
 
 	i = 0;
-	while (arr[i])
+	if (flag > 0)
 	{
-		free(arr[i]);
-		i++;
+		while (i < flag)
+		{
+			free(arr[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while(arr[i])
+		{
+			free(arr[i]);
+			i++;
+		}
 	}
 	free(arr);
 }
@@ -43,7 +54,7 @@ static char	**get_envp(t_list *lst)
 		mass[i++] = ft_join_env(env);
 		if (!mass[i - 1])
 		{
-			ft_free_arr(mass);
+			ft_free_arr(mass, i - 1);
 			return (0);
 		}
 		lst = lst->next;
@@ -82,14 +93,14 @@ static int	cmd_with_path(t_shell *dt, char **path)
 				ft_no_file_dir(dt, -1, dt->cmd[i].cmd);
 				dt->exit_code = 127;
 				if (path)
-					ft_free_arr(path);
+					ft_free_arr(path, -1);
 				return (1);
 			}
 			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt, 0);
 		}
 	}
 	if (path)
-		ft_free_arr(path);
+		ft_free_arr(path, -1);
 	return (0);
 }
 
@@ -117,7 +128,7 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 		}
 		ft_process_manager(id, data, envp, -1);
 		free(id);
-		ft_free_arr(envp);
+		ft_free_arr(envp, -1);
 	}
 	free_shell(data);
 }
