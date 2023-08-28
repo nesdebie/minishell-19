@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <nesdebie@marvin.42.fr>           +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:55:17 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/22 23:20:51 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:19:21 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*ft_check_tilde(t_list **head, char *str)
 static int	check_no_home(t_shell *d, int num_cmd)
 {
 	if (ft_getenv(d->envp_list, "HOME") && ft_getenv(d->envp_list, "OLDPWD"))
-		ft_putenv(&d->envp_list, "OLDPWD", ft_getenv(d->envp_list, "PWD"));
+		ft_putenv(&d->envp_list, "OLDPWD", ft_getenv(d->envp_list, "PWD"), 1);
 	else if (!ft_getenv(d->envp_list, "HOME"))
 	{
 		if (!d->cmd[num_cmd].args[1])
@@ -55,7 +55,7 @@ int	check_old_pwd(char *oldpwd, t_shell *d)
 		free(home);
 	}
 	else
-		ft_putenv(&d->envp_list, "OLDPWD", oldpwd);
+		ft_putenv(&d->envp_list, "OLDPWD", oldpwd, 1);
 	return (1);
 }
 

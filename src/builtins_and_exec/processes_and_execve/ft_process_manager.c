@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 11:08:20 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:12:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static void	ft_wait_process(pid_t	*id, t_shell *data)
 	i = 0;
 	while (i < data->count_cmd)
 	{
-		waitpid(id[i], &ret, 0);
+		if (waitpid(id[i], &ret, 0) == -1)
+			exit (EXIT_FAILURE);
 		data->exit_code = set_exit_status(ret);
 		if (data->exit_code == 2 && i > 0 && prev > 0)
 			data->exit_code = 1;

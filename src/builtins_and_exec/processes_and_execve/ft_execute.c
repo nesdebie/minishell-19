@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 11:57:02 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:11:42 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_free_arr(char **arr, int flag)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (flag > 0)

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 12:05:31 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:28:19 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static t_list	*ft_add2list(t_list *is_envp_list, char *i_str)
 	}
 	ls_content->name = ls_val_env[0];
 	ls_content->value = ls_val_env[1];
+	ls_content->equal = 1;
+	if (!ft_strncmp(ls_content->name, "OLDPWD", 7))
+		ls_content->equal = 0;
 	ft_lstadd_back(&is_envp_list, ft_lstnew(ls_content));
 	free(ls_val_env);
 	return (is_envp_list);
@@ -57,7 +60,7 @@ static int	ft_insnewlst(t_list **is_head, char *name, char *val)
 	return (0);
 }
 
-int	ft_putenv(t_list **is_head, char *name, char *val)
+int	ft_putenv(t_list **is_head, char *name, char *val, int flag)
 {
 	t_env	*ls_ptr;
 	t_list	*ls_tmp_head;
@@ -70,6 +73,7 @@ int	ft_putenv(t_list **is_head, char *name, char *val)
 		ls_ptr->value = ft_calloc(ft_strlen(val) + 1, sizeof(char));
 		if (ls_ptr->value)
 			ls_ptr->value = ft_memcpy(ls_ptr->value, val, ft_strlen(val));
+		ls_ptr->equal = flag;
 	}
 	else
 		return (ft_insnewlst(is_head, name, val));

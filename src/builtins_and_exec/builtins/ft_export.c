@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:02:53 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/24 12:55:43 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:42:06 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ static int	ft_check_name(t_shell *d, char *s, int i)
 	return (1);
 }
 
-static int	add_value2(t_shell *d, char *s, int ret, char *name)
+static int	add_value2(t_shell *d, char *s, char *brut, char *name)
 {
 	char	*str;
+	int		ret;
 
+	ret = 0;
 	str = NULL;
 	if (!s)
 		return (-1);
@@ -62,7 +64,10 @@ static int	add_value2(t_shell *d, char *s, int ret, char *name)
 		free(s);
 		return (-1);
 	}
-	ft_putenv(&d->envp_list, name, str);
+	if (!ft_isinset('=', brut))
+		ft_putenv(&d->envp_list, name, str, 0);
+	else
+		ft_putenv(&d->envp_list, name, str, 1);
 	if (!ft_strlen(str))
 		ret = -1;
 	free(s);
@@ -93,13 +98,14 @@ int	add_value(char *name, t_shell *d, int num_cmd, int ret)
 		s = get_value_env(d->cmd[num_cmd].args[ret]);
 	else
 		s = ft_calloc(1, 1);
-	return (add_value2(d, s, ret, name));
+	return (add_value2(d, s, d->cmd[num_cmd].args[ret], name));
 }
 
 void	ft_export(t_shell *data, int num_cmd)
 {
 	int		i;
 	char	*name;
+	int		tmp;
 
 	data->exit_code = 0;
 	if (!data->cmd[num_cmd].args[1])
@@ -114,9 +120,9 @@ void	ft_export(t_shell *data, int num_cmd)
 			data->exit_code = 1;
 			return ;
 		}
-		i = add_value(name, data, num_cmd, i);
+		tmp = add_value(name, data, num_cmd, i);
 		free(name);
-		if (i == -1)
+		if (tmp == -1)
 			return ;
 		i++;
 	}

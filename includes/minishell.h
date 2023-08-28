@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 19:35:22 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:17:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_shell{
 typedef struct s_env{
 	char	*name;
 	char	*value;
+	int		equal;
 }				t_env;
 
 typedef struct s_substitute{
@@ -93,7 +94,7 @@ void	ft_exit_minishell(t_shell *data, int flag);
 
 /* ENVP MANAGER */
 t_list	*ft_init_env(t_shell *shell, char **env);
-int		ft_putenv(t_list **is_head, char *name, char *val);
+int		ft_putenv(t_list **is_head, char *name, char *val, int flag);
 char	*ft_getenv(t_list *is_head, char *i_str);
 t_env	**ft_sortenv(t_list **is_envp_list);
 t_list	*ft_search_dubname(t_list **is_head, char *name);

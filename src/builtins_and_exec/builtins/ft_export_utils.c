@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:31:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/23 11:49:09 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:29:39 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void	ft_print_env(t_list **is_envp_list)
 		write(STDOUT_FILENO, "declare -x ", 11);
 		write(STDOUT_FILENO, env_lst[i]->name, ft_strlen(env_lst[i]->name));
 		s = ft_getenv(*is_envp_list, env_lst[i]->name);
-		if (s && s[0])
+		if (env_lst[i]->equal)
 		{
 			write(STDOUT_FILENO, "=\"", 2);
-			write(STDOUT_FILENO, s, ft_strlen(s));
+			if (s && s[0])
+				write(STDOUT_FILENO, s, ft_strlen(s));
 			write(STDOUT_FILENO, "\"\n", 2);
 		}
 		else
