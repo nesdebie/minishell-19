@@ -6,11 +6,21 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 17:18:31 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:03:10 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+char	*ft_free_str(char *str)
+{
+	if (str)
+	{
+		free (str);
+		str = NULL;
+	}
+	return (str);
+}
 
 void	ft_free_cmds(t_shell *data)
 {

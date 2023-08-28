@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 14:15:49 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:56:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,7 @@ static void	process(t_shell *data, char **envp, int i, int **fd)
 	if (is_builtin(data, i))
 		execute_builtin(data, i);
 	else if (execve(data->cmd[i].cmd, data->cmd[i].args, envp) == -1)
-	{
-		if (errno == EACCES)
-		{
-			ft_putstr_fd("W3LC0M3-1N-sH3LL: ", 2);
-			ft_putstr_fd(data->cmd[i].cmd, 2);
-			if (ft_isinset('/', data->cmd[i].cmd))
-			{
-				ft_putendl_fd(": is a directory", 2);
-				data->exit_code = 126;
-			}
-			else
-			{
-				ft_putendl_fd(": command not found", 2);
-				data->exit_code = 127;
-			}
-		}
-	}
+		exec_error(data, i);
 	exit(data->exit_code);
 }
 

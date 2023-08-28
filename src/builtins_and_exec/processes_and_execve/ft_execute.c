@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 13:11:13 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:02:54 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_free_arr(char **arr, int flag)
 	}
 	else
 	{
-		while(arr[i])
+		while (arr[i])
 		{
 			free(arr[i]);
 			i++;
@@ -108,11 +108,7 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 {
 	if (!ft_strlen(data->cmd[0].cmd) && data->count_cmd == 1)
 	{
-		if (data->cmd[0].cmd)
-		{
-			free(data->cmd[0].cmd);
-			data->cmd[0].cmd = NULL;
-		}
+		data->cmd[0].cmd = ft_free_str(data->cmd[0].cmd);
 		ft_redir(data, &data->cmd[0], data->cmd->redir, 0);
 	}
 	else

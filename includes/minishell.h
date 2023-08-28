@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 14:16:08 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:03:17 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int		free_shell(t_shell *mini);
 void	ft_close_fd(int *fd[2], t_shell *data);
 void	free_content(void *content);
 char	**ft_free_arr_content(char **arr, int i, void *content);
+char	*ft_free_str(char *str);
 
 /* UTILS */
 char	**ft_minisplit(char *str);

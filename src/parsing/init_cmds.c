@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 14:46:45 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:58:10 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
 		while ((*lst)->next && data->cmd[i].cmd && data->cmd[i].cmd[0] == 0)
-        {
-            (*lst) = (*lst)->next;
-            free(data->cmd[i].cmd);
-            data->cmd[i].cmd = ft_strdup((*lst)->content);
-            data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
-        }
+		{
+			(*lst) = (*lst)->next;
+			free(data->cmd[i].cmd);
+			data->cmd[i].cmd = ft_strdup((*lst)->content);
+			data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
+		}
 	}
 	data->cmd[i].args = init_cmd_args(lst, data, i, 0);
 }
