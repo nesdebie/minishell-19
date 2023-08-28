@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 16:40:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:08:20 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static char	**set_args(int count_args)
 	char	**args;
 
 	args = NULL;
-	args = malloc((sizeof(char *) * count_args) + 1);
+	args = malloc(sizeof(char *) * (count_args + 1));
 	if (!args)
 		return (0);
-	ft_memset(args, '\0', sizeof(char *) * count_args + 1);
+	ft_memset(args, '\0', (sizeof(char *)) * (count_args + 1));
 	args[count_args] = NULL;
 	return (args);
 }

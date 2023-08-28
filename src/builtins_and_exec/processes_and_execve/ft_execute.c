@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 12:11:42 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:11:13 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,11 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id)
 {
 	if (!ft_strlen(data->cmd[0].cmd) && data->count_cmd == 1)
 	{
-		free(data->cmd[0].cmd);
+		if (data->cmd[0].cmd)
+		{
+			free(data->cmd[0].cmd);
+			data->cmd[0].cmd = NULL;
+		}
 		ft_redir(data, &data->cmd[0], data->cmd->redir, 0);
 	}
 	else
