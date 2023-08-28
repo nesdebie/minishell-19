@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:08:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 13:08:20 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:46:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,18 @@ void	init_each_command(t_list **lst, t_shell *data, int i)
 		else
 			data->cmd[i].cmd = ft_strdup(cmd);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
-		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
 	}
 	else
 	{
 		data->cmd[i].cmd = ft_strdup((*lst)->content);
 		data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
-		data->cmd[i].args = init_cmd_args(lst, data, i, 0);
+		while ((*lst)->next && data->cmd[i].cmd && data->cmd[i].cmd[0] == 0)
+        {
+            (*lst) = (*lst)->next;
+            free(data->cmd[i].cmd);
+            data->cmd[i].cmd = ft_strdup((*lst)->content);
+            data->cmd[i].cmd = parse_line(data->cmd[i].cmd, data);
+        }
 	}
+	data->cmd[i].args = init_cmd_args(lst, data, i, 0);
 }
