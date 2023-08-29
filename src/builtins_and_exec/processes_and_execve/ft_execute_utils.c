@@ -90,7 +90,7 @@ char	*join_path(char *cmd, char **path, t_shell *dt, int i)
 			break ;
 		free (join);
 	}
-	if (path[i] && ft_strncmp(cmd, "./", 2))
+	if (path[i] && (ft_strncmp(cmd, "./", 2) && ft_strncmp(cmd, "/", 1)))
 	{
 		free (command);
 		return (join);
