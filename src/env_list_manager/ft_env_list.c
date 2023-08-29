@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:49:23 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 16:20:55 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:11:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_putenv(t_list **is_head, char *name, char *val, int flag)
 		ls_ptr->value = ft_calloc(ft_strlen(val) + 1, sizeof(char));
 		if (ls_ptr->value)
 			ls_ptr->value = ft_memcpy(ls_ptr->value, val, ft_strlen(val));
-			ls_ptr->equal = flag;
+		ls_ptr->equal = flag;
 	}
 	else
 		return (ft_insnewlst(is_head, name, val, flag));

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:58:32 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 14:56:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:12:37 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	process(t_shell *data, char **envp, int i, int **fd)
 	if (is_builtin(data, i))
 		execute_builtin(data, i);
 	else if (execve(data->cmd[i].cmd, data->cmd[i].args, envp) == -1)
-		exec_error(data, i);
+		exit(data->exit_code);
 	exit(data->exit_code);
 }
 

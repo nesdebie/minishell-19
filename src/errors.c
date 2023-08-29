@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:45:11 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/20 15:18:53 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:00:09 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_print_err_export(char *str)
 	ft_putendl_fd("\': not a valid identifier", 2);
 }
 
-int	ft_no_file_dir(t_shell *data, int fd, char *name)
+int	ft_no_file_dir(t_shell *data, int fd, char *name, int exit)
 {
 	if (fd == -1)
 	{
@@ -57,7 +57,7 @@ int	ft_no_file_dir(t_shell *data, int fd, char *name)
 			ft_putstr_fd(name, 2);
 			ft_putendl_fd(": No such file or directory", 2);
 		}
-		data->exit_code = 1;
+		data->exit_code = exit;
 		return (1);
 	}
 	return (0);

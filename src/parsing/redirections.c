@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:11:45 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/27 16:06:43 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 09:58:20 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	ft_redir(t_shell *data, t_cmnd *cmd, t_list *lst, int i)
 		if (i == rd->idx)
 		{
 			set_in_out(data, rd, cmd);
-			if (ft_no_file_dir(data, cmd->in_file, rd->name))
+			if (ft_no_file_dir(data, cmd->in_file, rd->name, 1))
 				return (1);
-			else if (ft_no_file_dir(data, cmd->out_file, rd->name))
+			else if (ft_no_file_dir(data, cmd->out_file, rd->name, 1))
 				return (1);
 			if (g_exit_code >= 0)
 			{

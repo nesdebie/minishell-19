@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 15:02:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:11:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ static int	cmd_with_path(t_shell *dt, char **path)
 			{
 				if (!access(dt->cmd[i].cmd, X_OK))
 					return (0);
-				ft_no_file_dir(dt, -1, dt->cmd[i].cmd);
-				dt->exit_code = 127;
+				ft_no_file_dir(dt, -1, dt->cmd[i].cmd, 127);
 				if (path)
 					ft_free_arr(path, -1);
 				return (1);

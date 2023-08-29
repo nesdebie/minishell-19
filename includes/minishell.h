@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:36:46 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/28 15:03:17 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:12:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ int		ft_print_perror(t_shell *shell, const char *str, int nbr);
 void	ft_print_err_export(char *str);
 char	*permission_error(char *cmd, t_shell *dt);
 int		no_home_err(t_shell *sh);
-int		ft_no_file_dir(t_shell *data, int fd, char *name);
-void	exec_error(t_shell *data, int i);
+int		ft_no_file_dir(t_shell *data, int fd, char *name, int exit);
 
 /* PARSING */
 int		parser(char *line, t_shell *mini, t_list *tokens);
@@ -169,7 +168,6 @@ void	ft_executer(t_shell *data, char **path, char **envp, pid_t *id);
 char	*substitute_variables(char	*input, int code, t_list *is_head);
 int		check_classic_substitute(t_sub *s, char *input, t_list *is_head);
 void	get_quote_sub_value(char *str, t_sub *s);
-//int		check_parentesis_substitute(char *input, t_sub *s, t_list *is_head);
 
 void	set_heredocflag(t_shell *data, t_list *lst, pid_t *id, int i);
 int		heredoc(t_cmnd *command, char *stop);
