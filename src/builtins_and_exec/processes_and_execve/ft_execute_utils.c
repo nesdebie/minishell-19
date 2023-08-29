@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/29 10:19:33 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:56:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static char	*error_path(t_shell *dt, char *command)
 
 static char	*check_accessed_file(t_shell *dt, char *cmd, int fd)
 {
+	if (access(cmd, F_OK) && !ft_isinset('/', cmd))
+		return (error_path(dt, cmd));
 	if (access(cmd, F_OK))
 	{
 		ft_no_file_dir(dt, -1, cmd, 127);
@@ -75,9 +77,13 @@ char	*join_path(char *cmd, char **path, t_shell *dt, int i)
 	char	*command;
 
 	command = ft_strjoin("/", cmd);
+	if (!command)
+		return (0);
 	while (path[i])
 	{
 		join = ft_strjoin(path[i], command);
+		if (!join)
+			return (ft_free_str(command));
 		if (!access(join, F_OK) && !access(join, F_OK))
 			break ;
 		free (join);
@@ -89,9 +95,7 @@ char	*join_path(char *cmd, char **path, t_shell *dt, int i)
 		return (join);
 	}
 	free (command);
-	if (access(cmd, F_OK) && !ft_isinset('/', cmd))
-		return (error_path(dt, cmd));
-	else if (!check_accessed_file(dt, cmd, 0))
+	if (!check_accessed_file(dt, cmd, 0))
 		return (0);
 	return (ft_strdup(cmd));
 }
