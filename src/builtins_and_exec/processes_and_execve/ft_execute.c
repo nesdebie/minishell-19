@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:00:09 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/08/29 10:11:16 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:43:30 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static int	cmd_with_path(t_shell *dt, char **path)
 					ft_free_arr(path, -1);
 				return (1);
 			}
-			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt, 0);
+			dt->cmd[i].cmd = join_path(dt->cmd[i].args[0], path, dt, -1);
 		}
 	}
 	if (path)
